@@ -1,0 +1,7 @@
+# esbuild's postinstall only verifies its own platform binary; it is required
+# for Vite to build at all.
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@pinia/nuxt@1.0.2'
+  - pinia@4.0.3

@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+
+/* ── Design tokens ───────────────────────────────────────────────────────────
+   Tailwind v4 is configured here, in CSS. There is no tailwind.config.js.
+   Colors, radii and shadows come straight from the design spec. The type scale
+   is encoded as --text-* tokens so line-height, weight and tracking travel with
+   the size instead of being reapplied by hand at every call site.
+   A `-m` suffix is the mobile step, used as `text-display-m md:text-display`.
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* ── Brand — Dodger blue. Actions and state only, never decoration. ─────── */
+  --color-brand-50: #eaf4ff;
+  --color-brand-100: #d2e7ff;
+  --color-brand-300: #7cbcff;
+  --color-brand-500: #1e90ff; /* primary */
+  --color-brand-600: #0b76e0; /* hover */
+  --color-brand-700: #0a5fb4; /* active / links on light */
+
+  /* ── Ink — never pure black ─────────────────────────────────────────────── */
+  --color-ink-900: #0e1726; /* headings */
+  --color-ink-700: #26364f; /* body */
+  --color-ink-500: #5b6b82; /* secondary text */
+  --color-ink-300: #98a5b8; /* placeholder, disabled */
+
+  /* ── Surface. The canvas/surface step is what separates sections, not shadow. */
+  --color-surface: #ffffff;
+  --color-canvas: #f5f7fa; /* page background */
+  --color-line: #e3e8ef; /* all hairlines */
+
+  /* ── Semantic — used sparingly ──────────────────────────────────────────── */
+  --color-stock: #0e9f6e; /* in stock */
+  --color-out: #c6304a; /* out of stock, destructive */
+  --color-install: #b45309; /* installment figure */
+  --color-install-bg: #fef6e7;
+
+  /* ── Type ───────────────────────────────────────────────────────────────── */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-display: 34px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.025em;
+  --text-display-m: 26px;
+  --text-display-m--line-height: 32px;
+  --text-display-m--font-weight: 700;
+  --text-display-m--letter-spacing: -0.025em;
+
+  --text-h2: 24px;
+  --text-h2--line-height: 30px;
+  --text-h2--font-weight: 650;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2-m: 20px;
+  --text-h2-m--line-height: 26px;
+  --text-h2-m--font-weight: 650;
+  --text-h2-m--letter-spacing: -0.02em;
+
+  --text-h3: 17px;
+  --text-h3--line-height: 24px;
+  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3-m: 16px;
+  --text-h3-m--line-height: 22px;
+  --text-h3-m--font-weight: 600;
+  --text-h3-m--letter-spacing: -0.01em;
+
+  --text-body: 15px;
+  --text-body--line-height: 24px;
+  --text-body--font-weight: 400;
+
+  --text-small: 13px;
+  --text-small--line-height: 18px;
+  --text-small--font-weight: 500;
+
+  --text-micro: 11px;
+  --text-micro--line-height: 14px;
+  --text-micro--font-weight: 600;
+  --text-micro--letter-spacing: 0.04em;
+
+  --text-price: 20px;
+  --text-price--line-height: 26px;
+  --text-price--font-weight: 700;
+  --text-price--letter-spacing: -0.01em;
+  --text-price-m: 18px;
+  --text-price-m--line-height: 24px;
+  --text-price-m--font-weight: 700;
+  --text-price-m--letter-spacing: -0.01em;
+
+  --text-price-lg: 32px;
+  --text-price-lg--line-height: 38px;
+  --text-price-lg--font-weight: 700;
+  --text-price-lg--letter-spacing: -0.02em;
+  --text-price-lg-m: 26px;
+  --text-price-lg-m--line-height: 32px;
+  --text-price-lg-m--font-weight: 700;
+  --text-price-lg-m--letter-spacing: -0.02em;
+
+  /* ── Radius — a fixed scale. Nothing is rounded-full except count badges. ── */
+  --radius-sm: 6px; /* badges, chips, checkboxes */
+  --radius-md: 10px; /* buttons, inputs, selects */
+  --radius-lg: 14px; /* cards, panels, modals */
+
+  /* ── Shadow — these three exist. Nothing else gets one. ─────────────────── */
+  --shadow-raise: 0 1px 2px rgb(14 23 38 / 0.05); /* header when stuck */
+  --shadow-hover: 0 6px 20px rgb(14 23 38 / 0.08); /* card hover */
+  --shadow-float: 0 12px 32px rgb(14 23 38 / 0.12); /* modal, tray, dropdown */
+
+  /* ── Motion — one duration for the whole site ───────────────────────────── */
+  --default-transition-duration: 160ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  --ease-brand: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Layout ─────────────────────────────────────────────────────────────── */
+  --container-page: 1280px;
+  --spacing-section: 56px; /* desktop section rhythm */
+  --spacing-section-m: 40px; /* mobile section rhythm */
+  --spacing-sidebar: 264px; /* catalog filter column */
+}
+
+/* ── Utilities ───────────────────────────────────────────────────────────── */
+
+/* Every number in the UI gets this. Misaligned digits in a price column is
+   what makes a store look amateur. */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The page container: 1280px, with the three side-padding steps. */
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-page);
+  padding-inline: 16px;
+  @media (width >= 768px) {
+    padding-inline: 24px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 32px;
+  }
+}
+
+/* Vertical rhythm between page sections. 56px desktop / 40px mobile. */
+@utility section-y {
+  padding-block: var(--spacing-section-m);
+  @media (width >= 768px) {
+    padding-block: var(--spacing-section);
+  }
+}
+
+/* Two-line clamp used by card titles, which reserve a fixed height. */
+@utility clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink-900);
+    text-wrap: balance;
+  }
+
+  /* One focus treatment for the whole site, on every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* The mouse should not get a focus ring; the keyboard always should. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::placeholder {
+    color: var(--color-ink-300);
+  }
+
+  /* Native form controls follow the brand. */
+  :where(input, select, textarea) {
+    accent-color: var(--color-brand-500);
+  }
+}
+
+/* ── Reduced motion: no movement anywhere, no exceptions. ────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
