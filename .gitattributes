@@ -1,0 +1,9 @@
+# Normalize to LF in the repository; check out native on Windows.
+* text=auto eol=lf
+
+# Binary and generated files git should not try to diff or normalize.
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+pnpm-lock.yaml -diff linguist-generated
