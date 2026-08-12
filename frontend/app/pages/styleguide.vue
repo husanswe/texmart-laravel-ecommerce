@@ -353,7 +353,7 @@ function demoLoading() {
 
           <div>
             <h3 class="mb-1.5 text-small text-ink-700">QtyStepper</h3>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap items-center gap-3">
               <UiQtyStepper v-model="qty" :max="5" />
               <UiQtyStepper v-model="qty" :max="5" size="sm" />
               <span class="text-small text-ink-500">maks. 5 (ombordagi qoldiq)</span>
@@ -410,8 +410,10 @@ function demoLoading() {
     <section class="mb-12">
       <h2 class="mb-4 text-h2-m md:text-h2">Tabs va Accordion</h2>
       <div class="grid gap-6 lg:grid-cols-2">
-        <div class="space-y-6 rounded-lg border border-line bg-surface p-4 sm:p-6">
-          <div>
+        <!-- min-w-0: a grid item defaults to min-width:auto, which would let the
+             scrolling tab strip widen the column instead of scrolling. -->
+        <div class="min-w-0 space-y-6 rounded-lg border border-line bg-surface p-4 sm:p-6">
+          <div class="min-w-0">
             <h3 class="mb-3 text-micro uppercase text-ink-500">Tabs — line</h3>
             <UiTabs v-model="tab" :items="TABS" aria-label="Mahsulot bo'limlari" />
             <p class="pt-4 text-body text-ink-500">Tanlangan: {{ tab }}</p>

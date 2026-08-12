@@ -48,7 +48,7 @@ function onKeydown(event: KeyboardEvent) {
     ref="tablist"
     role="tablist"
     :aria-label="ariaLabel"
-    class="flex"
+    class="flex min-w-0"
     :class="
       variant === 'line'
         ? 'gap-6 overflow-x-auto border-b border-line'
