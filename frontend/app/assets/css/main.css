@@ -8,13 +8,13 @@
    A `-m` suffix is the mobile step, used as `text-display-m md:text-display`.
    ────────────────────────────────────────────────────────────────────────── */
 @theme {
-  /* ── Brand — Dodger blue. Actions and state only, never decoration. ─────── */
-  --color-brand-50: #eaf4ff;
-  --color-brand-100: #d2e7ff;
-  --color-brand-300: #7cbcff;
-  --color-brand-500: #1e90ff; /* primary */
-  --color-brand-600: #0b76e0; /* hover */
-  --color-brand-700: #0a5fb4; /* active / links on light */
+  /* ── Brand — Ocean blue. Buttons, active state, badges, card prices. ─────── */
+  --color-brand-50: #e6f4f6;
+  --color-brand-100: #c2e4e9;
+  --color-brand-300: #6fbecb;
+  --color-brand-500: #0e7c90; /* primary */
+  --color-brand-600: #0a6475; /* hover */
+  --color-brand-700: #084e5c; /* active / dark accents */
 
   /* ── Ink — never pure black ─────────────────────────────────────────────── */
   --color-ink-900: #0e1726; /* headings */

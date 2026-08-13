@@ -17,7 +17,19 @@ export default defineNuxtConfig({
 
   typescript: {
     strict: true,
-    typeCheck: true,
+    // Inline checking is off because vite-plugin-checker splits the project
+    // path on whitespace, and this directory name contains spaces — it looks
+    // for `.../texmart/tsconfig.json`, `.../frontend/laravel/tsconfig.json`
+    // and so on. `pnpm typecheck` runs vue-tsc directly and is unaffected, so
+    // that is the gate. Rename the folder without spaces to turn this back on.
+    typeCheck: false,
+  },
+
+  // Pinia stores and the repository layer are auto-imported like composables,
+  // so pages call `listProducts()` without an import line and never reach for
+  // `$fetch` themselves.
+  imports: {
+    dirs: ['stores', 'repositories'],
   },
 
   runtimeConfig: {
@@ -25,11 +37,6 @@ export default defineNuxtConfig({
       apiBase: 'http://localhost:8000/api/v1',
       useMocks: true,
     },
-  },
-
-  // Pinia's default store directory differs under Nuxt 4's app/ srcDir.
-  pinia: {
-    storesDirs: ['./app/stores/**'],
   },
 
   fonts: {

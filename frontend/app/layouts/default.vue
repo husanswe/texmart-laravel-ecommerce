@@ -1,14 +1,22 @@
 <script setup lang="ts">
-// The real header, footer, mobile tab bar and compare tray arrive in phase 3.
-// Until then this layout only provides the page canvas so pages can be reviewed
-// in isolation.
+// The category tree feeds the header, mega-menu and mobile drawer. It is
+// fetched once here rather than in each of them.
+const { data: categories } = await useAsyncData('categories', () => listCategories(), {
+  default: () => [],
+})
 </script>
 
 <template>
   <div class="flex min-h-dvh flex-col bg-canvas">
-    <main class="flex-1">
+    <AppHeader :categories="categories" />
+
+    <!-- pb-14 clears the mobile tab bar, which is fixed over the page. -->
+    <main class="flex-1 pb-14 lg:pb-0">
       <slot />
     </main>
+
+    <AppFooter />
+    <MobileTabBar />
     <ToastHost />
   </div>
 </template>

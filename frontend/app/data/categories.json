@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "slug": "smartfonlar-va-telefonlar",
+    "name": "Smartfonlar va telefonlar",
+    "parentId": null,
+    "icon": "Smartphone",
+    "productCount": 14,
+    "children": [
+      { "id": 101, "slug": "smartfonlar", "name": "Smartfonlar", "parentId": 1, "icon": "Smartphone", "productCount": 10 },
+      { "id": 102, "slug": "tugmali-telefonlar", "name": "Tugmali telefonlar", "parentId": 1, "icon": "Phone", "productCount": 1 },
+      { "id": 103, "slug": "smart-soatlar", "name": "Smart soatlar", "parentId": 1, "icon": "Watch", "productCount": 2 },
+      { "id": 104, "slug": "telefon-aksessuarlari", "name": "Telefon aksessuarlari", "parentId": 1, "icon": "Cable", "productCount": 1 }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "noutbuklar-va-kompyuterlar",
+    "name": "Noutbuklar va kompyuterlar",
+    "parentId": null,
+    "icon": "Laptop",
+    "productCount": 9,
+    "children": [
+      { "id": 201, "slug": "noutbuklar", "name": "Noutbuklar", "parentId": 2, "icon": "Laptop", "productCount": 6 },
+      { "id": 202, "slug": "planshetlar", "name": "Planshetlar", "parentId": 2, "icon": "Tablet", "productCount": 2 },
+      { "id": 203, "slug": "monitorlar", "name": "Monitorlar", "parentId": 2, "icon": "Monitor", "productCount": 1 },
+      { "id": 204, "slug": "printerlar", "name": "Printerlar va MFU", "parentId": 2, "icon": "Printer", "productCount": 0 }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "televizorlar",
+    "name": "Televizorlar",
+    "parentId": null,
+    "icon": "Tv",
+    "productCount": 8,
+    "children": [
+      { "id": 301, "slug": "televizorlar-smart", "name": "Smart televizorlar", "parentId": 3, "icon": "Tv", "productCount": 7 },
+      { "id": 302, "slug": "tv-pristavkalar", "name": "TV pristavkalar", "parentId": 3, "icon": "Box", "productCount": 1 },
+      { "id": 303, "slug": "proyektorlar", "name": "Proyektorlar", "parentId": 3, "icon": "Projector", "productCount": 0 }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "sovutgichlar",
+    "name": "Sovutgichlar",
+    "parentId": null,
+    "icon": "Refrigerator",
+    "productCount": 7,
+    "children": [
+      { "id": 401, "slug": "sovutgichlar-uy", "name": "Uy sovutgichlari", "parentId": 4, "icon": "Refrigerator", "productCount": 6 },
+      { "id": 402, "slug": "muzlatgichlar", "name": "Muzlatgichlar", "parentId": 4, "icon": "Snowflake", "productCount": 1 },
+      { "id": 403, "slug": "vitrina-sovutgichlar", "name": "Vitrina sovutgichlar", "parentId": 4, "icon": "Store", "productCount": 0 }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "kir-yuvish-mashinalari",
+    "name": "Kir yuvish mashinalari",
+    "parentId": null,
+    "icon": "WashingMachine",
+    "productCount": 6,
+    "children": [
+      { "id": 501, "slug": "avtomat-kir-yuvish", "name": "Avtomat kir yuvish", "parentId": 5, "icon": "WashingMachine", "productCount": 5 },
+      { "id": 502, "slug": "quritgichlar", "name": "Quritgichlar", "parentId": 5, "icon": "Wind", "productCount": 1 },
+      { "id": 503, "slug": "idish-yuvish", "name": "Idish yuvish mashinalari", "parentId": 5, "icon": "Utensils", "productCount": 0 }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "konditsionerlar",
+    "name": "Konditsionerlar",
+    "parentId": null,
+    "icon": "AirVent",
+    "productCount": 6,
+    "children": [
+      { "id": 601, "slug": "split-tizimlar", "name": "Split tizimlar", "parentId": 6, "icon": "AirVent", "productCount": 4 },
+      { "id": 602, "slug": "ventilyatorlar", "name": "Ventilyatorlar", "parentId": 6, "icon": "Fan", "productCount": 1 },
+      { "id": 603, "slug": "isitgichlar", "name": "Isitgichlar", "parentId": 6, "icon": "Flame", "productCount": 1 },
+      { "id": 604, "slug": "havo-tozalagichlar", "name": "Havo tozalagichlar", "parentId": 6, "icon": "Wind", "productCount": 0 }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "uy-uchun-kichik-texnika",
+    "name": "Uy uchun kichik texnika",
+    "parentId": null,
+    "icon": "CookingPot",
+    "productCount": 8,
+    "children": [
+      { "id": 701, "slug": "changyutgichlar", "name": "Changyutgichlar", "parentId": 7, "icon": "Wind", "productCount": 2 },
+      { "id": 702, "slug": "choynaklar", "name": "Elektr choynaklar", "parentId": 7, "icon": "CupSoda", "productCount": 2 },
+      { "id": 703, "slug": "blenderlar", "name": "Blender va mikserlar", "parentId": 7, "icon": "Blend", "productCount": 2 },
+      { "id": 704, "slug": "dazmollar", "name": "Dazmollar", "parentId": 7, "icon": "Shirt", "productCount": 1 },
+      { "id": 705, "slug": "mikroto-lqinli-pechlar", "name": "Mikroto'lqinli pechlar", "parentId": 7, "icon": "Microwave", "productCount": 1 }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "audio",
+    "name": "Audio",
+    "parentId": null,
+    "icon": "Headphones",
+    "productCount": 2,
+    "children": [
+      { "id": 801, "slug": "quloqchinlar", "name": "Quloqchinlar", "parentId": 8, "icon": "Headphones", "productCount": 1 },
+      { "id": 802, "slug": "portativ-kolonkalar", "name": "Portativ kolonkalar", "parentId": 8, "icon": "Speaker", "productCount": 1 }
+    ]
+  }
+]

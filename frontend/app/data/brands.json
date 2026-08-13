@@ -1,0 +1,16 @@
+[
+  { "id": 1, "slug": "samsung", "name": "Samsung" },
+  { "id": 2, "slug": "lg", "name": "LG" },
+  { "id": 3, "slug": "apple", "name": "Apple" },
+  { "id": 4, "slug": "xiaomi", "name": "Xiaomi" },
+  { "id": 5, "slug": "artel", "name": "Artel" },
+  { "id": 6, "slug": "bosch", "name": "Bosch" },
+  { "id": 7, "slug": "philips", "name": "Philips" },
+  { "id": 8, "slug": "tefal", "name": "Tefal" },
+  { "id": 9, "slug": "sony", "name": "Sony" },
+  { "id": 10, "slug": "honor", "name": "Honor" },
+  { "id": 11, "slug": "realme", "name": "Realme" },
+  { "id": 12, "slug": "asus", "name": "Asus" },
+  { "id": 13, "slug": "lenovo", "name": "Lenovo" },
+  { "id": 14, "slug": "shivaki", "name": "Shivaki" }
+]
