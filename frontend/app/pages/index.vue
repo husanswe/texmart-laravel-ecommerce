@@ -21,30 +21,13 @@ const TRUST = [
 
 <template>
   <div class="container-page py-6 md:py-8">
-    <!-- ── Promo row: one slider + two static panels ────────────────────── -->
-    <section class="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
-      <PromoSlider />
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-        <PromoPanel
-          eyebrow="Bo‘lib to‘lash"
-          title="Muddatli to‘lov"
-          body="6, 12 yoki 24 oy — o‘zingizga qulay muddatni tanlang."
-          cta="Batafsil"
-          to="/installment"
-          tone="install"
-        />
-        <PromoPanel
-          eyebrow="Har hafta yangilanadi"
-          title="Maxsus narxlar"
-          body="Tanlangan mahsulotlarga 30% gacha chegirma."
-          cta="Chegirmalarni ko‘rish"
-          to="/catalog"
-        />
-      </div>
-    </section>
+    <!-- The page needs a first-level heading for search engines and screen
+         readers. It is visually hidden rather than rendered as a hero, because
+         the home page leads with the category grid by design. -->
+    <h1 class="sr-only">Texmart — maishiy texnika va elektronika onlayn do'koni</h1>
 
     <!-- ── Category grid ────────────────────────────────────────────────── -->
-    <section class="mt-10 md:mt-14">
+    <section>
       <div class="mb-4 flex items-baseline justify-between gap-4">
         <h2 class="text-h2-m md:text-h2">Kategoriyalar</h2>
         <NuxtLink

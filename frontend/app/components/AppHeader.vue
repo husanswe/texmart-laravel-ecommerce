@@ -3,9 +3,7 @@ import {
   ChevronDown,
   Heart,
   LayoutGrid,
-  MapPin,
   Menu,
-  Percent,
   Phone,
   Scale,
   ShoppingBag,
@@ -55,24 +53,7 @@ const actions = computed(() => [
       class="hidden overflow-hidden border-b border-line bg-canvas transition-[max-height] md:block"
       :class="collapsed ? 'max-h-0' : 'max-h-12'"
     >
-      <div class="container-page flex h-11 items-center justify-between gap-6">
-        <nav class="flex items-center gap-5" aria-label="Qo'shimcha havolalar">
-          <NuxtLink
-            to="/aksiya"
-            class="flex items-center gap-1.5 text-small text-ink-500 transition-colors hover:text-brand-700"
-          >
-            <Percent class="size-4" aria-hidden="true" />
-            Aksiya va chegirmalar
-          </NuxtLink>
-          <NuxtLink
-            to="/shops"
-            class="flex items-center gap-1.5 text-small text-ink-500 transition-colors hover:text-brand-700"
-          >
-            <MapPin class="size-4" aria-hidden="true" />
-            Do'konlar
-          </NuxtLink>
-        </nav>
-
+      <div class="container-page flex h-11 items-center justify-end gap-6">
         <div class="flex items-center gap-5">
           <a
             href="tel:+998712307799"
@@ -199,19 +180,10 @@ const actions = computed(() => [
       </nav>
 
       <template #footer>
-        <div class="space-y-2">
-          <a
-            href="tel:+998712307799"
-            class="flex items-center gap-2 text-body text-ink-700 tnum"
-          >
-            <Phone class="size-4 text-brand-500" aria-hidden="true" />
-            71 230 77 99
-          </a>
-          <NuxtLink to="/shops" class="flex items-center gap-2 text-body text-ink-700">
-            <MapPin class="size-4 text-brand-500" aria-hidden="true" />
-            Do'konlar
-          </NuxtLink>
-        </div>
+        <a href="tel:+998712307799" class="flex items-center gap-2 text-body text-ink-700 tnum">
+          <Phone class="size-4 text-brand-500" aria-hidden="true" />
+          71 230 77 99
+        </a>
       </template>
     </UiDrawer>
   </header>
