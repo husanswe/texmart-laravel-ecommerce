@@ -11,21 +11,75 @@ const megaOpen = ref(false)
 const drawerOpen = ref(false)
 
 /**
- * Past 120px the utility bar and the category bar collapse away and the main
- * bar stays with a shadow. The height animates, not the opacity, so the page
- * does not appear to flicker.
+ * On scroll the utility bar and the category bar tuck away and the main bar
+ * stays put with a shadow.
+ *
+ * The header is `position: fixed`, not `sticky`, and a spacer in normal flow
+ * reserves its expanded height. That is deliberate: a sticky header is *in*
+ * document flow, so collapsing it shrinks the page, which clamps scrollY, which
+ * re-crosses the threshold — the header oscillates every frame. Fixed + a
+ * constant spacer means collapsing never changes document height, so the loop
+ * cannot start.
+ *
+ * Two more guards on top of that:
+ *   - Hysteresis: collapse only above 140px, expand only below 90px. The 50px
+ *     dead zone means a scrollY hovering near the threshold cannot flip-flop.
+ *   - The handler is throttled to one read per animation frame.
  */
-const collapsed = ref(false)
+const COLLAPSE_AT = 140
+const EXPAND_AT = 90
 
+const collapsed = ref(false)
+const headerEl = ref<HTMLElement | null>(null)
+
+/**
+ * Height the flow spacer reserves. Null until measured, so SSR falls back to
+ * the responsive height classes on the spacer and there is no first-paint jump.
+ */
+const spacerHeight = ref<number | null>(null)
+
+let ticking = false
 function onScroll() {
-  collapsed.value = window.scrollY > 120
+  if (ticking) return
+  ticking = true
+  requestAnimationFrame(() => {
+    const y = window.scrollY
+    if (!collapsed.value && y > COLLAPSE_AT) collapsed.value = true
+    else if (collapsed.value && y < EXPAND_AT) collapsed.value = false
+    ticking = false
+  })
 }
+
+/** The spacer must equal the header's *expanded* height, so only measure then. */
+function measureExpanded() {
+  if (!collapsed.value && headerEl.value) {
+    spacerHeight.value = headerEl.value.offsetHeight
+  }
+}
+
+let resizeObserver: ResizeObserver | null = null
 
 onMounted(() => {
   onScroll()
+  measureExpanded()
   window.addEventListener('scroll', onScroll, { passive: true })
+  // Re-measure when the header reflows (breakpoint change, font load). The
+  // observer also fires when the header collapses, but measureExpanded ignores
+  // that so the reserved space stays at the expanded height.
+  resizeObserver = new ResizeObserver(() => measureExpanded())
+  if (headerEl.value) resizeObserver.observe(headerEl.value)
 })
-onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
+
+// Returning to expanded needs a fresh measurement, since the observer will not
+// fire again if the viewport width has not changed.
+watch(collapsed, (isCollapsed) => {
+  if (!isCollapsed) nextTick(measureExpanded)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+  resizeObserver?.disconnect()
+})
 
 const actions = computed(() => [
   { label: 'Tanlanganlar', to: '/favorites', icon: Heart, count: favorites.count },
@@ -35,7 +89,11 @@ const actions = computed(() => [
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 bg-surface" :class="collapsed && 'shadow-raise'">
+  <header
+    ref="headerEl"
+    class="fixed inset-x-0 top-0 z-40 bg-surface"
+    :class="collapsed && 'shadow-raise'"
+  >
     <!-- ── Row 1 — utility bar ─────────────────────────────────────────── -->
     <div
       class="hidden overflow-hidden border-b border-line bg-canvas transition-[max-height] md:block"
@@ -175,4 +233,15 @@ const actions = computed(() => [
       </template>
     </UiDrawer>
   </header>
+
+  <!-- Flow spacer that reserves the header's expanded height. Because the header
+       is fixed (out of flow) and this height is constant while scrolled, the
+       document height never changes when the header collapses. The responsive
+       classes are the SSR fallback (mobile / md / lg expanded totals); once
+       mounted, the measured height takes over. -->
+  <div
+    aria-hidden="true"
+    class="h-[121px] shrink-0 md:h-[118px] lg:h-[167px]"
+    :style="spacerHeight != null ? { height: `${spacerHeight}px` } : undefined"
+  />
 </template>
