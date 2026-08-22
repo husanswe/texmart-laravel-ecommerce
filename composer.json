@@ -1,5 +1,8 @@
 {
     "require": {
         "spatie/laravel-translatable": "^6.14"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^4.4"
     }
 }
