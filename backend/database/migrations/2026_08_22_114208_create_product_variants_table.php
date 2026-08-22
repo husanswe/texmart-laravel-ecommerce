@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->string('name');
-            $table->string('price');
+            $table->integer('price');
             $table->string('sku')->unique();
             $table->timestamps();
         });

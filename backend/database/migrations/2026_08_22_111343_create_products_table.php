@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained();
             $table->string('name')->unique();
-            $table->string('price');
+            $table->integer('price');
             $table->string('description');
             $table->foreignId('brand_id')->nullable()->constrained();
             $table->string('slug')->unique();
