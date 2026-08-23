@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->string('payment_status')->default('unpaid');
             $table->string('shipping_address');
-            $table->string('phone');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
