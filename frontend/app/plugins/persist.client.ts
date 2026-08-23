@@ -1,9 +1,12 @@
 import type { CartLine } from '~/types'
 
+import type { Locale } from '~/stores/locale'
+
 const KEYS = {
   cart: 'texmart:cart',
   favorites: 'texmart:favorites',
   compare: 'texmart:compare',
+  locale: 'texmart:locale',
 } as const
 
 function read<T>(key: string, fallback: T): T {
@@ -36,14 +39,17 @@ export default defineNuxtPlugin((nuxtApp) => {
   const cart = useCartStore()
   const favorites = useFavoritesStore()
   const compare = useCompareStore()
+  const locale = useLocaleStore()
 
   nuxtApp.hook('app:suspense:resolve', () => {
     cart.hydrate(read<CartLine[]>(KEYS.cart, []))
     favorites.hydrate(read<number[]>(KEYS.favorites, []))
     compare.hydrate(read<number[]>(KEYS.compare, []))
+    locale.hydrate(read<Locale>(KEYS.locale, 'uz'))
 
     watch(() => cart.lines, (v) => write(KEYS.cart, v), { deep: true })
     watch(() => favorites.ids, (v) => write(KEYS.favorites, v), { deep: true })
     watch(() => compare.ids, (v) => write(KEYS.compare, v), { deep: true })
+    watch(() => locale.current, (v) => write(KEYS.locale, v))
   })
 })

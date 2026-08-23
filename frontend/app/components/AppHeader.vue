@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, Heart, LayoutGrid, Menu, Phone, ShoppingBag, User, X } from '@lucide/vue'
+import { Heart, LayoutGrid, Menu, Phone, ShoppingBag, User, X } from '@lucide/vue'
 import type { Category } from '~/types'
 
 defineProps<{ categories: Category[] }>()
@@ -102,19 +102,13 @@ const actions = computed(() => [
       <div class="container-page flex h-11 items-center justify-end gap-6">
         <div class="flex items-center gap-5">
           <a
-            href="tel:+998712307799"
-            class="flex items-center gap-1.5 text-small text-ink-700 transition-colors hover:text-brand-700 tnum"
+            :href="PHONE_TEL"
+            class="flex items-center gap-1.5 whitespace-nowrap text-small text-ink-700 transition-colors hover:text-brand-700 tnum"
           >
             <Phone class="size-4" aria-hidden="true" />
-            71 230 77 99
+            {{ PHONE_DISPLAY }}
           </a>
-          <button
-            type="button"
-            class="flex items-center gap-1.5 text-small text-ink-500 transition-colors hover:text-brand-700"
-          >
-            O'zbekcha
-            <ChevronDown class="size-3.5" aria-hidden="true" />
-          </button>
+          <LocaleSwitcher />
         </div>
       </div>
     </div>
@@ -153,14 +147,21 @@ const actions = computed(() => [
           <SearchBar />
         </div>
 
-        <!-- Icon-above-label actions -->
-        <nav class="ml-auto flex shrink-0 items-center gap-1 sm:gap-2" aria-label="Foydalanuvchi">
+        <!-- Icon-above-label actions.
+             items-start, not items-center: with centering, an item whose label
+             wrapped became taller and its icon was pushed out of line with its
+             neighbours. Aligning to the start keeps every icon on one row
+             whatever the label does. -->
+        <nav
+          class="ml-auto flex shrink-0 items-start gap-0.5 sm:gap-1 xl:gap-2"
+          aria-label="Foydalanuvchi"
+        >
           <NuxtLink
             v-for="action in actions"
             :key="action.label"
             :to="action.to"
-            class="relative flex w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 xl:w-[72px]"
-            :class="action.label === 'Mening profilim' ? '' : 'hidden sm:flex'"
+            class="relative w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 xl:w-auto xl:min-w-[72px] xl:px-1.5"
+            :class="action.to === '/cabinet' ? 'flex' : 'hidden sm:flex'"
           >
             <span class="relative">
               <component :is="action.icon" class="size-6" aria-hidden="true" />
@@ -172,8 +173,12 @@ const actions = computed(() => [
               </span>
             </span>
             <!-- Labels appear only from xl; between lg and xl they would steal
-                 the width the search bar needs to stay the prominent element. -->
-            <span class="hidden text-[11px] leading-tight xl:block">{{ action.label }}</span>
+                 the width the search bar needs to stay the prominent element.
+                 whitespace-nowrap on every label, so none of them can wrap to a
+                 second line and unbalance the row. -->
+            <span class="hidden whitespace-nowrap text-[11px] leading-tight xl:block">
+              {{ action.label }}
+            </span>
             <span class="sr-only xl:hidden">{{ action.label }}</span>
           </NuxtLink>
         </nav>
@@ -226,9 +231,9 @@ const actions = computed(() => [
       </nav>
 
       <template #footer>
-        <a href="tel:+998712307799" class="flex items-center gap-2 text-body text-ink-700 tnum">
+        <a :href="PHONE_TEL" class="flex items-center gap-2 text-body text-ink-700 tnum">
           <Phone class="size-4 text-brand-500" aria-hidden="true" />
-          71 230 77 99
+          {{ PHONE_DISPLAY }}
         </a>
       </template>
     </UiDrawer>

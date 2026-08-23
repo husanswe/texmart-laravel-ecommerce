@@ -90,11 +90,11 @@ const year = new Date().getFullYear()
               <dt class="sr-only">Telefon</dt>
               <dd>
                 <a
-                  href="tel:+998712307799"
-                  class="flex items-center gap-2 text-h3-m text-white transition-colors hover:text-brand-300 tnum md:text-h3"
+                  :href="PHONE_TEL"
+                  class="flex items-center gap-2 whitespace-nowrap text-h3-m text-white transition-colors hover:text-brand-300 tnum md:text-h3"
                 >
                   <Phone class="size-4 shrink-0 text-brand-300" aria-hidden="true" />
-                  71 230 77 99
+                  {{ PHONE_DISPLAY }}
                 </a>
                 <p class="mt-0.5 flex items-center gap-2 text-small text-ink-500">
                   <Clock class="size-3.5 shrink-0" aria-hidden="true" />
@@ -106,11 +106,11 @@ const year = new Date().getFullYear()
               <dt class="sr-only">E-mail</dt>
               <dd>
                 <a
-                  href="mailto:info@texmart.uz"
+                  :href="`mailto:${EMAIL}`"
                   class="flex items-center gap-2 text-body text-white transition-colors hover:text-brand-300"
                 >
                   <Mail class="size-4 shrink-0 text-brand-300" aria-hidden="true" />
-                  info@texmart.uz
+                  {{ EMAIL }}
                 </a>
               </dd>
             </div>
