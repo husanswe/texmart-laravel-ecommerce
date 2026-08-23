@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Clock, Mail, MessageCircle, Phone, Send } from '@lucide/vue'
+import { Clock, Mail, Phone } from '@lucide/vue'
+import type { SocialNetwork } from '~/components/SocialIcon.vue'
 
 const COLUMNS = [
   {
@@ -29,10 +30,14 @@ const COLUMNS = [
   },
 ]
 
-const SOCIAL = [
-  { label: 'Telegram', icon: Send, href: 'https://t.me/' },
-  { label: 'Facebook', icon: MessageCircle, href: 'https://facebook.com/' },
-  { label: 'Instagram', icon: Mail, href: 'https://instagram.com/' },
+const SOCIAL: { label: string; network: SocialNetwork; href: string }[] = [
+  { label: 'Telegram', network: 'telegram', href: 'https://t.me/husanswe' },
+  {
+    label: 'LinkedIn',
+    network: 'linkedin',
+    href: 'https://www.linkedin.com/in/husan-sulaymon-6a2495264/',
+  },
+  { label: 'X', network: 'x', href: 'https://x.com/husanswe' },
 ]
 
 const year = new Date().getFullYear()
@@ -54,10 +59,10 @@ const year = new Date().getFullYear()
                 :href="item.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="grid size-10 place-items-center rounded-md border border-white/15 text-white/70 transition-colors hover:border-brand-300 hover:text-white"
+                class="block rounded-full transition-opacity hover:opacity-85"
                 :aria-label="item.label"
               >
-                <component :is="item.icon" class="size-5" aria-hidden="true" />
+                <SocialIcon :network="item.network" />
               </a>
             </li>
           </ul>
