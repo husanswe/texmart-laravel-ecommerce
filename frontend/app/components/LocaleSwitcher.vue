@@ -10,11 +10,39 @@ const panel = ref<HTMLElement | null>(null)
 const trigger = ref<HTMLElement | null>(null)
 const panelId = useId()
 
+/**
+ * The panel is teleported to <body> and positioned fixed, rather than being an
+ * absolutely-positioned child of the switcher.
+ *
+ * It has to be: the utility bar it sits in is `overflow-hidden` with a capped
+ * max-height, because that is how the bar collapses on scroll. A panel rendered
+ * inside it gets clipped to ~45px — and since an overflow-hidden box is also a
+ * scroll container, focusing an option scrolled the panel up out of sight, so
+ * only the last row remained visible. Teleporting escapes both problems.
+ */
+const panelPos = ref<{ top: number; right: number }>({ top: 0, right: 0 })
+
+function updatePosition() {
+  const el = trigger.value
+  if (!el) return
+  const r = el.getBoundingClientRect()
+  // clientWidth, not innerWidth: a fixed element's `right` resolves against the
+  // viewport excluding the scrollbar, so innerWidth would offset the panel by
+  // the scrollbar's width (15px here).
+  const viewportWidth = document.documentElement.clientWidth
+  panelPos.value = {
+    top: r.bottom + 10,
+    // Right-aligned to the trigger.
+    right: Math.max(8, viewportWidth - r.right),
+  }
+}
+
 function close() {
   open.value = false
 }
 
 function toggle() {
+  if (!open.value) updatePosition()
   open.value = !open.value
 }
 
@@ -26,9 +54,18 @@ function choose(value: Locale) {
   nextTick(() => trigger.value?.focus())
 }
 
-/** Outside click closes the panel. Bound only while it is open. */
+/**
+ * Outside click closes the panel. Bound only while it is open.
+ *
+ * The panel is teleported to <body>, so it is NOT inside `root` — it has to be
+ * tested separately. Checking only `root` would treat a press on an option as
+ * an outside click, closing the panel on pointerdown and unmounting the button
+ * before its click could fire, so choosing a language would do nothing.
+ */
 function onPointerDown(event: PointerEvent) {
-  if (!root.value?.contains(event.target as Node)) close()
+  const target = event.target as Node
+  if (root.value?.contains(target) || panel.value?.contains(target)) return
+  close()
 }
 
 function onKeydown(event: KeyboardEvent) {
@@ -54,15 +91,30 @@ function onKeydown(event: KeyboardEvent) {
   items[next]?.focus()
 }
 
+/** Scrolling collapses the utility bar, taking the trigger with it. */
+function onScroll() {
+  if (open.value) close()
+}
+
+function onResize() {
+  if (open.value) updatePosition()
+}
+
 watch(open, async (isOpen) => {
   if (import.meta.server) return
   if (isOpen) {
     document.addEventListener('pointerdown', onPointerDown)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
     await nextTick()
     // Open on the selected option so the current choice is the starting point.
+    // Safe now the panel is teleported: focusing it can no longer scroll a
+    // clipping ancestor, because it no longer has one.
     panel.value?.querySelector<HTMLElement>('[aria-checked="true"]')?.focus()
   } else {
     document.removeEventListener('pointerdown', onPointerDown)
+    window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', onResize)
   }
 })
 
@@ -70,6 +122,8 @@ onMounted(() => document.addEventListener('keydown', onKeydown))
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKeydown)
   document.removeEventListener('pointerdown', onPointerDown)
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', onResize)
 })
 
 // A route change must not leave the panel hanging open.
@@ -98,46 +152,50 @@ onBeforeUnmount(stopAfterEach)
       />
     </button>
 
-    <!-- Absolutely positioned so opening it never shifts the bar. -->
-    <div
-      v-if="open"
-      :id="panelId"
-      ref="panel"
-      class="absolute top-full right-0 z-50 mt-2.5 w-52 rounded-lg border border-line bg-surface p-2 shadow-float"
-      role="radiogroup"
-      aria-label="Tilni tanlang"
-    >
-      <!-- Caret connecting the panel to the button -->
-      <span
-        class="absolute -top-[6px] right-5 size-3 rotate-45 border-t border-l border-line bg-surface"
-        aria-hidden="true"
-      />
-
-      <p class="px-2 pt-1 pb-2 text-small font-semibold text-ink-900">Tilni tanlang</p>
-
-      <button
-        v-for="option in LOCALE_OPTIONS"
-        :key="option.value"
-        type="button"
-        role="radio"
-        :aria-checked="locale.current === option.value"
-        class="flex w-full items-center gap-2.5 rounded-md px-2 py-2 text-left text-body transition-colors hover:bg-canvas"
-        :class="locale.current === option.value ? 'text-ink-900' : 'text-ink-700'"
-        @click="choose(option.value)"
+    <!-- Teleported out of the clipping utility bar; fixed, so opening it never
+         shifts the bar either. -->
+    <Teleport to="body">
+      <div
+        v-if="open"
+        :id="panelId"
+        ref="panel"
+        class="fixed z-[60] w-52 rounded-lg border border-line bg-surface p-2 shadow-float"
+        :style="{ top: `${panelPos.top}px`, right: `${panelPos.right}px` }"
+        role="radiogroup"
+        aria-label="Tilni tanlang"
       >
-        <FlagIcon :locale="option.value" class="h-4 w-6" />
-        <span class="min-w-0 flex-1 truncate">{{ option.label }}</span>
+        <!-- Caret connecting the panel to the button -->
         <span
-          class="grid size-[18px] shrink-0 place-items-center rounded-full border transition-colors"
-          :class="locale.current === option.value ? 'border-brand-500' : 'border-line'"
+          class="absolute -top-[6px] right-5 size-3 rotate-45 border-t border-l border-line bg-surface"
           aria-hidden="true"
+        />
+
+        <p class="px-2 pt-1 pb-2 text-small font-semibold text-ink-900">Tilni tanlang</p>
+
+        <button
+          v-for="option in LOCALE_OPTIONS"
+          :key="option.value"
+          type="button"
+          role="radio"
+          :aria-checked="locale.current === option.value"
+          class="flex w-full items-center gap-2.5 rounded-md px-2 py-2 text-left text-body transition-colors hover:bg-canvas"
+          :class="locale.current === option.value ? 'text-ink-900' : 'text-ink-700'"
+          @click="choose(option.value)"
         >
+          <FlagIcon :locale="option.value" class="h-4 w-6" />
+          <span class="min-w-0 flex-1 truncate">{{ option.label }}</span>
           <span
-            v-if="locale.current === option.value"
-            class="size-2.5 rounded-full bg-brand-500"
-          />
-        </span>
-      </button>
-    </div>
+            class="grid size-[18px] shrink-0 place-items-center rounded-full border transition-colors"
+            :class="locale.current === option.value ? 'border-brand-500' : 'border-line'"
+            aria-hidden="true"
+          >
+            <span
+              v-if="locale.current === option.value"
+              class="size-2.5 rounded-full bg-brand-500"
+            />
+          </span>
+        </button>
+      </div>
+    </Teleport>
   </div>
 </template>
