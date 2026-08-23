@@ -173,8 +173,7 @@ const actions = computed(() => [
             v-for="action in actions"
             :key="action.label"
             :to="action.to"
-            class="relative w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 xl:w-auto xl:min-w-[72px] xl:px-1.5"
-            :class="action.to === '/cabinet' ? 'flex' : 'hidden sm:flex'"
+            class="relative hidden w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 sm:flex xl:w-auto xl:min-w-[72px] xl:px-1.5"
           >
             <span class="relative">
               <component :is="action.icon" class="size-6" aria-hidden="true" />
