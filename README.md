@@ -10,7 +10,7 @@ Portfolio project. Not affiliated with any real shop.
 | Path | What it is | Status |
 |---|---|---|
 | `frontend/` | Nuxt 4 storefront — SSR, TypeScript, Tailwind v4 | In progress |
-| `backend/` | Laravel 13 JSON API + Filament admin | Not started |
+| `backend/` | Laravel 13 JSON API + Filament admin | |
 | `PLAN.md` | Frontend build plan: structure, tokens, phase order | — |
 
 The two apps are independent. The frontend runs entirely on JSON fixtures until
