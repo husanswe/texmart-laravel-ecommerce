@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at');
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('is_admin')->default(false);
