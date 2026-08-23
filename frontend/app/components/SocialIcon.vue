@@ -23,10 +23,20 @@ const DISC: Record<SocialNetwork, string> = {
 
 <template>
   <span
-    class="grid size-10 shrink-0 place-items-center rounded-full transition-transform"
+    class="relative grid size-10 shrink-0 place-items-center rounded-full transition-transform"
     :class="DISC[network]"
     aria-hidden="true"
   >
+    <!-- Font Awesome's telegram mark is a filled circle with the plane knocked
+         out, so the background shows through the plane. This white disc sits
+         behind it, turning that cutout white and matching the LinkedIn and X
+         treatment. It is 34px against the mark's 38.75px drawn circle
+         (the path spans 8..504 of a 512 viewBox), so it stays fully hidden
+         behind the blue and leaves no halo at the edge. -->
+    <span
+      v-if="network === 'telegram'"
+      class="absolute top-1/2 left-1/2 size-[34px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+    />
     <!-- Telegram — Font Awesome brand icon, in Telegram's blue.
          Sized by font-size, not width/height: Font Awesome's own
          `.svg-inline--fa { height: 1em }` wins over a Tailwind size utility,
@@ -34,6 +44,7 @@ const DISC: Record<SocialNetwork, string> = {
     <FontAwesomeIcon
       v-if="network === 'telegram'"
       :icon="['fab', 'telegram']"
+      class="relative z-10"
       style="color: rgb(63, 161, 238); width: 40px; height: 40px"
     />
 
