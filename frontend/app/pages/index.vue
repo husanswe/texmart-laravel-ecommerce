@@ -15,7 +15,7 @@ const TRUST = [
   { icon: ShieldCheck, title: 'Rasmiy kafolat', body: 'Barcha mahsulotlarga ishlab chiqaruvchi kafolati' },
   { icon: Truck, title: 'Tez yetkazib berish', body: "O'zbekiston bo'ylab 1–3 kun ichida" },
   { icon: CreditCard, title: "Muddatli to'lov", body: "24 oygacha, boshlang'ich to'lovsiz" },
-  { icon: Store, title: '316 ta do‘kon', body: 'Buyurtmani do‘kondan olib ketish mumkin' },
+  { icon: Store, title: '30 ta do‘kon', body: 'Buyurtmani do‘kondan olib ketish mumkin' },
 ]
 </script>
 
