@@ -2,6 +2,17 @@
 import { ChevronDown } from '@lucide/vue'
 import { LOCALE_OPTIONS, type Locale } from '~/stores/locale'
 
+withDefaults(
+  defineProps<{
+    /**
+     * Icon-only trigger — just the flag, no label or chevron. Used in the main
+     * bar below md, where the utility bar that normally carries this is hidden.
+     */
+    compact?: boolean
+  }>(),
+  { compact: false },
+)
+
 const locale = useLocaleStore()
 
 const open = ref(false)
@@ -137,19 +148,27 @@ onBeforeUnmount(stopAfterEach)
     <button
       ref="trigger"
       type="button"
-      class="flex items-center gap-1.5 rounded-md text-small text-ink-500 transition-colors hover:text-brand-700"
+      class="rounded-md transition-colors"
+      :class="
+        compact
+          ? 'grid size-10 place-items-center text-ink-700 hover:bg-canvas'
+          : 'flex items-center gap-1.5 text-small text-ink-500 hover:text-brand-700'
+      "
       aria-haspopup="true"
       :aria-expanded="open"
       :aria-controls="open ? panelId : undefined"
+      :aria-label="compact ? `Tilni tanlang — ${locale.label}` : undefined"
       @click="toggle"
     >
-      <FlagIcon :locale="locale.current" class="h-3.5 w-5" />
-      <span class="whitespace-nowrap">{{ locale.label }}</span>
-      <ChevronDown
-        class="size-3.5 transition-transform"
-        :class="open && 'rotate-180'"
-        aria-hidden="true"
-      />
+      <FlagIcon :locale="locale.current" :class="compact ? 'h-4 w-6' : 'h-3.5 w-5'" />
+      <template v-if="!compact">
+        <span class="whitespace-nowrap">{{ locale.label }}</span>
+        <ChevronDown
+          class="size-3.5 transition-transform"
+          :class="open && 'rotate-180'"
+          aria-hidden="true"
+        />
+      </template>
     </button>
 
     <!-- Teleported out of the clipping utility bar; fixed, so opening it never

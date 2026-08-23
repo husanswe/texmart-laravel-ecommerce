@@ -147,13 +147,26 @@ const actions = computed(() => [
           <SearchBar />
         </div>
 
+        <!-- Below md the utility bar is hidden, so the phone and the language
+             switcher it carries move into the main bar rather than vanishing. -->
+        <div class="ml-auto flex shrink-0 items-center gap-0.5 md:hidden">
+          <a
+            :href="PHONE_TEL"
+            class="grid size-10 place-items-center rounded-md text-ink-700 transition-colors hover:bg-canvas hover:text-brand-600"
+            :aria-label="`Telefon: ${PHONE_DISPLAY}`"
+          >
+            <Phone class="size-5" aria-hidden="true" />
+          </a>
+          <LocaleSwitcher compact />
+        </div>
+
         <!-- Icon-above-label actions.
              items-start, not items-center: with centering, an item whose label
              wrapped became taller and its icon was pushed out of line with its
              neighbours. Aligning to the start keeps every icon on one row
              whatever the label does. -->
         <nav
-          class="ml-auto flex shrink-0 items-start gap-0.5 sm:gap-1 xl:gap-2"
+          class="flex shrink-0 items-start gap-0.5 sm:gap-1 md:ml-auto xl:gap-2"
           aria-label="Foydalanuvchi"
         >
           <NuxtLink
