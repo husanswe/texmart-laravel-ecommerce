@@ -8,7 +8,9 @@ export default defineNuxtConfig({
 
   modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/fonts'],
 
-  css: ['~/assets/css/main.css'],
+  // Font Awesome's stylesheet is loaded here rather than injected at runtime by
+  // the core — see app/plugins/fontawesome.ts.
+  css: ['~/assets/css/main.css', '@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Tailwind v4 is configured in CSS (app/assets/css/main.css), not a config file.
   vite: {

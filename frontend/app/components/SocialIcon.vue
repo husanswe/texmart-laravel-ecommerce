@@ -13,7 +13,9 @@ export type SocialNetwork = 'telegram' | 'linkedin' | 'x'
 defineProps<{ network: SocialNetwork }>()
 
 const DISC: Record<SocialNetwork, string> = {
-  telegram: 'bg-[#2AABEE]',
+  // Telegram is a supplied PNG that already carries its own blue disc, so it
+  // gets no background of its own — otherwise it would be a circle on a circle.
+  telegram: '',
   linkedin: 'bg-[#0A66C2]',
   x: 'bg-black ring-1 ring-white/25',
 }
@@ -25,12 +27,15 @@ const DISC: Record<SocialNetwork, string> = {
     :class="DISC[network]"
     aria-hidden="true"
   >
-    <!-- Telegram — paper plane -->
-    <svg v-if="network === 'telegram'" viewBox="0 0 24 24" class="size-5 translate-x-[-1px] fill-white">
-      <path
-        d="M23.91 3.79 20.3 20.84c-.25 1.21-.98 1.5-2 .94l-5.5-4.07-2.66 2.57c-.3.3-.55.56-1.1.56-.72 0-.6-.27-.84-.95L6.3 13.7.85 12c-1.18-.35-1.19-1.16.26-1.75l21.26-8.2c.97-.43 1.9.24 1.54 1.74Z"
-      />
-    </svg>
+    <!-- Telegram — Font Awesome brand icon, in Telegram's blue.
+         Sized by font-size, not width/height: Font Awesome's own
+         `.svg-inline--fa { height: 1em }` wins over a Tailwind size utility,
+         so the icon would otherwise inherit the footer's small text size. -->
+    <FontAwesomeIcon
+      v-if="network === 'telegram'"
+      :icon="['fab', 'telegram']"
+      style="color: rgb(63, 161, 238); width: 40px; height: 40px"
+    />
 
     <!-- LinkedIn — the "in" mark -->
     <svg v-else-if="network === 'linkedin'" viewBox="0 0 24 24" class="size-[18px] fill-white">
