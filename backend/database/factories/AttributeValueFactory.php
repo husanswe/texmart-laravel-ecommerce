@@ -8,15 +8,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AttributeValueFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
+            'value' => fake()->randomElement(['8', '16', '32', '64', '128', '256', '512', 'Black', 'White', 'Blue', '6.5', '5000', '120']),
         ];
     }
 }
