@@ -14,6 +14,7 @@ class AttributeSeeder extends Seeder
         $smartphones = Category::where('slug', 'smartfonlar')->first();
         $laptops = Category::where('slug', 'noutbuklar')->first();
         $tvs = Category::where('slug', 'televizorlar')->first();
+        $fridge = Category::where('slug', 'sovutgichlar')->first();
 
         $ram = Attribute::create([
             'name' => 'RAM',
@@ -30,6 +31,7 @@ class AttributeSeeder extends Seeder
 
         $ram->category()->attach([$smartphones->id, $laptops->id]);
 
+        // 
 
         $storage = Attribute::create([
             'name' => 'Storage',
@@ -46,6 +48,7 @@ class AttributeSeeder extends Seeder
 
         $storage->category()->attach([$smartphones->id, $laptops->id]);
 
+        // 
 
         $screenSize = Attribute::create([
             'name' => 'Screen size',
@@ -61,5 +64,23 @@ class AttributeSeeder extends Seeder
         }
 
         $screenSize->category()->attach([$smartphones->id, $tvs->id]);
+
+        // 
+
+        $battery = Attribute::create([
+            'name' => 'Battery',
+            'slug' => 'battery',
+            'unit' => 'mAh'
+        ]);
+
+        foreach (['3000', '4000', '5000'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $battery->id,
+                'value' => $value
+            ]);
+        }
+
+        $battery->category()->attach([$smartphones->id]);
+
     }
 }
