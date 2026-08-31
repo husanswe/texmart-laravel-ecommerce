@@ -13,6 +13,7 @@ class AttributeSeeder extends Seeder
     {
         $smartphones = Category::where('slug', 'smartfonlar')->first();
         $laptops = Category::where('slug', 'noutbuklar')->first();
+        $tvs = Category::where('slug', 'televizorlar')->first();
 
         $ram = Attribute::create([
             'name' => 'RAM',
@@ -28,5 +29,37 @@ class AttributeSeeder extends Seeder
         }
 
         $ram->category()->attach([$smartphones->id, $laptops->id]);
+
+
+        $storage = Attribute::create([
+            'name' => 'Storage',
+            'slug' => 'storage',
+            'unit' => 'GB'
+        ]);
+
+        foreach (['64', '128', '256', '512'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $storage->id,
+                'value' => $value
+            ]);
+        }
+
+        $storage->category()->attach([$smartphones->id, $laptops->id]);
+
+
+        $screenSize = Attribute::create([
+            'name' => 'Screen size',
+            'slug' => 'screen-size',
+            'unit' => 'inch'
+        ]);
+
+        foreach (['6.1', '6.5', '6.7', '55', '65'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $screenSize->id,
+                'value' => $value
+            ]);
+        }
+
+        $screenSize->category()->attach([$smartphones->id, $tvs->id]);
     }
 }
