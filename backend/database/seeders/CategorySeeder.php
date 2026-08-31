@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
         ]);
 
         $laptops = Category::create([
-            'name' => 'noutbuklar',
+            'name' => 'Noutbuklar',
             'slug' => 'noutbuklar',
             'icon' => 'laptop',
             'parent_id' => null
@@ -25,7 +25,7 @@ class CategorySeeder extends Seeder
 
         $tvs = Category::create([
             'name' => 'Televizor',
-            'slug' => 'televeizorlar',
+            'slug' => 'televizorlar',
             'icon' => 'tv',
             'parent_id' => null
         ]);
@@ -33,7 +33,7 @@ class CategorySeeder extends Seeder
         $fridge = Category::create([
             'name' => 'Sovutgichlar',
             'slug' => 'sovutgichlar',
-            'icon' => 'refigerator',
+            'icon' => 'refrigerator',
             'parent_id' => null
         ]);
 
@@ -41,6 +41,13 @@ class CategorySeeder extends Seeder
             'name' => 'Kir yuvish mashinalari',
             'slug' => 'kir-yuvish-mashinalari',
             'icon' => 'washing-machine',
+            'parent_id' => null
+        ]);
+
+        $airConditioner = Category::create([
+            'name' => 'Konditsioner',
+            'slug' => 'air-conditioner',
+            'icon' => 'air-conditioner',
             'parent_id' => null
         ]);
 
@@ -119,6 +126,20 @@ class CategorySeeder extends Seeder
             'slug' => 'lg-fridge',
             'icon' => 'fridge',
             'parent_id' => $fridge->id
+        ]);
+
+        Category::create([
+            'name' => 'LG Konditsioner',
+            'slug' => 'lg-air-conditioner',
+            'icon' => 'air-conditioner',
+            'parent_id' => $airConditioner->id
+        ]);
+
+        Category::create([
+            'name' => 'Artel Konditsioner',
+            'slug' => 'artel-air-conditioner',
+            'icon' => 'air-conditioner',
+            'parent_id' => $airConditioner->id
         ]);
     }
 }
