@@ -6,6 +6,8 @@ use App\Models\AttributeValue;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
+use App\Models\ProductVariant;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -32,6 +34,35 @@ class ProductSeeder extends Seeder
             'slug' => 'xiaomi-redmi-15c',
             'price' => 2399000,
             'description' => 'Xiaomi Redmi 15C - arzon narxdagi smartfon.'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $redmi->id,
+            'name' => '8/256 Midnight Black',
+            'sku' => 'RDM15C-8-256-BLK',
+            'price' => 2399000,
+            'stock' => 20,
+        ]);
+
+        ProductImage::create([
+            'product_id' => $redmi->id,
+            'image_path' => 'products/redmi-15c-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        ProductImage::create([
+            'product_id' => $redmi->id,
+            'image_path' => 'products/redmi-15c-side.png',
+            'is_primary' => true,
+            'sort_order' => 1,
+        ]);
+
+        // 4. Attaching attribute values via pivot
+        $redmi->attributeValue()->attach([
+            $ram8->id,
+            $storage256->id,
+            $colorBlack->id
         ]);
     }
 }
