@@ -16,6 +16,8 @@ class AttributeSeeder extends Seeder
         $tvs = Category::where('slug', 'televizorlar')->first();
         $fridge = Category::where('slug', 'sovutgichlar')->first();
 
+
+        // RAM
         $ram = Attribute::create([
             'name' => 'RAM',
             'slug' => 'ram', 
@@ -31,8 +33,8 @@ class AttributeSeeder extends Seeder
 
         $ram->category()->attach([$smartphones->id, $laptops->id]);
 
-        // 
 
+        // Storage 
         $storage = Attribute::create([
             'name' => 'Storage',
             'slug' => 'storage',
@@ -48,8 +50,8 @@ class AttributeSeeder extends Seeder
 
         $storage->category()->attach([$smartphones->id, $laptops->id]);
 
-        // 
 
+        // Screen Size
         $screenSize = Attribute::create([
             'name' => 'Screen size',
             'slug' => 'screen-size',
@@ -65,8 +67,8 @@ class AttributeSeeder extends Seeder
 
         $screenSize->category()->attach([$smartphones->id, $tvs->id]);
 
-        // 
 
+        // Battery 
         $battery = Attribute::create([
             'name' => 'Battery',
             'slug' => 'battery',
@@ -82,5 +84,21 @@ class AttributeSeeder extends Seeder
 
         $battery->category()->attach([$smartphones->id]);
 
+
+        // Color 
+        $color = Attribute::create([
+            'name' => 'Color',
+            'slug' => 'color',
+            'unit' => null
+        ]);
+
+        foreach (['Black', 'White', 'Blue', 'Silver'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $color->id,
+                'value' => $value
+            ]);
+        }
+
+        $color->category()->attach([$smartphones->id, $laptops->id, $tvs->id]);
     }
 }
