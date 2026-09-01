@@ -30,7 +30,7 @@ class CategorySeeder extends Seeder
             'parent_id' => null
         ]);
 
-        $fridge = Category::create([
+        $fridges = Category::create([
             'name' => 'Sovutgichlar',
             'slug' => 'sovutgichlar',
             'icon' => 'refrigerator',
@@ -125,7 +125,7 @@ class CategorySeeder extends Seeder
             'name' => 'LG Sovutgichlari',
             'slug' => 'lg-fridge',
             'icon' => 'fridge',
-            'parent_id' => $fridge->id
+            'parent_id' => $fridges->id
         ]);
 
         Category::create([
