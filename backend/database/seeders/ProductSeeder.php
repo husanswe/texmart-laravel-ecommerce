@@ -21,6 +21,9 @@ class ProductSeeder extends Seeder
         $asusBrand = Brand::where('slug', 'asus')->first();
         $samsungBrand = Brand::where('slug', 'samsung')->first();
 
+        $tvsCat = Category::where('slug', 'televizorlar')->first();
+
+
         $appleBrand = Brand::where('slug', 'apple')->first();
         $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
         $storage128 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '128')->first();
@@ -216,6 +219,36 @@ class ProductSeeder extends Seeder
 
 
         // TVs
+        $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
+        $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '55')->first();
         
+        $samsungTv = Product::create([
+            'category_id' => $tvsCat->id,
+            'brand_id' => $samsungBrand->id,
+            'name' => "Samsung 55 4K",
+            'slug' => 'samsung-55-4k',
+            'price' => 5999000,
+            'desciption' => 'Samsung 55 dyumli 4K Ultra HD Smart televizor.' 
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $samsungTv->id,
+            'name' => '55" Black',
+            'sku' => 'SAM-TV-55-4K-BLK',
+            'price' => 5999000,
+            'stock' => 18
+        ]);
+
+        ProductImage::create([
+            'product_id' => $samsungTv->id,
+            'image_path' => 'products/samsung-55-tv-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $samsungTv->attributeValue()->attach([
+            $screen55->id,
+            $res4k->id
+        ]);
     }
 }
