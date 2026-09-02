@@ -17,6 +17,8 @@ class ProductSeeder extends Seeder
         // Fetch categories and brands by slug/name — never hardcode ids
         $smartphonesCat = Category::where('slug', 'smartfonlar')->first();
         $xiaomiBrand = Brand::where('slug', 'xiaomi')->first();
+        $laptopsCat = Category::where('slug', 'noutbuklar')->first();
+        $asusBrand = Brand::where('slug', 'asus')->first();
 
         // Fetch attribute values you'll attach
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))
@@ -26,7 +28,7 @@ class ProductSeeder extends Seeder
         $colorBlack = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))
             ->where('value', 'Black')->first();
         
-        // Creating product
+        // Creating product - Phone
         $redmi = Product::create([
             'category_id' => $smartphonesCat->id,
             'brand_id' => $xiaomiBrand->id,
@@ -63,6 +65,45 @@ class ProductSeeder extends Seeder
             $ram8->id,
             $storage256->id,
             $colorBlack->id
+        ]);
+
+
+        // Laptop product creating
+        $ram16 = AttributeValue::whereHas('attribte', fn($q) => $q->where('slug', 'ram'))
+            ->where('value', '16')->first();
+        $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))
+            ->where('value', '512')->first();
+        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))
+            ->where('value', '')->first();
+
+        $asus = Product::Create([
+            'category_id' => $laptopsCat->id,
+            'brand_id' => $asusBrand->id,
+            'name' => 'Asus VivoBook 15',
+            'slug' => 'asus-vivobook-15',
+            'price' => 8999000,
+            'description' => 'Asus VivoBook 15 - zamonaviy noutbuk.'
+        ]);
+
+        ProductVariant::Create([
+            'product_id' => $asus->id,
+            'name' => '16/512 Silver',
+            'sku' => 'ASUS-VB15-16-512-SLV',
+            'price' => 8999000,
+            'stock' => 10,
+        ]);
+
+        ProductImage::create([
+            'product_id' => $asus->id,
+            'image_path' => 'products/asus-vivobook-15-main.png',
+            'is_primary' => true,
+            'sort_order' => 0
+        ]);
+
+        $asus->attributeValue()->attach([
+            $ram16->id,
+            $storage512->id,
+            $colorSilver->id
         ]);
     }
 }
