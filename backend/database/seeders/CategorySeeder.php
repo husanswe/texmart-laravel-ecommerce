@@ -37,7 +37,7 @@ class CategorySeeder extends Seeder
             'parent_id' => null
         ]);
 
-        $washers = Category::create([
+        $washingMachine = Category::create([
             'name' => 'Kir yuvish mashinalari',
             'slug' => 'kir-yuvish-mashinalari',
             'icon' => 'washing-machine',
@@ -118,7 +118,7 @@ class CategorySeeder extends Seeder
             'name' => 'LG Kir yuvadigan mashina',
             'slug' => 'lg-washing-machine',
             'icon' => 'washing-machine',
-            'parent_id' => $washers->id
+            'parent_id' => $washingMachine->id
         ]);
 
         Category::create([
