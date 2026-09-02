@@ -58,14 +58,65 @@ class AttributeSeeder extends Seeder
             'unit' => 'inch'
         ]);
 
-        foreach (['6.1', '6.5', '6.7', '55', '65'] as $value) {
+        foreach (['6.1', '6.5', '6.7', '13', '14', '15', '16', '32', '43', '50', '55', '65', '75'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $screenSize->id,
                 'value' => $value
             ]);
         }
 
-        $screenSize->category()->attach([$smartphones->id, $tvs->id]);
+        $screenSize->category()->attach([$smartphones->id, $laptops->id, $tvs->id]);
+
+
+        // Resolution
+        $resolution = Attribute::create([
+            'name' => 'Resolution',
+            'slug' => 'resolution',
+            'unit' => null
+        ]);
+
+        foreach (['Full HD', '4K', '8K'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $resolution->id,
+                'value' => $value
+            ]);
+        }
+
+        $resolution->category()->attach([$tvs->id]);
+
+
+        // Refresh Rate
+        $refreshRate = Attribute::create([
+            'name' => 'Refresh Rate',
+            'slug' => 'refresh-rate',
+            'unit' => 'Hz'
+        ]);
+
+        foreach (['60', '90', '120', '144'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $refreshRate->id,
+                'value' => $value
+            ]);
+        }
+
+        $refreshRate->category()->attach([$smartphones->id, $laptops->id, $tvs->id]);
+
+
+        // Screen Type
+        $screenType = Attribute::create([
+            'name' => 'Screen Type',
+            'slug' => 'screen-type',
+            'unit' => null
+        ]);
+
+        foreach (['LED', 'OLED', 'QLED', 'IPS'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $screenType->id,
+                'value' => $value
+            ]);
+        }
+
+        $screenType->category()->attach([$tvs->id]);
 
 
         // Battery 

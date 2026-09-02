@@ -213,5 +213,9 @@ class ProductSeeder extends Seeder
             $storage512->id,
             $colorSilver->id,
         ]);
+
+
+        // TVs
+        
     }
 }
