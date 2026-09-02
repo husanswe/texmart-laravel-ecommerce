@@ -23,6 +23,7 @@ class ProductSeeder extends Seeder
 
         $tvsCat = Category::where('slug', 'televizorlar')->first();
         $artelBrand = Brand::where('slug', 'artel')->first();
+        $lgBrand = Brand::where('slug', 'lg')->first();
 
 
         $appleBrand = Brand::where('slug', 'apple')->first();
@@ -254,7 +255,7 @@ class ProductSeeder extends Seeder
 
         // ARTEL TV
         $screen32 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '32')->first();
-        $resFHD = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '32')->first();
+        $resFHD = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', 'FHD')->first();
 
         $artelTV = Product::create([
             'category_id' => $tvsCat->id,
@@ -283,6 +284,39 @@ class ProductSeeder extends Seeder
         $artelTV->attributeValue()->attach([
             $screen32->id,
             $resFHD->id
+        ]);
+
+        // LG TV
+        $screen65 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '65')->first();
+        $res8K = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '8K')->first();
+
+        $lgTV = Product::create([
+            'category_id' => $tvsCat->id,
+            'brand_id' => $lgBrand->id,
+            'name' => 'LG TV 65 8K',
+            'slug' => 'lg-tv-65-8k',
+            'price' => 28000000,
+            'description' => '8K LG SMART TV'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $lgTV->id,
+            'name' => '65" Black',
+            'sku' => 'LG-TV-65-8K-BLK',
+            'price' => 28000000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $lgTV->id,
+            'image_path' => 'products/lg-65-tv-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $lgTV->attributeValue()->attach([
+            $screen65->id,
+            $res8K->id
         ]);
     }
 }
