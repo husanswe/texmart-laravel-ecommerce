@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
         $samsungBrand = Brand::where('slug', 'samsung')->first();
 
         $tvsCat = Category::where('slug', 'televizorlar')->first();
+        $artelBrand = Brand::where('slug', 'artel')->first();
 
 
         $appleBrand = Brand::where('slug', 'apple')->first();
@@ -218,11 +219,11 @@ class ProductSeeder extends Seeder
         ]);
 
 
-        // TVs
+        // TVs. SAMSUNG TV
         $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
         $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '55')->first();
         
-        $samsungTv = Product::create([
+        $samsungTV = Product::create([
             'category_id' => $tvsCat->id,
             'brand_id' => $samsungBrand->id,
             'name' => "Samsung 55 4K",
@@ -232,7 +233,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $samsungTv->id,
+            'product_id' => $samsungTV->id,
             'name' => '55" Black',
             'sku' => 'SAM-TV-55-4K-BLK',
             'price' => 5999000,
@@ -240,15 +241,48 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductImage::create([
-            'product_id' => $samsungTv->id,
+            'product_id' => $samsungTV->id,
             'image_path' => 'products/samsung-55-tv-main.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
-        $samsungTv->attributeValue()->attach([
+        $samsungTV->attributeValue()->attach([
             $screen55->id,
             $res4k->id
+        ]);
+
+        // ARTEL TV
+        $screen32 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '32')->first();
+        $resFHD = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '32')->first();
+
+        $artelTV = Product::create([
+            'category_id' => $tvsCat->id,
+            'brand_id' => $artelBrand->id,
+            'name' => 'Artel 32 Full HD',
+            'slug' => 'artel-32-full-hd',
+            'price' => 1550000,
+            'description' => 'Hamyonbop sifatli SMART televizor'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $artelTV->id,
+            'name' => '32" Black',
+            'sku' => 'ARTL-TV-32-FHD-BLK',
+            'price' => 1550000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $artelTV->id,
+            'image_path' => 'products/artel-32-tv-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $artelTV->attributeValue()->attach([
+            $screen32->id,
+            $resFHD->id
         ]);
     }
 }
