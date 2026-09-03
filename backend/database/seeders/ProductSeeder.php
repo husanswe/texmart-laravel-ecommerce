@@ -318,5 +318,39 @@ class ProductSeeder extends Seeder
             $screen65->id,
             $res8K->id
         ]);
+
+
+        //  FRIDGES.Bosch Fridge
+        $boschCapacity = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '505 L')->first();
+        $boschColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
+        
+        $boschFridge = Product::create([
+            'category_id' => $fridgesCat->id,
+            'brand_id' => $boschBrand->id,
+            'name' => 'Bosch Serie 6 French Door Fridge',
+            'slug' => 'bosch-serie-6-french-door-fridge',
+            'price' => 18500000,
+            'description' => 'Bosch Serie 6 NoFrost French Door Refrigerator with VitaFresh Pro'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $boschFridge->id,
+            'name' => '505L Stainless Steel',
+            'sku' => 'BOSCH-FRIDGE-505L-SS',
+            'price' => 18500000,
+            'stock' => 12
+        ]);
+
+        ProductImage::create([
+        'product_id' => $boschFridge->id,
+        'image_path' => 'products/bosch-serie-6-fridge-main.png',
+        'is_primary' => true,
+        'sort_order' => 0,
+        ]);
+        
+        $boschFridge->attributeValue()->attach([
+            $boschCapacity->id,
+            $boschColor->id
+        ]);
     }
 }
