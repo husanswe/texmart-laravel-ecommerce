@@ -25,6 +25,9 @@ class ProductSeeder extends Seeder
         $artelBrand = Brand::where('slug', 'artel')->first();
         $lgBrand = Brand::where('slug', 'lg')->first();
 
+        $fridgesCat = Category::where('slug', 'sovutgichlar')->first();
+        $boschBrand = Brand::where('slug', 'bosch')->first();
+
 
         $appleBrand = Brand::where('slug', 'apple')->first();
         $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
