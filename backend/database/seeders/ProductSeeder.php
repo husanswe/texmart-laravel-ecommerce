@@ -324,7 +324,7 @@ class ProductSeeder extends Seeder
 
 
         //  FRIDGES.Bosch Fridge
-        $boschCapacity = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '505 L')->first();
+        $boschCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '505 L')->first();
         $boschColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
         
         $boschFridge = Product::create([
@@ -352,8 +352,42 @@ class ProductSeeder extends Seeder
         ]);
         
         $boschFridge->attributeValue()->attach([
-            $boschCapacity->id,
+            $boschCap->id,
             $boschColor->id
+        ]);
+
+
+        // Samsung RT32FAJBDSA (322L) Fridge
+        $samsungCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '322 L')->first();
+        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
+
+        $samsungFridge = Product::create([
+            'category_id' => $fridgesCat->id,
+            'brand_id' => $samsungBrand->id,
+            'name' => 'Samsung RT32FAJBDSA 322L Sovutgichi',
+            'slug' => 'samsung-rt32fajbdsa-322l-sovutgichi',
+            'price' => 7800000,
+            'description' => 'Yuqori muzlatish kamerasiga ega xushbichim model'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $samsungFridge->id,
+            'name' => '322L Stainless Steel',
+            'sku' => 'SAMSUNG-FRIDGE-322L',
+            'price' => 7800000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+        'product_id' => $samsungFridge->id,
+        'image_path' => 'products/samsung-rt32faajbdsa-322l-fridge-main.png',
+        'is_primary' => true,
+        'sort_order' => 0,
+        ]);
+        
+        $samsungFridge->attributeValue()->attach([
+            $samsungCap->id,
+            $samsungColor->id
         ]);
     }
 }
