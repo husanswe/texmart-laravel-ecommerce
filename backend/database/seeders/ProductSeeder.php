@@ -389,5 +389,41 @@ class ProductSeeder extends Seeder
             $samsungCap->id,
             $samsungColor->id
         ]);
+
+
+        // Sovutgich ARTEL HD 430 RWENE
+        $artelCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '322 L')->first();
+        $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
+
+        $artelFridge = Product::create([
+            'category_id' => $fridgesCat->id,
+            'brand_id' => $artelBrand->id,
+            'name' => 'Sovutgich ARTEL HD 430 RWENE',
+            'slug' => 'sovutgich-artel-hd-430-rwene',
+            'price' => 7600000,
+            'description' => 'ARTEL HD 430 RWENE sovutgichi - bu invertorli motorli ikki kamerali sovutgich 
+            yuqori energiya samaradorligi (sinfi A+, iste’moli 286 kVt/soat/yil) va atigi 42 dB shovqin 
+            darajasida shovqinsiz ishlashni o‘zida mujassam etgan.'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $artelFridge->id,
+            'name' => '322L Stainless Steel',
+            'sku' => 'FRIDGE-ARTEL-HD-430-RWENE',
+            'price' => 7600000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+        'product_id' => $artelFridge->id,
+        'image_path' => 'products/artel-hd-430-rwene-fridge-main.png',
+        'is_primary' => true,
+        'sort_order' => 0,
+        ]);
+        
+        $artelFridge->attributeValue()->attach([
+            $artelCap->id,
+            $artelColor->id
+        ]);
     }
 }
