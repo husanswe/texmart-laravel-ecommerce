@@ -28,6 +28,8 @@ class ProductSeeder extends Seeder
         $fridgesCat = Category::where('slug', 'sovutgichlar')->first();
         $boschBrand = Brand::where('slug', 'bosch')->first();
 
+        $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
+
 
         $appleBrand = Brand::where('slug', 'apple')->first();
         $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
@@ -425,5 +427,10 @@ class ProductSeeder extends Seeder
             $artelCap->id,
             $artelColor->id
         ]);
+
+
+        // WASHING MACHINES. LG F2V3PS6W
+        $lgCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '8 kg')->first();
+        $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
     }
 }
