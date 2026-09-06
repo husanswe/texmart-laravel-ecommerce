@@ -578,12 +578,11 @@ class ProductSeeder extends Seeder
         $samsungAC = Product::create([
             'category_id' => $washingMachineCat->id,
             'brand_id' => $samsungBrand->id,
-            'name' => 'LG B18TS Konditsioneri',
-            'slug' => 'lg-b18ts-konditsioneri',
-            'price' => 12000000,
-            'description' => "LG B18TS konditsioneri 18 000 Vt quvvatga ega, u 40-50 kvadrat metrlik xona 
-                uchun qulay harorat darajasini ta'minlay oladi. Inverterli kompressor yordamida konditsioner 
-                pulni tejaydi va shovqinsiz ishlaydi."
+            'name' => 'Konditsioner Samsung AR09TXHQASINUA',
+            'slug' => 'samsung-ar09txhqasinua-konditsioneri',
+            'price' => 3050000,
+            'description' => "Samsung AR09TXHQASINUA – 25 kvadrat metrgacha bo'lgan 
+                xonalarda qulay iqlim yaratish uchun ideal echimdir."
         ]);
     }
 }
