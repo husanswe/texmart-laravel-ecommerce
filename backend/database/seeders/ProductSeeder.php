@@ -29,6 +29,7 @@ class ProductSeeder extends Seeder
         $boschBrand = Brand::where('slug', 'bosch')->first();
 
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
+        $lgWashingMachine = Brand::where('slug', 'lg')->first();
 
 
         $appleBrand = Brand::where('slug', 'apple')->first();
@@ -417,10 +418,10 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductImage::create([
-        'product_id' => $artelFridge->id,
-        'image_path' => 'products/artel-hd-430-rwene-fridge-main.png',
-        'is_primary' => true,
-        'sort_order' => 0,
+            'product_id' => $artelFridge->id,
+            'image_path' => 'products/artel-hd-430-rwene-fridge-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
         ]);
         
         $artelFridge->attributeValue()->attach([
@@ -432,5 +433,35 @@ class ProductSeeder extends Seeder
         // WASHING MACHINES. LG F2V3PS6W
         $lgCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '8 kg')->first();
         $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $lgWashingMachine = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $lgBrand->id,
+            'name' => 'Kir yuvish mashinasi LG F2V3PS6W',
+            'slug' => 'kir-yuvish-mashinasi-lg-f2v3ps6w',
+            'price' => 6000000,
+            'description' => 'LG F2V3PS6W kir yuvish mashinasi - bu yuqori yuvish samaradorligi, 
+            foydalanish qulayligi va zamonaviy dizaynni o‘zida mujassam etgan uyingiz uchun zamonaviy yechimdir.'
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $lgWashingMachine->id,
+            'name' => 'LG F2V3PS6W White',
+            'sku' => 'WASHING-MACHINE-LG-F2V3PS6W',
+            'price' => 6000000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $lgWashingMachine->id,
+            'image_path' => 'products/lg-f2v3ps6w-washing-machine-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $lgWashingMachine->attributeValue()->attach([
+            $lgCap->id,
+            $lgColor->id
+        ]);
     }
 }
