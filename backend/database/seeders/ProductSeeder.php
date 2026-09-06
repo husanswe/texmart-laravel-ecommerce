@@ -34,8 +34,7 @@ class ProductSeeder extends Seeder
         $boschBrand = Brand::where('slug', 'bosch')->first();
 
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
-        $lgWashingMachine = Brand::where('slug', 'lg')->first();
-        $samsungWashingMachine = Brand::where('slug', 'samsung')->first();
+        $toshibaBrand = Brand::where('slug', 'toshiba')->first();
 
         // Fetching attribute values i'll attach
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
@@ -497,6 +496,42 @@ class ProductSeeder extends Seeder
         $samsungWashingMachine->attributeValue()->attach([
             $samsungCap->id,
             $samsungColor->id
+        ]);
+
+
+        // Toshiba TW-BL80A2UZ(WK) kir yuvish mashinasi
+        $toshibaCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '7kg')->first();
+        $toshibaColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $toshibaWashingMachine = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $toshibaBrand->id,
+            'name' => 'Kir yuvish mashinasi Samsung WW70AG4S21VELD',
+            'slug' => 'kir-yuvish-mashinasi-samsung-ww70ag4s21veld',
+            'price' => 4500000,
+            'description' => "Toshiba TW-BL80A2UZ(WK) kir yuvish mashinasi 7 kg gacha bo‘lgan frontal yuklash 
+                va maksimal yuklash imkoniyati bilan kichik oilalar va joy hamda energiyani tejashni istaydigan 
+                odamlar uchun ajoyib yechimdir."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $toshibaWashingMachine->id,
+            'name' => 'Washing Machine Toshiba TW-BL80A2UZ(WK) White',
+            'sku' => 'WASHING-MACHINE-TOSHIBA-TW-BL80A2UZ(WK)',
+            'price' => 4500000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $toshibaWashingMachine->id,
+            'image_path' => 'products/toshiba-tw-bl80a2uz(wk)-washing-machine-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $samsungWashingMachine->attributeValue()->attach([
+            $toshibaCap->id,
+            $toshibaColor->id
         ]);
     }
 }
