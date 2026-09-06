@@ -533,5 +533,9 @@ class ProductSeeder extends Seeder
             $toshibaCap->id,
             $toshibaColor->id
         ]);
+
+
+        // Air Conditioner LG B18TS
+        
     }
 }

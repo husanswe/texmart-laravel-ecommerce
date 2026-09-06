@@ -15,6 +15,7 @@ class AttributeSeeder extends Seeder
         $laptops = Category::where('slug', 'noutbuklar')->first();
         $tvs = Category::where('slug', 'televizorlar')->first();
         $fridges = Category::where('slug', 'sovutgichlar')->first();
+        $ACs = Category::where('slug', 'konditsionerlar')->first();
 
 
         // RAM
@@ -168,5 +169,21 @@ class AttributeSeeder extends Seeder
         }
 
         $capacity->category()->attach([$fridges->id]);
+
+
+        $acCap = Attribute::create([
+            'name' => 'Capacity (AC)',
+            'slug' => 'ac-capacity',
+            'unit' => 'ton'
+        ]);
+
+        foreach (['1 ton', '1.5 ton', '2 ton', '2.5 ton', '3 ton'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $acCap->id,
+                'value' => $value
+            ]);
+        }
+
+        $acCap->category()->attach([$ACs->id]);
     }
 }
