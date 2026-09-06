@@ -21,6 +21,11 @@ class ProductSeeder extends Seeder
         $asusBrand = Brand::where('slug', 'asus')->first();
         $samsungBrand = Brand::where('slug', 'samsung')->first();
 
+        $appleBrand = Brand::where('slug', 'apple')->first();
+        $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
+        $storage128 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '128')->first();
+        $colorWhite = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+        
         $tvsCat = Category::where('slug', 'televizorlar')->first();
         $artelBrand = Brand::where('slug', 'artel')->first();
         $lgBrand = Brand::where('slug', 'lg')->first();
@@ -30,13 +35,7 @@ class ProductSeeder extends Seeder
 
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
         $lgWashingMachine = Brand::where('slug', 'lg')->first();
-
-
-        $appleBrand = Brand::where('slug', 'apple')->first();
-        $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
-        $storage128 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '128')->first();
-        $colorWhite = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
-
+        $samsungWashingMachine = Brand::where('slug', 'samsung')->first();
 
         // Fetching attribute values i'll attach
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
@@ -440,13 +439,13 @@ class ProductSeeder extends Seeder
             'name' => 'Kir yuvish mashinasi LG F2V3PS6W',
             'slug' => 'kir-yuvish-mashinasi-lg-f2v3ps6w',
             'price' => 6000000,
-            'description' => 'LG F2V3PS6W kir yuvish mashinasi - bu yuqori yuvish samaradorligi, 
-            foydalanish qulayligi va zamonaviy dizaynni o‘zida mujassam etgan uyingiz uchun zamonaviy yechimdir.'
+            'description' => "LG F2V3PS6W kir yuvish mashinasi - bu yuqori yuvish samaradorligi, 
+            foydalanish qulayligi va zamonaviy dizaynni o'zida mujassam etgan uyingiz uchun zamonaviy yechimdir."
         ]);
 
         ProductVariant::create([
             'product_id' => $lgWashingMachine->id,
-            'name' => 'LG F2V3PS6W White',
+            'name' => 'Washing Machine LG F2V3PS6W White',
             'sku' => 'WASHING-MACHINE-LG-F2V3PS6W',
             'price' => 6000000,
             'stock' => 20
@@ -462,6 +461,42 @@ class ProductSeeder extends Seeder
         $lgWashingMachine->attributeValue()->attach([
             $lgCap->id,
             $lgColor->id
+        ]);
+
+
+        // Samsung WW70AG4S21VELD kir yuvish mashinasi
+        $samsungCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '7 kg')->first();
+        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $samsungWashingMachine = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $samsungBrand->id,
+            'name' => 'Kir yuvish mashinasi Samsung WW70AG4S21VELD',
+            'slug' => 'kir-yuvish-mashinasi-samsung-ww70ag4s21veld',
+            'price' => 5000000,
+            'description' => "Samsung WW70AG4S21VELD kir yuvish mashinasi 7 kg gacha bo‘lgan frontal yuklash 
+                va maksimal yuklash imkoniyati bilan kichik oilalar va joy hamda energiyani tejashni istaydigan 
+                odamlar uchun ajoyib yechimdir."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $samsungWashingMachine->id,
+            'name' => 'Washing Machine Samsung WW70AG4S21VELD White',
+            'sku' => 'WASHING-MACHINE-SAMSUNG-WW70AG4S21VELD',
+            'price' => 5000000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $samsungWashingMachine->id,
+            'image_path' => 'products/samsung-ww70ag4s21veld-washing-machine-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $samsungWashingMachine->attributeValue()->attach([
+            $samsungCap->id,
+            $samsungColor->id
         ]);
     }
 }
