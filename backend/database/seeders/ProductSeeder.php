@@ -500,7 +500,7 @@ class ProductSeeder extends Seeder
 
 
         // Toshiba TW-BL80A2UZ(WK) kir yuvish mashinasi
-        $toshibaCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '7kg')->first();
+        $toshibaCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '7 kg')->first();
         $toshibaColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $toshibaWashingMachine = Product::create([
@@ -529,13 +529,45 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $samsungWashingMachine->attributeValue()->attach([
+        $toshibaWashingMachine->attributeValue()->attach([
             $toshibaCap->id,
             $toshibaColor->id
         ]);
 
 
         // Air Conditioner LG B18TS
-        
+        $lgAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '18000 BTU')->first();
+        $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $lgAC = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $lgBrand->id,
+            'name' => 'LG B18TS Konditsioneri',
+            'slug' => 'lg-b18ts-konditsioneri',
+            'price' => 12000000,
+            'description' => "LG B18TS konditsioneri 18 000 Vt quvvatga ega, u 40-50 kvadrat metrlik xona 
+                uchun qulay harorat darajasini ta'minlay oladi.  Inverterli kompressor yordamida konditsioner 
+                pulni tejaydi va shovqinsiz ishlaydi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $lgAC->id,
+            'name' => 'Air Conditioner LG B18TS White',
+            'sku' => 'LG-AC-B18TS-WT',
+            'price' => 4500000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $lgAC->id,
+            'image_path' => 'products/lg-b18ts-konditsioneri-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $lgAC->attributeValue()->attach([
+            $lgAcCap->id,
+            $lgColor->id
+        ]);
     }
 }

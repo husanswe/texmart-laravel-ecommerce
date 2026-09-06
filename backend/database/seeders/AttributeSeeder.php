@@ -177,7 +177,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'ton'
         ]);
 
-        foreach (['1 ton', '1.5 ton', '2 ton', '2.5 ton', '3 ton'] as $value) {
+        foreach (['7000 BTU', '9000 BTU', '12000 BTU', '15000', '18000 BTU'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $acCap->id,
                 'value' => $value
