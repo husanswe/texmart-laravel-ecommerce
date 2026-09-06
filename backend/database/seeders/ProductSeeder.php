@@ -535,7 +535,7 @@ class ProductSeeder extends Seeder
         ]);
 
 
-        // Air Conditioner LG B18TS
+        // AIR CONDITIONER LG B18TS
         $lgAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '18000 BTU')->first();
         $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
@@ -546,7 +546,7 @@ class ProductSeeder extends Seeder
             'slug' => 'lg-b18ts-konditsioneri',
             'price' => 12000000,
             'description' => "LG B18TS konditsioneri 18 000 Vt quvvatga ega, u 40-50 kvadrat metrlik xona 
-                uchun qulay harorat darajasini ta'minlay oladi.  Inverterli kompressor yordamida konditsioner 
+                uchun qulay harorat darajasini ta'minlay oladi. Inverterli kompressor yordamida konditsioner 
                 pulni tejaydi va shovqinsiz ishlaydi."
         ]);
 
@@ -568,6 +568,22 @@ class ProductSeeder extends Seeder
         $lgAC->attributeValue()->attach([
             $lgAcCap->id,
             $lgColor->id
+        ]);
+
+
+        // Konditsioner Samsung AR09TXHQASINUA
+        $samsungAcCap = AttributeValue::whereHas('attributes', fn($q) => $q->where('slug', 'capacity'))->where('value', '9000 BTU')->first();
+        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $samsungAC = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $samsungBrand->id,
+            'name' => 'LG B18TS Konditsioneri',
+            'slug' => 'lg-b18ts-konditsioneri',
+            'price' => 12000000,
+            'description' => "LG B18TS konditsioneri 18 000 Vt quvvatga ega, u 40-50 kvadrat metrlik xona 
+                uchun qulay harorat darajasini ta'minlay oladi. Inverterli kompressor yordamida konditsioner 
+                pulni tejaydi va shovqinsiz ishlaydi."
         ]);
     }
 }
