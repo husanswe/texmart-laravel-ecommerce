@@ -584,5 +584,25 @@ class ProductSeeder extends Seeder
             'description' => "Samsung AR09TXHQASINUA – 25 kvadrat metrgacha bo'lgan 
                 xonalarda qulay iqlim yaratish uchun ideal echimdir."
         ]);
+
+        ProductVariant::create([
+            'product_id' => $samsungAC->id,
+            'name' => 'Air Conditioner Samsung AR09TXHQASINUA White',
+            'sku' => 'SMSNG-AC-AR09TXHQASINUA-WT',
+            'price' => 3070000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $samsungAC->id,
+            'image_path' => 'products/samsung-ar09txhqasinua-konditsioneri-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $samsungAC->attributeValue()->attach([
+            $samsungAcCap->id,
+            $samsungColor->id
+        ]);
     }
 }
