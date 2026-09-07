@@ -604,5 +604,10 @@ class ProductSeeder extends Seeder
             $samsungAcCap->id,
             $samsungColor->id
         ]);
+
+
+        // Artel 12HS S SIR1W12BE Konditsioneri
+        $artelAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '12000 BTU')->first();
+        $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
     }
 }
