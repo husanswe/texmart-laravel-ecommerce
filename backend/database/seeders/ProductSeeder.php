@@ -39,7 +39,7 @@ class ProductSeeder extends Seeder
         $SmallAppliancesCat = Category::where('slug', 'kichik-maishiy-texnika')->first();
         $BraunBrand = Brand::where('slug', 'braun')->first();
         $PhilipsBrand = Brand::where('slug', 'philips')->first();
-        
+        $TefalBrand = Brand::where('slug', 'tefal')->first();
 
 
         // Fetching attribute values i'll attach
@@ -885,6 +885,90 @@ class ProductSeeder extends Seeder
         $SamsungBrand->attributeValue()->attach([
             $SamsungMicrowavePower->id,
             $SamsungMicrowaveCap->id
+        ]);
+
+
+        // ELECTRIC KETTLE. Tefal KO693110
+        $TefalKettlePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
+        $TefalKettleCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '1.5 L')->first(); 
+
+        $TefalKettle = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $TefalBrand->id,
+            'name' => "Elektr Choynak Tefal KO693110",
+            'slug' => "elektr-choynak-tefal-ko693110",
+            'price' => 1300000,
+            'description' => "Tefal KO693110 elektr choynak yuqori sifatli oziq-ovqat plastmassasidan 
+                tayyorlangan. Choynak cho'kindiga qarshi filtr bilan jihozlangan, shuning uchun suvingiz 
+                doimo toza bo‘ladi. Choynak korpusining ichki qismida suv darajasi ko‘rsatkichi mavjud. 
+                U o‘rnatilgan elektron displey bilan jihozlangan bo‘lib, choynakdagi suv haroratini 
+                ko‘rsatadi. Bundan tashqari, 5 ta harorat sozlamalari mavjud. Isitish elementi pastki 
+                qismining zanglamaydigan po‘lat ostida yashiringan. Chiroyli dizayn choy va qahvani 
+                sevuvchilar uchun ayni muddao. Ushbu model haddan tashqari qizib ketishdan himoya qilingan, 
+                qaynaganda, suv yo‘q bo‘lganda yoki choynak stenddan olinganda avtomatik ravishda o‘chiradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $TefalBrand->id,
+            'name' => "Elektr Choynak Tefal KO693110",
+            'sku' => 'TEFAL-KO693110-KETTLE',
+            'price' => 1300000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $TefalKettle->id,
+            'image_path' => "products/elektr-choynak-tefal-ko693110-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $SamsungBrand->attributeValue()->attach([
+            $TefalKettlePower->id,
+            $TefalKettleCap->id
+        ]); 
+
+
+        // Electric Kettle Braun WK5205BK
+        $BraunKettlePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
+        $BraunKettleCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '1.5 L')->first(); 
+
+        $BraunKettle = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $BraunBrand->id,
+            'name' => "Elektr Choynak Braun WK5205BK",
+            'slug' => "elektr-choynak-braun-wk5205bk",
+            'price' => 900000,
+            'description' => "Braun WK5205BK elektr choynagi — bu texnologik va ishonchli qurilma bo‘lib, 
+                uyda yoki ofisda suvni tez qaynatish uchun mo‘ljallangan. 2200 Vt quvvatga ega model 
+                suyuqlikni juda qisqa vaqt ichida qaynash holatiga yetkazadi, bu esa ayniqsa ertalabki 
+                shoshilinch paytlarda yoki mehmon kutib olayotganda juda qulay. 1.7 litr hajmdagi katta 
+                idish bir nechta chashka ichimlikni bir vaqtning o‘zida tayyorlash imkonini beradi, bu esa 
+                vaqtingizni tejaydi va kundalik hayotingizda qulaylik yaratadi. Korpusga o‘rnatilgan shaffof 
+                ko‘rsatkich orqali suv miqdorini ko‘z bilan baholash mumkin, bu esa to‘lib ketish ehtimolini 
+                kamaytiradi. Tashqi qoplamasi metall materialdan yasalgan bo‘lib, u tashqi zarbalarga va yuqori 
+                haroratga chidamli. Zamonaviy kumushrang dizayn esa qurilmaga nafis ko‘rinish bag‘ishlaydi 
+                va u har qanday oshxona muhitiga mos tushadi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $BraunBrand->id,
+            'name' => "Elektr Choynak Braun WK5205BK",
+            'sku' => 'BRAUN-WK5205BK-KETTLE',
+            'price' => 900000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $BraunKettle->id,
+            'image_path' => "products/elektr-choynak-braun-wk5205bk-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $BraunBrand->attributeValue()->attach([
+            $BraunKettlePower->id,
+            $BraunKettleCap->id
         ]);
     }
 }
