@@ -40,6 +40,7 @@ class ProductSeeder extends Seeder
         $BraunBrand = Brand::where('slug', 'braun')->first();
         $PhilipsBrand = Brand::where('slug', 'philips')->first();
         $TefalBrand = Brand::where('slug', 'tefal')->first();
+        $PolarisBrand = Brand::where('slug', 'polaris')->first();
 
 
         // Fetching attribute values i'll attach
@@ -923,7 +924,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $SamsungBrand->attributeValue()->attach([
+        $TefalBrand->attributeValue()->attach([
             $TefalKettlePower->id,
             $TefalKettleCap->id
         ]); 
@@ -969,6 +970,81 @@ class ProductSeeder extends Seeder
         $BraunBrand->attributeValue()->attach([
             $BraunKettlePower->id,
             $BraunKettleCap->id
+        ]);
+
+
+        // HAIR DRYER. Polaris PHD 2289AC
+        $PolarisDryerPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2200 W')->first();
+        $PolarisDryerColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
+
+        $PolarisDryer = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $PolarisBrand->id,
+            'name' => "Soch Quritgich Polaris PHD 2289AC",
+            'slug' => "soch-quritgich-polaris-phd-2289ac",
+            'price' => 550000,
+            'description' => "Polaris PHD 2289AC soch quritgich - 2,2 kW/soat quvvat va 6 harorat 
+                rejimiga ega bo‘lib, tez va samarali o‘rnatishni ta’minlaydi. AS motor tufayli 
+                fen kuchli havo oqimini hosil qilib, quritish vaqtini qisqartiradi. IonDefence 
+                texnologiyasi bilan ionlashtirish statik elektrni kamaytiradi va sochlarni himoya 
+                qiladi, ularning tabiiy namligini saqlaydi va tarashni osonlashtiradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $PolarisBrand->id,
+            'name' => "Soch Quritgich Polaris PHD 2289AC",
+            'sku' => 'POLARIS-PHD2289AC-HAIRDRYER',
+            'price' => 550000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $PolarisDryer->id,
+            'image_path' => "products/hair-dryer-polaris-phd-2289ac-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $PolarisBrand->attributeValue()->attach([
+            $PolarisDryerPower->id,
+            $PolarisDryerColor->id
+        ]);
+
+
+        // Hair Dryer Philips HPS920/00
+        $PhilipsDryerPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2300 W')->first();
+        $PhilipsDryerColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
+
+        $PolarisDryer = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $PhilipsBrand->id,
+            'name' => "Soch Quritgich Philips HPS920-00",
+            'slug' => "soch-quritgich-philips-hps920-00",
+            'price' => 2000000,
+            'description' => "Fen Philips HPS920/00 – bu tez quritish va chiroyli soch turmaklash uchun 
+                yaratilgan zamonaviy qurilma. 2300 Vt quvvati kuchli havo oqimini ta’minlab, qalin va 
+                uzun sochlarni ham osonlik bilan quritishga yordam beradi. Harorat darajasi 210 °C gacha 
+                yetadi, bu esa uy sharoitida mustahkam natija olish imkonini beradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $PhilipsBrand->id,
+            'name' => "Soch Quritgich Philips HPS920-00",
+            'sku' => 'PHILIPS-HPS920-HAIRDRYER',
+            'price' => 2000000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $PolarisDryer->id,
+            'image_path' => "products/hair-dryer-philips-hps920-00-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $PhilipsBrand->attributeValue()->attach([
+            $PhilipsDryerPower->id,
+            $PhilipsDryerColor->id
         ]);
     }
 }
