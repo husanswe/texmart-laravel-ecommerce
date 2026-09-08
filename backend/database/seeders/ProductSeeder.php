@@ -578,7 +578,7 @@ class ProductSeeder extends Seeder
         $samsungAC = Product::create([
             'category_id' => $washingMachineCat->id,
             'brand_id' => $samsungBrand->id,
-            'name' => 'Konditsioner Samsung AR09TXHQASINUA',
+            'name' => 'Samsung AR09TXHQASINUA Konditsioneri',
             'slug' => 'samsung-ar09txhqasinua-konditsioneri',
             'price' => 3050000,
             'description' => "Samsung AR09TXHQASINUA – 25 kvadrat metrgacha bo'lgan 
@@ -609,5 +609,38 @@ class ProductSeeder extends Seeder
         // Artel 12HS S SIR1W12BE Konditsioneri
         $artelAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '12000 BTU')->first();
         $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+        
+        $artelAC = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $artelBrand->id,
+            'name' => 'Artel 12HS S SIR1W12BE Konditsioneri',
+            'slug' => 'artel-12hs-s-sir1w12be-konditsioneri',
+            'price' => 5500000,
+            'description' => "Artel 12HS S SIR1W12BE konditsioneri Artel brendi tomonidan ishlab chiqarilgan 
+                devorga o'rnatilgan split tizimdir. U displeyga ega, bu uning parametrlarini boshqarish va sozlashni 
+                osonlashtiradi. Ushbu konditsioner 12 000 BTU/soat quvvatga ega va barcha fasllarda qulay ichki 
+                iqlimni saqlash uchun sovutish va isitish funksiyalarini taklif etadi. Xonada havoni aylantiradigan 
+                shamollatish rejimi ham mavjud."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $artelAC->id,
+            'name' => 'Air Conditioner Artel 12HS S SIR1W12BE White',
+            'sku' => 'ARTEL-AC-12HSSSIR1W12BE-WT',
+            'price' => 5500000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $artelAC->id,
+            'image_path' => 'products/artel-12hs-s-sir1w12be-konditsioneri-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $artelAC->attributeValue()->attach([
+            $artelAcCap->id,
+            $artelColor->id
+        ]);
     }
 }
