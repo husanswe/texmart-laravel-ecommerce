@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         $xiaomiBrand = Brand::where('slug', 'xiaomi')->first();
         $laptopsCat = Category::where('slug', 'noutbuklar')->first();
         $asusBrand = Brand::where('slug', 'asus')->first();
-        $samsungBrand = Brand::where('slug', 'samsung')->first();
+        $SamsungBrand = Brand::where('slug', 'samsung')->first();
 
         $appleBrand = Brand::where('slug', 'apple')->first();
         $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
@@ -88,7 +88,7 @@ class ProductSeeder extends Seeder
 
         $galaxyA55 = Product::create([
             'category_id' => $smartphonesCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => 'Samsung Galaxy A55',
             'slug' => 'samsung-galaxy-a55',
             'price' => 4299000,
@@ -236,7 +236,7 @@ class ProductSeeder extends Seeder
         
         $samsungTV = Product::create([
             'category_id' => $tvsCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => "Samsung 55 4K",
             'slug' => 'samsung-55-4k',
             'price' => 5999000,
@@ -370,7 +370,7 @@ class ProductSeeder extends Seeder
 
         $samsungFridge = Product::create([
             'category_id' => $fridgesCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => 'Samsung RT32FAJBDSA 322L Sovutgichi',
             'slug' => 'samsung-rt32fajbdsa-322l-sovutgichi',
             'price' => 7800000,
@@ -475,7 +475,7 @@ class ProductSeeder extends Seeder
 
         $samsungWashingMachine = Product::create([
             'category_id' => $washingMachineCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => 'Kir yuvish mashinasi Samsung WW70AG4S21VELD',
             'slug' => 'kir-yuvish-mashinasi-samsung-ww70ag4s21veld',
             'price' => 5000000,
@@ -583,7 +583,7 @@ class ProductSeeder extends Seeder
 
         $samsungAC = Product::create([
             'category_id' => $washingMachineCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => 'Samsung AR09TXHQASINUA Konditsioneri',
             'slug' => 'samsung-ar09txhqasinua-konditsioneri',
             'price' => 3050000,
@@ -733,7 +733,7 @@ class ProductSeeder extends Seeder
         
         $SamsungVacuum = Product::create([
             'category_id' => $SmallAppliancesCat->id,
-            'brand_id' => $samsungBrand->id,
+            'brand_id' => $SamsungBrand->id,
             'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
             'slug' => 'chang-yutgich-samsung-vc20m255bwb-uz',
             'price' => 1600000,
@@ -746,7 +746,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $samsungBrand->id,
+            'product_id' => $SamsungBrand->id,
             'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
             'sku' => 'SAMSUNG-VC20M255-VACUUM',
             'price' => 1300000,
@@ -760,7 +760,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $samsungBrand->attributeValue()->attach([
+        $SamsungBrand->attributeValue()->attach([
             $SamsungVacuumPower->id,
             $samsungColor->id
         ]);
@@ -801,6 +801,90 @@ class ProductSeeder extends Seeder
         $lgBrand->attributeValue()->attach([
             $LGVacuumPower->id,
             $lgColor->id
+        ]);
+
+
+        // MICROWAVE OVEN. LG MS2042DB
+        $LgMicrowavePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '700 W')->first();
+        $LgMicrowaveCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '20 L')->first(); 
+
+        $LgMicrowave = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $lgBrand->id,
+            'name' => "Mikroto'lqinli Pech LG MS2042DB",
+            'slug' => "mikroto'lqinli-pech-lg-ms2042db",
+            'price' => 1325000,
+            'description' => "LG MS2042DB mikroto'lqinli pech oshxonadagi eng ishonchli yordamchidir. 
+                Ovqat tayyorlash jarayonini tezlashtiring va osonlashtiring. Тugmali va sensorli kalitlar 
+                qurilmani boshqarishni osonlashtiradi. Ular yordamida vaqt, vazn, quvvat va boshqa 
+                funksiyalarini sozlashi mumkin. Siz taomlarni mazali pishirishingiz mumkin. Oddiy va 
+                hayratlanarli dizayni mikroto'lqinli pechga chiroyli va zamonaviy ko‘rinish beradi. 
+                To‘lqinli uch teng tarqatish tizimi pishirish kamerasini bir tekis isitadi, taomga har 
+                tomondan kirib boradi. Buning yordamida taomlar bir xil pishadi. Bardoshli biotermik 
+                qoplamani tozalash oson, tirnalmaydi va antibakterial. Ichki makonning yoritilishi 
+                mikroto‘lqinli pechdan foydalanishni qulay qiladi. Pechning ish kamerasining foydali 
+                hajmi ovqatni pishiradi, isitadi va muzdan tushiradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $lgBrand->id,
+            'name' => "Mikroto'lqinli Pech LG MS2042DB",
+            'sku' => 'LG-MS2042DB-MICROWAVE',
+            'price' => 1325000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $LgMicrowave->id,
+            'image_path' => "products/mikroto'lqinli-pech-lg-ms2042db-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $lgBrand->attributeValue()->attach([
+            $LgMicrowavePower->id,
+            $LgMicrowaveCap->id
+        ]);
+
+
+        // Mikroto`lqinli Pech Samsung ME83KRW-1KBW
+        $SamsungMicrowavePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '800 W')->first();
+        $SamsungMicrowaveCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '23 L')->first(); 
+
+        $SamsungMicrowave = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $SamsungBrand->id,
+            'name' => "Mikroto'lqinli Pech Samsung ME83KRW-1KBW",
+            'slug' => "mikroto'lqinli-pech-lg-ms2042db",
+            'price' => 2300000,
+            'description' => "Samsung ME83KRW-1KBW mikroto'lqinli pech oshxonadagi eng ishonchli yordamchidir. 
+                Ovqat tayyorlash jarayonini tezlashtiring va osonlashtiring. Тugmali va sensorli kalitlar 
+                qurilmani boshqarishni osonlashtiradi. Ular yordamida vaqt, vazn, quvvat va boshqa 
+                funksiyalarini sozlashi mumkin. Siz taomlarni mazali pishirishingiz mumkin. Oddiy va 
+                hayratlanarli dizayni mikroto'lqinli pechga chiroyli va zamonaviy ko‘rinish beradi. 
+                To‘lqinli uch teng tarqatish tizimi pishirish kamerasini bir tekis isitadi, taomga har 
+                tomondan kirib boradi. Buning yordamida taomlar bir xil pishadi. Bardoshli biotermik 
+                qoplamani tozalash oson, tirnalmaydi va antibakterial."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $SamsungBrand->id,
+            'name' => "Mikroto`lqinli Pech Samsung ME83KRW-1KBW",
+            'sku' => 'SAMSUNG-ME83KRW-MICROWAVE',
+            'price' => 2300000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $SamsungMicrowave->id,
+            'image_path' => "products/mikroto'lqinli-pech-lg-ms2042db-main.png",
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $SamsungBrand->attributeValue()->attach([
+            $SamsungMicrowavePower->id,
+            $SamsungMicrowaveCap->id
         ]);
     }
 }
