@@ -36,6 +36,10 @@ class ProductSeeder extends Seeder
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
         $toshibaBrand = Brand::where('slug', 'toshiba')->first();
 
+        $SmallAppliancesCat = Category::where('slug', 'kichik-maishiy-texnika')->first();
+        $BraunBrand = Brand::where('slug', 'braun')->first();
+        $PhilipsBrand = Brand::where('slug', 'philips')->first();
+
         // Fetching attribute values i'll attach
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
         $storage256 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '256')->first();
@@ -641,6 +645,83 @@ class ProductSeeder extends Seeder
         $artelAC->attributeValue()->attach([
             $artelAcCap->id,
             $artelColor->id
+        ]);
+
+
+        // SMALL APPLIANCES. Steam Iron Braun FI3194BK
+        $BraunIronPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2400 W')->first();
+        $BraunColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Blue')->first(); 
+        
+        $BraunIron = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $BraunBrand->id,
+            'name' => 'Dazmol Braun FI3194BK',
+            'slug' => 'dazmol-braun-fi3194bk',
+            'price' => 700000,
+            'description' => "BraunFI3194BK dazmoli -  tez, samarali va boshqarish juda oson. 
+                U FreeGlide3D texnologiyasi bilan jihozlangan bo‘lib, u har qanday to‘siqdan sirpanib 
+                o‘tish imkonini beradi. Shuningdek, u ochiq FreeStyleBraun tutqichiga ega. Ushbu ergonomik 
+                tutqich maksimal harakat erkinligini va qulay dazmollashni ta’minlaydi. SuperCeramic sizga 
+                kamroq harakat bilan tezda ajoyib natijalarga erishish imkonini beradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $BraunBrand->id,
+            'name' => 'Dazmol Braun FI3194BK Blue',
+            'sku' => 'BRAUN-FI3194-IRON',
+            'price' => 700000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $BraunIron->id,
+            'image_path' => 'products/dazmol-braun-fi3194bk-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $BraunBrand->attributeValue()->attach([
+            $BraunIronPower->id,
+            $BraunColor->id
+        ]);
+
+
+        // Dazmol Philips DST8021/30
+        $PhilipsIronPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '3000 W')->first();
+        $PhilipsColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Purple')->first();
+        
+        $PhilipsIron = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $PhilipsBrand->id,
+            'name' => 'Dazmol Philips DST8021/30',
+            'slug' => 'dazmol-philips-dst8021/30',
+            'price' => 1300000,
+            'description' => "3000 W quvvatga ega dazmol tezda ish haroratiga yetib, kiyimlarni 
+                parvarish qilishni deyarli darhol boshlash imkonini beradi. 55 g/min gacha bo‘lgan 
+                doimiy bug‘ oqimi tolalarni samarali yumshatib, sezilarli burmalar va qurib qolgan 
+                joylarni tekislaydi. Kuchaytirilgan bug‘ zarbasi qalin materiallarda yaxshi natija 
+                beradi, o‘rnatilgan purkagich esa murakkab qismlarni namlab, kamroq harakat bilan 
+                saranjom ko‘rinishga erishishga yordam beradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $PhilipsBrand->id,
+            'name' => 'Dazmol Philips DST8021/30 Purple',
+            'sku' => 'PHILIPS-DST8021-IRON',
+            'price' => 1300000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $PhilipsIron->id,
+            'image_path' => 'products/dazmol-philips-dst8021-30-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $PhilipsBrand->attributeValue()->attach([
+            $PhilipsIronPower->id,
+            $PhilipsColor->id
         ]);
     }
 }
