@@ -776,7 +776,7 @@ class ProductSeeder extends Seeder
             'name' => 'Chang Yutgich LG VC73189NHTS',
             'slug' => 'chang-yutgich-lg-vc73189nhts',
             'price' => 1700000,
-            'description' => "LG VC73189NHTS samarali va qulay tozalashni ta'minlovchi zamonaviy qurilma. 
+            'description' => "LG VC73189NHTS 2000 W quvvatga ega, samarali va qulay tozalashni ta'minlovchi zamonaviy qurilma. 
                 Kompressor changni siqish texnologiyasi konteynerga ko'proq chang yig'ish imkonini beradi, 
                 bu esa yuqori quvvat va oson tozalashni ta'minlaydi. Uzunligi 5 m va diapazoni 8 m bo'lgan 
                 quvvat simi doimiy ravishda qayta ulanishni talab qilmasdan xona bo'ylab erkin 
@@ -785,22 +785,22 @@ class ProductSeeder extends Seeder
 
         ProductVariant::create([
             'product_id' => $lgBrand->id,
-            'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
-            'sku' => 'SAMSUNG-VC20M255-VACUUM',
-            'price' => 1300000,
+            'name' => 'Chang Yutgich LG VC73189NHTS',
+            'sku' => 'LG-VC73189NHTS-VACUUM',
+            'price' => 1700000,
             'stock' => 20
         ]);
 
         ProductImage::create([
             'product_id' => $LGVacuum->id,
-            'image_path' => 'products/chang-yutgich-samsung-vc20m255bwb-uz-main.png',
+            'image_path' => 'products/chang-yutgich-lg-vc73189nhts-main.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
         $lgBrand->attributeValue()->attach([
-            $SamsungVacuumPower->id,
-            $samsungColor->id
+            $LGVacuumPower->id,
+            $lgColor->id
         ]);
     }
 }
