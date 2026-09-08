@@ -39,6 +39,8 @@ class ProductSeeder extends Seeder
         $SmallAppliancesCat = Category::where('slug', 'kichik-maishiy-texnika')->first();
         $BraunBrand = Brand::where('slug', 'braun')->first();
         $PhilipsBrand = Brand::where('slug', 'philips')->first();
+        
+
 
         // Fetching attribute values i'll attach
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
@@ -722,6 +724,83 @@ class ProductSeeder extends Seeder
         $PhilipsBrand->attributeValue()->attach([
             $PhilipsIronPower->id,
             $PhilipsColor->id
+        ]);
+
+
+        // Vacuum Cleaner 
+        $SamsungVacuumPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
+        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Dark Blue')->first();
+        
+        $SamsungVacuum = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $samsungBrand->id,
+            'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
+            'slug' => 'chang-yutgich-samsung-vc20m255bwb-uz',
+            'price' => 1600000,
+            'description' => "Samsung VC20M255BWB/UZ changyutgichi uy, xonadon yoki ofisda samarali 
+                quruq tozalash uchun mo‘ljallangan. 2000 Vt energiya sarfi qurilmaning barqaror ishlashini 
+                ta’minlaydi, 460 Vt so‘rish quvvati esa gilam, pol va boshqa yuzalardagi chang, 
+                mayda chiqindi, uvog‘ hamda turli iflosliklarni puxta yig‘ishga yordam beradi. 2,5 litr 
+                sig‘imli qopcha uni tez-tez almashtirish zaruratini kamaytiradi, bu ayniqsa bir nechta 
+                xonani tozalashda qulaydir. Qizil korpus texnikaga yorqin va zamonaviy ko‘rinish bag‘ishlaydi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $samsungBrand->id,
+            'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
+            'sku' => 'SAMSUNG-VC20M255-VACUUM',
+            'price' => 1300000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $SamsungVacuum->id,
+            'image_path' => 'products/chang-yutgich-samsung-vc20m255bwb-uz-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $samsungBrand->attributeValue()->attach([
+            $SamsungVacuumPower->id,
+            $samsungColor->id
+        ]);
+
+
+        // Chang Yutgich LG VC73189NHTS
+        $LGVacuumPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
+        $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Dark Blue')->first();
+        
+        $LGVacuum = Product::create([
+            'category_id' => $SmallAppliancesCat->id,
+            'brand_id' => $lgBrand->id,
+            'name' => 'Chang Yutgich LG VC73189NHTS',
+            'slug' => 'chang-yutgich-lg-vc73189nhts',
+            'price' => 1700000,
+            'description' => "LG VC73189NHTS samarali va qulay tozalashni ta'minlovchi zamonaviy qurilma. 
+                Kompressor changni siqish texnologiyasi konteynerga ko'proq chang yig'ish imkonini beradi, 
+                bu esa yuqori quvvat va oson tozalashni ta'minlaydi. Uzunligi 5 m va diapazoni 8 m bo'lgan 
+                quvvat simi doimiy ravishda qayta ulanishni talab qilmasdan xona bo'ylab erkin 
+                harakatlanish imkonini beradi."
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $lgBrand->id,
+            'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
+            'sku' => 'SAMSUNG-VC20M255-VACUUM',
+            'price' => 1300000,
+            'stock' => 20
+        ]);
+
+        ProductImage::create([
+            'product_id' => $LGVacuum->id,
+            'image_path' => 'products/chang-yutgich-samsung-vc20m255bwb-uz-main.png',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $lgBrand->attributeValue()->attach([
+            $SamsungVacuumPower->id,
+            $samsungColor->id
         ]);
     }
 }
