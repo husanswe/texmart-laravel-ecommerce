@@ -16,7 +16,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'phone_number' => '+998' . fake()->randomElement(['90', '91', '93', '94', '95', '97', '99', '88', '33']) . fake()->numerify('*******'),
+            'phone_number' => fake()->unique()->numerify('+998#########'),            
             'email' => fake()->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'is_admin' => false,
