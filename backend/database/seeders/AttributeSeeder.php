@@ -171,7 +171,7 @@ class AttributeSeeder extends Seeder
         $capacity->category()->attach([$fridges->id]);
 
 
-        $acCap = Attribute::create([
+        $AcCap = Attribute::create([
             'name' => 'Capacity (AC)',
             'slug' => 'ac-capacity',
             'unit' => 'ton'
@@ -179,11 +179,11 @@ class AttributeSeeder extends Seeder
 
         foreach (['7000 BTU', '9000 BTU', '12000 BTU', '15000', '18000 BTU'] as $value) {
             AttributeValue::create([
-                'attribute_id' => $acCap->id,
+                'attribute_id' => $AcCap->id,
                 'value' => $value
             ]);
         }
 
-        $acCap->category()->attach([$ACs->id]);
+        $AcCap->category()->attach([$ACs->id]);
     }
 }
