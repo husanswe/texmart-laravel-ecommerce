@@ -15,7 +15,7 @@ class AttributeSeeder extends Seeder
         $laptops = Category::where('slug', 'noutbuklar')->first();
         $tvs = Category::where('slug', 'televizorlar')->first();
         $fridges = Category::where('slug', 'sovutgichlar')->first();
-        $AirConditioners = Category::where('slug', 'konditsionerlar')->first();
+        $AirConditioners = Category::where('slug', 'air-conditioner')->first();
 
 
         // RAM
@@ -177,7 +177,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'ton'
         ]);
 
-        foreach (['7000 BTU', '9000 BTU', '12000 BTU', '15000', '18000 BTU'] as $value) {
+        foreach (['7000 BTU', '9000 BTU', '12000 BTU', '15000 BTU', '18000 BTU'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $AcCap->id,
                 'value' => $value
