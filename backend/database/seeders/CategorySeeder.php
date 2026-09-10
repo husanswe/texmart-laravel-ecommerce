@@ -44,7 +44,7 @@ class CategorySeeder extends Seeder
             'parent_id' => null
         ]);
 
-        $airConditioner = Category::create([
+        $AirConditioner = Category::create([
             'name' => 'Konditsioner',
             'slug' => 'air-conditioner',
             'icon' => 'air-conditioner',
@@ -132,14 +132,21 @@ class CategorySeeder extends Seeder
             'name' => 'LG Konditsioner',
             'slug' => 'lg-air-conditioner',
             'icon' => 'air-conditioner',
-            'parent_id' => $airConditioner->id
+            'parent_id' => $AirConditioner->id
         ]);
 
         Category::create([
             'name' => 'Artel Konditsioner',
             'slug' => 'artel-air-conditioner',
             'icon' => 'air-conditioner',
-            'parent_id' => $airConditioner->id
+            'parent_id' => $AirConditioner->id
+        ]);
+
+        Category::create([
+            'name' => 'Polaris Soch Quritgich',
+            'slug' => 'polaris-soch-quritgich',
+            'icon' => 'hair-dryer',
+            'parent_id' => $smallAppliances->id
         ]);
     }
 }
