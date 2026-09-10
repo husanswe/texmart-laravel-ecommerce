@@ -15,7 +15,7 @@ class AttributeSeeder extends Seeder
         $laptops = Category::where('slug', 'noutbuklar')->first();
         $tvs = Category::where('slug', 'televizorlar')->first();
         $fridges = Category::where('slug', 'sovutgichlar')->first();
-        $ACs = Category::where('slug', 'konditsionerlar')->first();
+        $AirConditioners = Category::where('slug', 'konditsionerlar')->first();
 
 
         // RAM
@@ -184,6 +184,6 @@ class AttributeSeeder extends Seeder
             ]);
         }
 
-        $AcCap->category()->attach([$ACs->id]);
+        $AcCap->category()->attach([$AirConditioners->id]);
     }
 }
