@@ -167,7 +167,7 @@ class ProductSeeder extends Seeder
         // Laptop product creating
         $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
         $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
-        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '')->first();
+        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', 'Silver')->first();
         $hpBrand = Brand::where('slug', 'hp')->first();
 
         $asus = Product::Create([
@@ -233,7 +233,7 @@ class ProductSeeder extends Seeder
 
         // TVs. SAMSUNG TV
         $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
-        $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '55')->first();
+        $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '4K')->first();
         
         $samsungTV = Product::create([
             'category_id' => $tvsCat->id,
@@ -266,7 +266,7 @@ class ProductSeeder extends Seeder
 
         // ARTEL TV
         $screen32 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '32')->first();
-        $resFHD = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', 'FHD')->first();
+        $resFHD = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', 'Full HD')->first();
 
         $artelTV = Product::create([
             'category_id' => $tvsCat->id,
@@ -543,7 +543,7 @@ class ProductSeeder extends Seeder
 
 
         // AIR CONDITIONER LG B18TS
-        $lgAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '18000 BTU')->first();
+        $lgAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '18000 BTU')->first();
         $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $lgAC = Product::create([
@@ -579,7 +579,7 @@ class ProductSeeder extends Seeder
 
 
         // Konditsioner Samsung AR09TXHQASINUA
-        $samsungAcCap = AttributeValue::whereHas('attributes', fn($q) => $q->where('slug', 'capacity'))->where('value', '9000 BTU')->first();
+        $samsungAcCap = AttributeValue::whereHas('attributes', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '9000 BTU')->first();
         $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $samsungAC = Product::create([
@@ -614,7 +614,7 @@ class ProductSeeder extends Seeder
 
 
         // Artel 12HS S SIR1W12BE Konditsioneri
-        $artelAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '12000 BTU')->first();
+        $artelAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '12000 BTU')->first();
         $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
         
         $artelAC = Product::create([
