@@ -167,7 +167,7 @@ class ProductSeeder extends Seeder
         // Laptop product creating
         $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
         $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
-        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', 'Silver')->first();
+        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Silver')->first();
         $hpBrand = Brand::where('slug', 'hp')->first();
 
         $asus = Product::Create([
