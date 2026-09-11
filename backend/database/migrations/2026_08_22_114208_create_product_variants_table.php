@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('sku')->unique();
+            $table->string('stock')->default(0);
             $table->timestamps();
         });
     }
