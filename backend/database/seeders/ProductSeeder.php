@@ -579,7 +579,7 @@ class ProductSeeder extends Seeder
 
 
         // Konditsioner Samsung AR09TXHQASINUA
-        $samsungAcCap = AttributeValue::whereHas('attributes', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '9000 BTU')->first();
+        $samsungAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '9000 BTU')->first();
         $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $samsungAC = Product::create([
