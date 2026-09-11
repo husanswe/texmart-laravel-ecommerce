@@ -241,7 +241,7 @@ class ProductSeeder extends Seeder
             'name' => "Samsung 55 4K",
             'slug' => 'samsung-55-4k',
             'price' => 5999000,
-            'desciption' => 'Samsung 55 dyumli 4K Ultra HD Smart televizor.' 
+            'description' => 'Samsung 55 dyumli 4K Ultra HD Smart televizor.' 
         ]);
 
         ProductVariant::create([
@@ -513,8 +513,8 @@ class ProductSeeder extends Seeder
         $toshibaWashingMachine = Product::create([
             'category_id' => $washingMachineCat->id,
             'brand_id' => $toshibaBrand->id,
-            'name' => 'Kir yuvish mashinasi Samsung WW70AG4S21VELD',
-            'slug' => 'kir-yuvish-mashinasi-samsung-ww70ag4s21veld',
+            'name' => 'Kir yuvish mashinasi Toshiba TW-BL80A2UZ(WK)',
+            'slug' => 'kir-yuvish-mashinasi-toshiba-tw-bl80a2uz-wk',
             'price' => 4500000,
             'description' => "Toshiba TW-BL80A2UZ(WK) kir yuvish mashinasi 7 kg gacha bo‘lgan frontal yuklash 
                 va maksimal yuklash imkoniyati bilan kichik oilalar va joy hamda energiyani tejashni istaydigan 
@@ -856,7 +856,7 @@ class ProductSeeder extends Seeder
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $SamsungBrand->id,
             'name' => "Mikroto'lqinli Pech Samsung ME83KRW-1KBW",
-            'slug' => "mikroto'lqinli-pech-lg-ms2042db",
+            'slug' => "mikrotolqinli-pech-samsung-me83krw-1kbw",
             'price' => 2300000,
             'description' => "Samsung ME83KRW-1KBW mikroto'lqinli pech oshxonadagi eng ishonchli yordamchidir. 
                 Ovqat tayyorlash jarayonini tezlashtiring va osonlashtiring. Тugmali va sensorli kalitlar 
