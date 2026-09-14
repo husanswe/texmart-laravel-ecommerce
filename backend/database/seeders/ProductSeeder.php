@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
         
         $tvsCat = Category::where('slug', 'televizorlar')->first();
         $artelBrand = Brand::where('slug', 'artel')->first();
-        $lgBrand = Brand::where('slug', 'lg')->first();
+        $LgBrand = Brand::where('slug', 'lg')->first();
 
         $fridgesCat = Category::where('slug', 'sovutgichlar')->first();
         $boschBrand = Brand::where('slug', 'bosch')->first();
@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
         $toshibaBrand = Brand::where('slug', 'toshiba')->first();
 
-        $SmallAppliancesCat = Category::where('slug', 'kichik-maishiy-texnika')->first();
+        $SmallAppliancesCat = Category::where('slug', 'uy-uchun-kichik-texnika')->first();
         $BraunBrand = Brand::where('slug', 'braun')->first();
         $PhilipsBrand = Brand::where('slug', 'philips')->first();
         $TefalBrand = Brand::where('slug', 'tefal')->first();
@@ -303,7 +303,7 @@ class ProductSeeder extends Seeder
 
         $lgTV = Product::create([
             'category_id' => $tvsCat->id,
-            'brand_id' => $lgBrand->id,
+            'brand_id' => $LgBrand->id,
             'name' => 'LG TV 65 8K',
             'slug' => 'lg-tv-65-8k',
             'price' => 28000000,
@@ -441,7 +441,7 @@ class ProductSeeder extends Seeder
 
         $lgWashingMachine = Product::create([
             'category_id' => $washingMachineCat->id,
-            'brand_id' => $lgBrand->id,
+            'brand_id' => $LgBrand->id,
             'name' => 'Kir yuvish mashinasi LG F2V3PS6W',
             'slug' => 'kir-yuvish-mashinasi-lg-f2v3ps6w',
             'price' => 6000000,
@@ -548,7 +548,7 @@ class ProductSeeder extends Seeder
 
         $lgAC = Product::create([
             'category_id' => $washingMachineCat->id,
-            'brand_id' => $lgBrand->id,
+            'brand_id' => $LgBrand->id,
             'name' => 'LG B18TS Konditsioneri',
             'slug' => 'lg-b18ts-konditsioneri',
             'price' => 12000000,
@@ -669,7 +669,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $BraunBrand->id,
+            'product_id' => $BraunIron->id,
             'name' => 'Dazmol Braun FI3194BK Blue',
             'sku' => 'BRAUN-FI3194-IRON',
             'price' => 700000,
@@ -708,7 +708,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $PhilipsBrand->id,
+            'product_id' => $PhilipsIron->id,
             'name' => 'Dazmol Philips DST8021/30 Purple',
             'sku' => 'PHILIPS-DST8021-IRON',
             'price' => 1300000,
@@ -747,7 +747,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $SamsungBrand->id,
+            'product_id' => $SamsungVacuum->id,
             'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
             'sku' => 'SAMSUNG-VC20M255-VACUUM',
             'price' => 1300000,
@@ -773,7 +773,7 @@ class ProductSeeder extends Seeder
         
         $LGVacuum = Product::create([
             'category_id' => $SmallAppliancesCat->id,
-            'brand_id' => $lgBrand->id,
+            'brand_id' => $LgBrand->id,
             'name' => 'Chang Yutgich LG VC73189NHTS',
             'slug' => 'chang-yutgich-lg-vc73189nhts',
             'price' => 1700000,
@@ -785,7 +785,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $lgBrand->id,
+            'product_id' => $LGVacuum->id,
             'name' => 'Chang Yutgich LG VC73189NHTS',
             'sku' => 'LG-VC73189NHTS-VACUUM',
             'price' => 1700000,
@@ -799,7 +799,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $lgBrand->attributeValue()->attach([
+        $LgBrand->attributeValue()->attach([
             $LGVacuumPower->id,
             $lgColor->id
         ]);
@@ -811,7 +811,7 @@ class ProductSeeder extends Seeder
 
         $LgMicrowave = Product::create([
             'category_id' => $SmallAppliancesCat->id,
-            'brand_id' => $lgBrand->id,
+            'brand_id' => $LgBrand->id,
             'name' => "Mikroto'lqinli Pech LG MS2042DB",
             'slug' => "mikroto'lqinli-pech-lg-ms2042db",
             'price' => 1325000,
@@ -828,7 +828,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $lgBrand->id,
+            'product_id' => $LgMicrowave->id,
             'name' => "Mikroto'lqinli Pech LG MS2042DB",
             'sku' => 'LG-MS2042DB-MICROWAVE',
             'price' => 1325000,
@@ -842,7 +842,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $lgBrand->attributeValue()->attach([
+        $LgBrand->attributeValue()->attach([
             $LgMicrowavePower->id,
             $LgMicrowaveCap->id
         ]);
@@ -869,7 +869,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $SamsungBrand->id,
+            'product_id' => $SamsungMicrowave->id,
             'name' => "Mikroto`lqinli Pech Samsung ME83KRW-1KBW",
             'sku' => 'SAMSUNG-ME83KRW-MICROWAVE',
             'price' => 2300000,
@@ -910,7 +910,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $TefalBrand->id,
+            'product_id' => $TefalKettle->id,
             'name' => "Elektr Choynak Tefal KO693110",
             'sku' => 'TEFAL-KO693110-KETTLE',
             'price' => 1300000,
@@ -953,7 +953,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $BraunBrand->id,
+            'product_id' => $BraunKettle->id,
             'name' => "Elektr Choynak Braun WK5205BK",
             'sku' => 'BRAUN-WK5205BK-KETTLE',
             'price' => 900000,
@@ -991,7 +991,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $PolarisBrand->id,
+            'product_id' => $PolarisDryer->id,
             'name' => "Soch Quritgich Polaris PHD 2289AC",
             'sku' => 'POLARIS-PHD2289AC-HAIRDRYER',
             'price' => 550000,
@@ -1015,7 +1015,7 @@ class ProductSeeder extends Seeder
         $PhilipsDryerPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2300 W')->first();
         $PhilipsDryerColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
 
-        $PolarisDryer = Product::create([
+        $PhilipsDryer = Product::create([
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $PhilipsBrand->id,
             'name' => "Soch Quritgich Philips HPS920-00",
@@ -1028,7 +1028,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $PhilipsBrand->id,
+            'product_id' => $PhilipsDryer->id,
             'name' => "Soch Quritgich Philips HPS920-00",
             'sku' => 'PHILIPS-HPS920-HAIRDRYER',
             'price' => 2000000,
@@ -1036,7 +1036,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductImage::create([
-            'product_id' => $PolarisDryer->id,
+            'product_id' => $PhilipsDryer->id,
             'image_path' => "products/hair-dryer-philips-hps920-00-main.png",
             'is_primary' => true,
             'sort_order' => 0,
