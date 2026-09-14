@@ -683,7 +683,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $BraunBrand->attributeValue()->attach([
+        $BraunIron->attributeValue()->attach([
             $BraunIronPower->id,
             $BraunColor->id
         ]);
@@ -722,14 +722,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $PhilipsBrand->attributeValue()->attach([
+        $PhilipsIron->attributeValue()->attach([
             $PhilipsIronPower->id,
             $PhilipsColor->id
         ]);
 
 
         // Vacuum Cleaner 
-        $SamsungVacuumPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
+        $SamsungVacuumPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
         $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Dark Blue')->first();
         
         $SamsungVacuum = Product::create([
@@ -761,17 +761,17 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $SamsungBrand->attributeValue()->attach([
+        $SamsungVacuum->attributeValue()->attach([
             $SamsungVacuumPower->id,
             $samsungColor->id
         ]);
 
 
         // Chang Yutgich LG VC73189NHTS
-        $LGVacuumPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
+        $LGVacuumPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
         $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Dark Blue')->first();
         
-        $LGVacuum = Product::create([
+        $LgVacuum = Product::create([
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $LgBrand->id,
             'name' => 'Chang Yutgich LG VC73189NHTS',
@@ -785,7 +785,7 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductVariant::create([
-            'product_id' => $LGVacuum->id,
+            'product_id' => $LgVacuum->id,
             'name' => 'Chang Yutgich LG VC73189NHTS',
             'sku' => 'LG-VC73189NHTS-VACUUM',
             'price' => 1700000,
@@ -793,20 +793,20 @@ class ProductSeeder extends Seeder
         ]);
 
         ProductImage::create([
-            'product_id' => $LGVacuum->id,
+            'product_id' => $LgVacuum->id,
             'image_path' => 'products/chang-yutgich-lg-vc73189nhts-main.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
-        $LgBrand->attributeValue()->attach([
+        $LgVacuum->attributeValue()->attach([
             $LGVacuumPower->id,
             $lgColor->id
         ]);
 
 
         // MICROWAVE OVEN. LG MS2042DB
-        $LgMicrowavePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '700 W')->first();
+        $LgMicrowavePower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '700 W')->first();
         $LgMicrowaveCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '20 L')->first(); 
 
         $LgMicrowave = Product::create([
@@ -842,14 +842,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $LgBrand->attributeValue()->attach([
+        $LgMicrowave->attributeValue()->attach([
             $LgMicrowavePower->id,
             $LgMicrowaveCap->id
         ]);
 
 
         // Mikroto`lqinli Pech Samsung ME83KRW-1KBW
-        $SamsungMicrowavePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '800 W')->first();
+        $SamsungMicrowavePower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '800 W')->first();
         $SamsungMicrowaveCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '23 L')->first(); 
 
         $SamsungMicrowave = Product::create([
@@ -883,14 +883,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $SamsungBrand->attributeValue()->attach([
+        $SamsungMicrowave->attributeValue()->attach([
             $SamsungMicrowavePower->id,
             $SamsungMicrowaveCap->id
         ]);
 
 
         // ELECTRIC KETTLE. Tefal KO693110
-        $TefalKettlePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
+        $TefalKettlePower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
         $TefalKettleCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '1.5 L')->first(); 
 
         $TefalKettle = Product::create([
@@ -924,14 +924,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $TefalBrand->attributeValue()->attach([
+        $TefalKettle->attributeValue()->attach([
             $TefalKettlePower->id,
             $TefalKettleCap->id
         ]); 
 
 
         // Electric Kettle Braun WK5205BK
-        $BraunKettlePower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
+        $BraunKettlePower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '1800 W')->first();
         $BraunKettleCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '1.5 L')->first(); 
 
         $BraunKettle = Product::create([
@@ -967,14 +967,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $BraunBrand->attributeValue()->attach([
+        $BraunKettle->attributeValue()->attach([
             $BraunKettlePower->id,
             $BraunKettleCap->id
         ]);
 
 
         // HAIR DRYER. Polaris PHD 2289AC
-        $PolarisDryerPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2200 W')->first();
+        $PolarisDryerPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2200 W')->first();
         $PolarisDryerColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
 
         $PolarisDryer = Product::create([
@@ -1005,14 +1005,14 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $PolarisBrand->attributeValue()->attach([
+        $PolarisDryer->attributeValue()->attach([
             $PolarisDryerPower->id,
             $PolarisDryerColor->id
         ]);
 
 
         // Hair Dryer Philips HPS920/00
-        $PhilipsDryerPower = AttributeValue::where('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2300 W')->first();
+        $PhilipsDryerPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2300 W')->first();
         $PhilipsDryerColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
 
         $PhilipsDryer = Product::create([
@@ -1042,7 +1042,7 @@ class ProductSeeder extends Seeder
             'sort_order' => 0,
         ]);
 
-        $PhilipsBrand->attributeValue()->attach([
+        $PhilipsDryer->attributeValue()->attach([
             $PhilipsDryerPower->id,
             $PhilipsDryerColor->id
         ]);
