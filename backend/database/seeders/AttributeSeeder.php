@@ -16,6 +16,7 @@ class AttributeSeeder extends Seeder
         $tvs = Category::where('slug', 'televizorlar')->first();
         $fridges = Category::where('slug', 'sovutgichlar')->first();
         $AirConditioners = Category::where('slug', 'air-conditioner')->first();
+        $SmallAppliances = Category::where('slug', 'uy-uchun-kichik-texnika')->first();
 
 
         // RAM
@@ -171,6 +172,7 @@ class AttributeSeeder extends Seeder
         $capacity->category()->attach([$fridges->id]);
 
 
+        // Air Conditioner Capacity
         $AcCap = Attribute::create([
             'name' => 'Capacity (AC)',
             'slug' => 'ac-capacity',
@@ -185,5 +187,22 @@ class AttributeSeeder extends Seeder
         }
 
         $AcCap->category()->attach([$AirConditioners->id]);
+
+
+        // Steam Iron Power
+        $power = Attribute::create([
+            'name' => 'Power',
+            'slug' => 'power',
+            'unit' => 'W'
+        ]);
+
+        foreach (['700 W', '800 W', '1800 W', '2000 W', '2200 W', '2300 W', '2400 W', '3000 W'] as $value) {
+            AttributeValue::create([
+                'attribute_id' => $power->id,
+                'value' => $value
+            ]);
+        }
+
+        $power->category()->attach([$SmallAppliances->id]);
     }
 }
