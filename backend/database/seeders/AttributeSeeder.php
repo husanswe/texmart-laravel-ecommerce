@@ -145,7 +145,7 @@ class AttributeSeeder extends Seeder
             'unit' => null
         ]);
 
-        foreach (['Black', 'White', 'Blue', 'Silver', 'Stainless Steel'] as $value) {
+        foreach (['Black', 'White', 'Blue', 'Silver', 'Stainless Steel', 'Purple', 'Dark Blue'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $color->id,
                 'value' => $value
@@ -162,7 +162,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'L'
         ]);
 
-        foreach (['200 L', '250 L', '300 L', '322 L', '350 L', '505 L', '8 kg', '7 kg'] as $value) {
+        foreach (['20 L', '23 L', '200 L', '250 L', '300 L', '322 L', '350 L', '505 L', '8 kg', '7 kg'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $capacity->id,
                 'value' => $value
