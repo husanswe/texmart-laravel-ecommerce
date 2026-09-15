@@ -162,7 +162,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'L'
         ]);
 
-        foreach (['20 L', '23 L', '200 L', '250 L', '300 L', '322 L', '350 L', '505 L', '8 kg', '7 kg'] as $value) {
+        foreach (['1.5 L', '20 L', '23 L', '200 L', '250 L', '300 L', '322 L', '350 L', '505 L', '8 kg', '7 kg'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $capacity->id,
                 'value' => $value
