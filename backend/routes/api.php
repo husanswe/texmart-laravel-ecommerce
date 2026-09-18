@@ -13,16 +13,22 @@ use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProfileController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 Route::prefix('v1')->group(function () {
-
+    
     // Auth 
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-
+    
     // Catalog
     Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories/{slug}', [CategoryController::class, 'show']);
+    Route::get('/ping', fn () => response()->json(['message' => 'pong']));
+});
+
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+
+
 });
