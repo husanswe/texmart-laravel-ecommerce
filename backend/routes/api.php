@@ -16,14 +16,22 @@ use App\Http\Controllers\Api\ProfileController;
 
 Route::prefix('v1')->group(function () {
     
-    // Auth 
+    // Auth (public)
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     
-    // Catalog
+    // Catalog (public)
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{slug}', [CategoryController::class, 'show']);
     Route::get('/ping', fn () => response()->json(['message' => 'pong']));
+
+    Route::get('/brands', [BrandController::class, 'index']);
+
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{slug}', [ProductController::class, 'show']);
+
+    Route::get('/search', [SearchController::class, 'index']);
+    Route::get('/filter', [FilterController::class, 'index']);
 });
 
 
