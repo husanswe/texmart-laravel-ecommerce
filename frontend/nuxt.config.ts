@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     families: [
       // Variable so the 650 weight the design calls for renders truthfully
       // instead of snapping to 600 or 700.
-      { name: 'Inter', provider: 'google', weights: ['400 700'] },
+      { name: 'Roboto', provider: 'google', weights: ['400 700'] },
       { name: 'JetBrains Mono', provider: 'google', weights: [500] },
     ],
     defaults: {
