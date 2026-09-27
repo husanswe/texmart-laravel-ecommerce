@@ -23,9 +23,11 @@ class ProductController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $product = Product::where('slug', $slug)->with('brand', 'category', 'images', 'variants')->firstOrFail();
+
+        return new ProductResource($product);
     }
 
 
