@@ -14,7 +14,10 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'price' => $this->price,
-            'description' => $this->description
+            'description' => $this->description,
+            'images' => ProductImageResource::collection($this->whenLoaded('images')),
+            'brand' => new BrandResource($this->whenLoaded('brand')),
+            'category' => new CategoryResource($this->whenLoaded('category'))
         ];
     }
 }
