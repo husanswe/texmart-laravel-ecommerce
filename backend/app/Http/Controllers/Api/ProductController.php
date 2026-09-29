@@ -14,11 +14,11 @@ class ProductController extends Controller
         $query = Product::with(['brand', 'category', 'images']);
 
         $query->when($request->filled('category'), function ($q) use ($request) {
-            $q->where('category_id', $request->category);
+            $q->whereIn('category_id', $request->category);
         });
 
         $query->when($request->filled('brand'), function ($q) use ($request) {
-            $q->where('brand_id', $request->brand);
+            $q->whereIn('brand_id', $request->brand);
         });
 
         return ProductResource::collection($query->paginate(20));
