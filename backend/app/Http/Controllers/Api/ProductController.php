@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($request)
+    public function index(Request $request)
     {
-        $products = Product::with(['brand', 'category', 'images'])->paginate(10);
-
         $query = Product::with(['brand', 'category', 'images']);
 
-        return ProductResource::collection($products);
+        $query->when($request->filled('category'), function ($q) use ($request) {
+            $q->where('category_id', $request->category);
+        });
+
+        return ProductResource::collection($query->paginate(20));
     }
 
 
