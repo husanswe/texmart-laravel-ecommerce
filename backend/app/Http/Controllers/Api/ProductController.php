@@ -17,6 +17,10 @@ class ProductController extends Controller
             $q->where('category_id', $request->category);
         });
 
+        $query->when($request->filled('brand'), function ($q) use ($request) {
+            $q->where('brand_id', $request->brand);
+        });
+
         return ProductResource::collection($query->paginate(20));
     }
 
