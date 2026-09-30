@@ -21,6 +21,14 @@ class ProductController extends Controller
             $q->whereIn('brand_id', $request->brand);
         });
 
+        $query->when($request->filled('min_price'), function ($q) use ($request) {
+            $q->where('price', '>=', $request->min_price);
+        });
+
+        $query->when($request->filled('max_price'), function ($q) use ($request) {
+            $q->where('price', '<=', $request->max_price);
+        });
+
         return ProductResource::collection($query->paginate(20));
     }
 
