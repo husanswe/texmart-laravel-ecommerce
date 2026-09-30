@@ -14,11 +14,11 @@ class ProductController extends Controller
         $query = Product::with(['brand', 'category', 'images']);
 
         $query->when($request->filled('category'), function ($q) use ($request) {
-            $q->whereIn('category_id', $request->category);
+            $q->whereIn('category_id', (array) $request->category);
         });
 
         $query->when($request->filled('brand'), function ($q) use ($request) {
-            $q->whereIn('brand_id', $request->brand);
+            $q->whereIn('brand_id', (array) $request->brand);
         });
 
         $query->when($request->filled('min_price'), function ($q) use ($request) {
@@ -27,6 +27,12 @@ class ProductController extends Controller
 
         $query->when($request->filled('max_price'), function ($q) use ($request) {
             $q->where('price', '<=', $request->max_price);
+        });
+
+        $query->when($request->boolean('in_stock'), function ($q) {
+            $q->whereHas('variants', function ($variantQuery) {
+                $variantQuery->where('stock', '>', 0);
+            });
         });
 
         return ProductResource::collection($query->paginate(20));
