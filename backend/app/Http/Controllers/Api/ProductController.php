@@ -35,6 +35,9 @@ class ProductController extends Controller
             });
         });
 
+        $query->orderBy('price', 'asc'); 
+        $query->orderBy('price', 'desc');
+
         return ProductResource::collection($query->paginate(20));
     }
 
