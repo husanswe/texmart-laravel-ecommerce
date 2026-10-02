@@ -40,8 +40,7 @@ class ProductController extends Controller
 
         return ProductResource::collection($query->paginate(20)->withQueryString());
     }
-
-
+    
     public function store(Request $request)
     {
         //
