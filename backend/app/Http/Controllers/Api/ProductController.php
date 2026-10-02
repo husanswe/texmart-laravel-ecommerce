@@ -35,6 +35,12 @@ class ProductController extends Controller
             });
         });
 
+        $query->when($request->filled('attribute_values'), function ($q) use ($request) {
+            $q->whereHas('attributeValue', function ($attributeQuery) use ($request) {
+                $attributeQuery->whereIn('attribute_values.id', $request->input('attribute_values'));
+            });
+        });
+
         $query->orderBy('price', 'asc'); 
         $query->orderBy('price', 'desc');
 
