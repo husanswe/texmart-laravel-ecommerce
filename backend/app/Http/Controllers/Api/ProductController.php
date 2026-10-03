@@ -36,8 +36,13 @@ class ProductController extends Controller
             });
         });
 
-        $filteredProducts = (clone $query)->pluck('products.id');
- 
+        $filteredProductIds = (clone $query)->pluck('products.id');
+        
+        $facets = AttributeValue::with('attribute')->withCount([
+            'product as product_count' => function ($q) use ($filteredProductIds) {
+                $q->whereIn('product.id', $filteredProductIds);
+            }
+        ]);
 
 
         $query->when($request->filled('attribute_values'), function ($q) use ($request) {
@@ -49,7 +54,11 @@ class ProductController extends Controller
         $query->orderBy('price', 'asc'); 
         $query->orderBy('price', 'desc');
 
-        return ProductResource::collection($query->paginate(20)->withQueryString());
+        $products = $query->paginate(20)->withQueryString();
+
+        return ProductResource::collection($products)->additional([
+            'facets' => $facets,
+        ]);
     }
     
     public function store(Request $request)
