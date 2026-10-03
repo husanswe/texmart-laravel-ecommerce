@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\AttributeValue;
 
 class ProductController extends Controller
 {
@@ -34,6 +35,10 @@ class ProductController extends Controller
                 $variantQuery->where('stock', '>', 0);
             });
         });
+
+        $filteredProducts = (clone $query)->pluck('products.id');
+ 
+
 
         $query->when($request->filled('attribute_values'), function ($q) use ($request) {
             $q->whereHas('attributeValue', function ($attributeQuery) use ($request) {
