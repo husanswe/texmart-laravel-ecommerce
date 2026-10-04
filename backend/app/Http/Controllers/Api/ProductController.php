@@ -40,24 +40,24 @@ class ProductController extends Controller
         
         $facets = AttributeValue::with('attribute')->withCount([
             'product as product_count' => function ($q) use ($filteredProductIds) {
-                $q->whereIn('product.id', $filteredProductIds);
+                $q->whereIn('products.id', $filteredProductIds);
             }
-        ]);
+        ])->get();
 
-
+        
         $query->when($request->filled('attribute_values'), function ($q) use ($request) {
             $q->whereHas('attributeValue', function ($attributeQuery) use ($request) {
                 $attributeQuery->whereIn('attribute_values.id', $request->input('attribute_values'));
             });
         });
-
-        $query->orderBy('price', 'asc'); 
-        $query->orderBy('price', 'desc');
-
+        
+        $query->orderBy('price', 'asc');
+        
         $products = $query->paginate(20)->withQueryString();
 
+
         return ProductResource::collection($products)->additional([
-            'facets' => $facets,
+            'facets' => $facets
         ]);
     }
     
