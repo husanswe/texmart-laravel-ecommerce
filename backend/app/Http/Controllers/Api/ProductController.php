@@ -36,8 +36,10 @@ class ProductController extends Controller
             });
         });
 
+        
         $filteredProductIds = (clone $query)->pluck('products.id');
         
+
         $facets = AttributeValue::with('attribute')->withCount([
             'product as product_count' => function ($q) use ($filteredProductIds) {
                 $q->whereIn('products.id', $filteredProductIds);
@@ -60,7 +62,9 @@ class ProductController extends Controller
             $query->orderby('price', 'desc');
         }
         
+
         $products = $query->paginate(20)->withQueryString();
+
 
         return ProductResource::collection($products)->additional([
             'facets' => $facets
