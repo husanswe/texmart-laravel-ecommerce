@@ -50,11 +50,17 @@ class ProductController extends Controller
                 $attributeQuery->whereIn('attribute_values.id', $request->input('attribute_values'));
             });
         });
+   
         
-        $query->orderBy('price', 'asc');
+        if ($request->sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        }
+        
+        if ($request->sort === 'price_desc') {
+            $query->orderby('price', 'desc');
+        }
         
         $products = $query->paginate(20)->withQueryString();
-
 
         return ProductResource::collection($products)->additional([
             'facets' => $facets
