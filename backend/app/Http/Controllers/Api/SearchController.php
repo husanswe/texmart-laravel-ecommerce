@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SearchResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     public function index(Request $request) {
-        $searchTerm = $request->input('search');
+        $searchTerm = $request->input('q');
 
-        $products = Product::query()->when($searchTerm, function ($q, $query) {
-            $q->where('name', 'LIKE', "%{$query}%")
-                ->orWhere('description', 'LIKE', "%{$query}%");
-        })->paginate(10);
+        $products = Product::query()->when($searchTerm, function ($q, $searchTerm) {
+            $q->where('name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+        })->paginate(20)->withQueryString();
 
-        return ;
+        return SearchResource::collection($products);
     }
 }
