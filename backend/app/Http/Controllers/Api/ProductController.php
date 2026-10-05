@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FacetResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -67,7 +68,7 @@ class ProductController extends Controller
 
 
         return ProductResource::collection($products)->additional([
-            'facets' => $facets
+            'facets' => FacetResource::collection($facets)
         ]);
     }
     
