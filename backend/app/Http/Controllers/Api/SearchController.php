@@ -13,8 +13,7 @@ class SearchController extends Controller
         $searchTerm = $request->input('q');
 
         $products = Product::query()->when($searchTerm, function ($q, $searchTerm) {
-            $q->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+            $q->where('name', 'LIKE', "%{$searchTerm}%");
         })->paginate(20)->withQueryString();
 
         return SearchResource::collection($products);
