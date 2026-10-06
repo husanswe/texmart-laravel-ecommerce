@@ -25,8 +25,13 @@ class CartService
         $cartToken = request()->header('X-Cart-Token');
 
         if(request()->hasHeader('X-Cart-Token')) {
-            return $cartToken;
-        }
+            $cart = Cart::where('session_id', $cartToken)->first();
 
+            if($cart) {
+                return $cart;
+            }
+
+            return response()->json(['message' => 'cart not found'], 404);
+        }
     }
 }
