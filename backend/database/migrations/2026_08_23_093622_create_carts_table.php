@@ -10,8 +10,14 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('session_id')->nullable();
+            $table->string('session_id')->nullable()->unique();
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->unique()
+                ->constrained()
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
