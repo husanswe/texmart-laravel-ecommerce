@@ -39,7 +39,7 @@ Route::prefix('v1')->group(function () {
 
         // Auth 
         Route::get('/me', [AuthController::class, 'me']);
-        Route::get('/logout', [AuthController::class, 'logout']);
+        Route::post('/logout', [AuthController::class, 'logout']);
 
         // Profile
         Route::get('/profile', [ProfileController::class, 'show']);
