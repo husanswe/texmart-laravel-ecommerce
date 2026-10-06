@@ -9,14 +9,16 @@ class RegisterRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
 
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'unique:users,phone', 'max:15'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ];
     }
 }
