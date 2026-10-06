@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CartService
 {
@@ -20,5 +21,12 @@ class CartService
 
             return $cart;
         }
+
+        $cartToken = request()->header('X-Cart-Token');
+
+        if(request()->hasHeader('X-Cart-Token')) {
+            return $cartToken;
+        }
+
     }
 }
