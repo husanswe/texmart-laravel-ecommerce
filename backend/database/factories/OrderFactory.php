@@ -15,7 +15,7 @@ class OrderFactory extends Factory
             'status' => fake()->randomElement(['pending', 'processing', 'completed', 'cancelled']),
             'payment_status' => fake()->randomElement(['pending', 'paid', 'failed', 'refunded']),
             'shipping_address' => fake()->address(),
-            'phone_number' => fake()->unique()->numerify('+998*********')
+            'phone' => fake()->unique()->numerify('+998*********')
         ];
     }
 }

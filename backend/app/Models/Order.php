@@ -18,7 +18,7 @@ class Order extends Model
         'status',
         'payment_status',
         'shipping_address',
-        'phone_number'
+        'phone'
     ];
 
     public function user(): BelongsTo

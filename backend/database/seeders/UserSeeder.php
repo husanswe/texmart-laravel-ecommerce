@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Test Admin',
-            'phone_number' => '+998' . fake()->randomElement(['90', '91','93','94','95','97','99','88','33']) . fake()->numerify('#######'),
+            'phone' => '+998' . fake()->randomElement(['90', '91','93','94','95','97','99','88','33']) . fake()->numerify('#######'),
             'email' => 'husanswe1@gmail.com',
             'password' => Hash::make('password'),
             'is_admin' => true 
