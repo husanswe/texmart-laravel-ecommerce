@@ -38,8 +38,8 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
 
         // Auth 
-        Route::get('/logout', [AuthController::class, 'logout']);
         Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/logout', [AuthController::class, 'logout']);
 
         // Profile
         Route::get('/profile', [ProfileController::class, 'show']);
