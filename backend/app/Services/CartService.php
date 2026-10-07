@@ -14,24 +14,28 @@ class CartService
         $user = Auth::guard('sanctum')->user();
 
         if ($user) {
-            $cart = Cart::firstOrCreate(
-                ['user_id' => $user->id],
-                ['session_id' => null]
-            );
-
-            return $cart;
+            $cart = Cart::firstOrCreate([
+                'user_id' => $user->id,
+                'session_id' => null
+            ]);
         }
 
-        $cartToken = request()->header('X-Cart-Token');
 
-        if(request()->hasHeader('X-Cart-Token')) {
+        $cartToken = $request->header('X-Cart-Token');
+
+        if($cartToken) {
             $cart = Cart::where('session_id', $cartToken)->first();
 
             if($cart) {
                 return $cart;
             }
-
-            return response()->json(['message' => 'cart not found'], 404);
         }
+
+        $cartToken = (string) Str::uuid();
+
+        return Cart::create([
+            'user_id' => null,
+            'session_id' => $cartToken
+        ]);
     }
 }
