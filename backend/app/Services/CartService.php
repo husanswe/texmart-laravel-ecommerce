@@ -18,6 +18,8 @@ class CartService
                 'user_id' => $user->id,
                 'session_id' => null
             ]);
+
+            return $cart;
         }
 
 
