@@ -45,20 +45,20 @@ Route::prefix('v1')->group(function () {
         Route::get('/profile', [ProfileController::class, 'show']);
         Route::put('/profile', [ProfileController::class, 'update']);
 
-        // Cart
-        Route::get('/cart', [CartController::class, 'index']);
-        Route::post('/cart', [CartController::class, 'store']);
-        Route::put('/cart/{id}', [CartController::class, 'update']);
-        Route::delete('/cart/{id}', [CartController::class, 'destroy']);
-
         // Favorites
         Route::get('/favorites', [FavoriteController::class, 'index']);
         Route::post('/favorites', [FavoriteController::class, 'store']);
         Route::delete('/favorites', [FavoriteController::class, 'destroy']);
-
+        
         // Orders
         Route::get('/orders', [OrderController::class, 'index']);
         Route::post('/orders', [OrderController::class, 'store']);
         Route::get('/orders/{id}', [OrderController::class, 'show']);
     });
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart', [CartController::class, 'store']);
+    Route::put('/cart/{id}', [CartController::class, 'update']);
+    Route::delete('/cart/{id}', [CartController::class, 'destroy']);
 });
