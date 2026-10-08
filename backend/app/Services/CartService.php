@@ -40,4 +40,9 @@ class CartService
             'session_id' => $cartToken
         ]);
     }
+
+    public function addItem(Request $request, int $variantId, int $quantity)
+    {
+        
+    }
 }
