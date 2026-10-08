@@ -38,4 +38,32 @@ class CartController extends Controller
             'data' => $cart
         ], 200);
     }
+
+    public function update(Request $request, CartService $cartService, int $id)
+    {
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $cart = $cartService->updateItem(
+            $request,
+            $id,
+            $validated['quantity']
+        );
+
+        return response()->json([
+            'message' => 'Savatdagi mahsulot miqdori yangilandi.',
+            'data' => $cart
+        ], 200);
+    }
+
+    public function destroy(Request $request, CartService $cartService, int $id)
+    {
+        $cart = $cartService->removeItem($request, $id);
+
+        return response()->json([
+            'message' => "Mahsulot savatdan o'chirildi",
+            'data' => $cart
+        ], 200);
+    }
 }

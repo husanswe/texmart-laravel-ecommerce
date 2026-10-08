@@ -63,4 +63,14 @@ class CartService
 
         return $cart->load('cartItems');
     }
+
+    public function updateItem(Request $request, int $itemId, int $quantity)
+    {
+        
+    }
+
+    public function removeItem()
+    {
+
+    }
 }
