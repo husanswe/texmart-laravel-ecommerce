@@ -12,7 +12,8 @@ class CartController extends Controller
 {
     public function index(Request $request, CartService $cartService)
     {
-        $cart = $cartService->getOrCreateCart($request);
+        $cart = $cartService->getOrCreateCart($request)
+            ->load('cartItems');
 
         return response()->json([
             'cart' => $cart,

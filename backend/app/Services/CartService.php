@@ -73,6 +73,7 @@ class CartService
             ->firstOrFail();
 
         $cartItem->quantity = $quantity;
+        $cartItem->save();
 
         return $cart->load('cartItems');
     }
@@ -87,7 +88,6 @@ class CartService
             ->firstOrFail();
 
         $cartItem->delete();
-        $cartItem->save();
 
         return $cart->load('cartItems');
     }   
