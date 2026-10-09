@@ -66,11 +66,29 @@ class CartService
 
     public function updateItem(Request $request, int $itemId, int $quantity)
     {
-        
+        $cart = $this->getOrCreateCart($request);
+
+        $cartItem = $cart->cartItems()
+            ->where('id', $itemId)
+            ->firstOrFail();
+
+        $cartItem->quantity = $quantity;
+
+        return $cart->load('cartItems');
     }
 
-    public function removeItem()
-    {
 
-    }
+    public function removeItem(Request $request, int $itemId)
+    {   
+        $cart = $this->getOrCreateCart($request);
+
+        $cartItem = $cart->cartItems()
+            ->where('id', $itemId)
+            ->firstOrFail();
+
+        $cartItem->delete();
+        $cartItem->save();
+
+        return $cart->load('cartItems');
+    }   
 }
