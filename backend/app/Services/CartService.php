@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\CartItem;
+use App\Models\ProductVariant;
+use Illuminate\Validation\ValidationException;
 
 class CartService
 {
@@ -50,6 +52,16 @@ class CartService
             ->where('product_variant_id', $variantId)
             ->first();
 
+        $variant = ProductVariant::findOrFail($variantId);
+
+        $totalQuantity = ($cartItem?->quantity ?? 0) + $quantity;
+
+        if ($totalQuantity > $variant->stock) {
+            throw ValidationException::withMessages([
+                'quantity' => 'Tovar soni stokdagidan oshib ketdi!'
+            ]);
+        }
+
         if ($cartItem) {
             $cartItem->quantity += $quantity;
             $cartItem->save();
@@ -71,6 +83,16 @@ class CartService
         $cartItem = $cart->cartItems()
             ->where('id', $itemId)
             ->firstOrFail();
+            
+            
+            
+        $variant = ProductVariant::findOrFail($cartItem->product_variant_id);
+        
+        if ($quantity > $variant->stock) {
+            throw ValidationException::withMessages([
+                'quantity' => 'So‘ralgan miqdor mavjud zaxiradan oshib ketdi.'
+            ]);
+        }
 
         $cartItem->quantity = $quantity;
         $cartItem->save();
