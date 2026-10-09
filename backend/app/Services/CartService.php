@@ -83,9 +83,8 @@ class CartService
         $cartItem = $cart->cartItems()
             ->where('id', $itemId)
             ->firstOrFail();
-            
-            
-            
+
+        
         $variant = ProductVariant::findOrFail($cartItem->product_variant_id);
         
         if ($quantity > $variant->stock) {
