@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\CartItem;
 use App\Models\ProductVariant;
+use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
 class CartService
@@ -112,4 +113,9 @@ class CartService
 
         return $cart->load('cartItems');
     }   
+
+    public function mergeGuestCart(User $user, string $cartToken)
+    {
+        
+    }
 }
