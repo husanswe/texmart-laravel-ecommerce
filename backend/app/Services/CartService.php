@@ -126,5 +126,9 @@ class CartService
         }
 
         
+        $userCart = Cart::firstOrCreate([
+            'user_id' => $user->id, 
+            'session_id' => null,
+        ]);
     }
 }
