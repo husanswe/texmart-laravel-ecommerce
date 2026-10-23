@@ -90,7 +90,7 @@ class CartService
         
         if ($quantity > $variant->stock) {
             throw ValidationException::withMessages([
-                'quantity' => 'So‘ralgan miqdor mavjud zaxiradan oshib ketdi.'
+                'quantity' => "So'ralgan miqdor mavjud zaxiradan oshib ketdi."
             ]);
         }
 
@@ -116,6 +116,15 @@ class CartService
 
     public function mergeGuestCart(User $user, string $cartToken)
     {
+        $guestCart = Cart::where('session_id', $cartToken)
+            ->whereNull('user_id')
+            ->with('cartItems')
+            ->first();
+
+        if (!$guestCart) {
+            return null;
+        }
+
         
     }
 }
