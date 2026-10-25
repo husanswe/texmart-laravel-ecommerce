@@ -137,7 +137,7 @@ class CartService
 
             foreach ($guestCart->cartItems as $guestItem) {
                 $existingItem = $userCart->cartItems()
-                    ->where('product_variant_id', $guesItem->product_variant_id)
+                    ->where('product_variant_id', $guestItem->product_variant_id)
                     ->first();
 
                 $variant = ProductVariant::findOrFail(
@@ -157,7 +157,7 @@ class CartService
                     $existingItem->increment('quantity', $guestItem->quantity);
                 } else {
                     $guestItem->update([
-                        'card_id' => $userCart->id
+                        'cart_id' => $userCart->id
                     ]);
                 }
             }
