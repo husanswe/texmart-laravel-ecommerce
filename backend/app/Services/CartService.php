@@ -120,9 +120,9 @@ class CartService
         return DB::transaction(function() use($user, $cartToken) {
 
             $guestCart = Cart::where('session_id', $cartToken)
-            ->whereNull('user_id')
-            ->with('cartItems')
-            ->first();
+                ->whereNull('user_id')
+                ->with('cartItems')
+                ->first();
 
             if (!$guestCart) {
                 return null;
@@ -135,26 +135,14 @@ class CartService
             ]);
 
 
-            $userCart = Cart::firstOrCreate(['user_id' => $user->id]);
-
-            // line of code i need to write
-            $guestCart = Cart::with('cartItems')->where('session_id', $cartToken);
-
-            if ($guestCart) {
-                foreach ($guestCart->cartItems as $guestItem) {
-                    $existingItem = CartItem::where('cart_id', $userCart->id)
-                        ->where('product_variant_id', $guestItem->variant_id)
-                        ->first();
-
-                    if ($existingItem) {
-                        $existingItem->increment('quantity', $guestItem->quantity);
-                    } else {
-                        $guestItem->update(['cart_id' => $userCart->id]);
-                    }
-                } 
+            foreach ($guestCart->cartItems as $guestItem) {
+                $existingItem = $userCart->cartItems()
+                    ->where()
+            }
+            
 
                 $guestCart->delete();
-            }
+        
         });
     }
 }
