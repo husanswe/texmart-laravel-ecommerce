@@ -137,11 +137,34 @@ class CartService
 
             foreach ($guestCart->cartItems as $guestItem) {
                 $existingItem = $userCart->cartItems()
-                    ->where()
+                    ->where('product_variant_id', $guesItem->product_variant_id)
+                    ->first();
+
+                $variant = ProductVariant::findOrFail(
+                    $guestItem->product_variant_id
+                );
+
+                $totalQuantity = ($existingItem?->quantity ?? 0)
+                    + $guestItem->quantity;
+                
+                if ($totalQuantity > $variant->stock) {
+                    throw ValidationException::withMessages([
+                        'quantity' => 'Mahsulot miqdori mavjud zaxiradan oshib ketdi.'
+                    ]);
+                }
+
+                if ($existingItem) {
+                    $existingItem->increment('quantity', $guestItem->quantity);
+                } else {
+                    $guestItem->update([
+                        'card_id' => $userCart->id
+                    ]);
+                }
             }
             
+            $guestCart->delete();
 
-                $guestCart->delete();
+            return $userCart->load('cartItems');
         
         });
     }
