@@ -129,10 +129,10 @@ class CartService
             }
 
         
-            $userCart = Cart::firstOrCreate([
-                'user_id' => $user->id, 
-                'session_id' => null,
-            ]);
+            $userCart = Cart::firstOrCreate(
+                ['user_id' => $user->id], 
+                ['session_id' => null]
+            );
 
 
             foreach ($guestCart->cartItems as $guestItem) {
@@ -165,7 +165,6 @@ class CartService
             $guestCart->delete();
 
             return $userCart->load('cartItems');
-        
         });
     }
 }
