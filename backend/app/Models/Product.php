@@ -50,4 +50,9 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function favoritedByUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
 }
