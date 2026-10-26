@@ -47,8 +47,16 @@ class FavoriteController extends Controller
         ], 200);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, int $productId)
     {
+        $user = $request->user();
 
+        $user->favoriteProducts()
+            ->detach($productId);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Tovar saqlanganlar ro\'yxatidan olib tashlandi.'
+        ], 200);
     }
 }
