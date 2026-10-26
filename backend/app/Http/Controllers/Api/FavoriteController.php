@@ -28,12 +28,26 @@ class FavoriteController extends Controller
         ], 200);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $validated = $request->validate([
+            'product_id' => 'required|integer|exists:product,id',
+        ]);
 
+        $user = $request->user();
+
+        $user->favoriteProducts()
+            ->syncWithoutDetaching([
+                $validated['product_id']
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mahsulot sevimlilarga qo\'shildi.'
+        ], 200);
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
 
     }
