@@ -36,7 +36,7 @@ class OrderController extends Controller
             ->with('cartItems')
             ->first();
 
-            if (!$cart || !$cart->cartItems->exists()) {
+            if (!$cart || !$cart->cartItems()->exists()) {
                 throw ValidationException::withMessages([
                     'cart' => 'Savat bo\'sh yoki mavjud emas.'
                 ]);
