@@ -63,9 +63,20 @@ class OrderController extends Controller
             }
 
 
+            $date = now()->format('Ymd');
+            $random = Str::upper(Str::random());
+            
+            do {
+                $date = now()->format('Ymd');
+                $random = Str::upper(Str::random(8));
+
+                $orderNumber = 'ORD-' . $date . '-' . $random;
+            } while (Order::where('order_number', $orderNumber)->exists());
+
+
             $order = Order::create([
                 'user_id' => $user->id,
-                'order_number' => 'ORD-' . Str::uuid(),
+                'order_number' => $orderNumber,
                 'total_amount' => $totalAmount,
                 'status' => 'pending',
                 'payment_status' => 'pending',
@@ -93,7 +104,7 @@ class OrderController extends Controller
 
             return $order;
         });
-
+        
         return response()->json([
             'message' => 'Order created successfully.',
             'data' => $order
