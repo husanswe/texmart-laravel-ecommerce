@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/brands', [BrandController::class, 'index']);
 
     Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/compare', [ProductController::class, 'compare']);
     Route::get('/products/{slug}', [ProductController::class, 'show']);
 
     Route::get('/search', [SearchController::class, 'index']);

@@ -96,4 +96,28 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function compare(Request $request)
+    {
+        $validated = $request->validate([
+            'ids' => 'required|array|min:2|max:4',
+            'ids.*' => 'required|int|distinct|exists:products,id'
+        ]);
+
+        $products = Product::with([
+            'brand',
+            'category', 
+            'images', 
+            'variants', 
+            'attributeValue.attribute'
+        ])
+            ->whereIn('id', $validated['ids'])
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'count' => $products->count(),
+            'data' => $products
+        ], 200);
+    }
 }
