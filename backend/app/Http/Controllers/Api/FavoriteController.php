@@ -16,7 +16,6 @@ class FavoriteController extends Controller
             ->select('products.id', 'products.name', 'products.price', 'products.slug')
             ->paginate(15);
 
-
         return response()->json([
             'success' => true,
             'data' => $favorites->items(),
@@ -28,10 +27,11 @@ class FavoriteController extends Controller
         ], 200);
     }
 
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'product_id' => 'required|integer|exists:product,id',
+            'product_id' => 'required|integer|exists:products,id',
         ]);
 
         $user = $request->user();
@@ -47,6 +47,7 @@ class FavoriteController extends Controller
         ], 200);
     }
 
+
     public function destroy(Request $request, int $productId)
     {
         $user = $request->user();
@@ -56,7 +57,7 @@ class FavoriteController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Tovar saqlanganlar ro\'yxatidan olib tashlandi.'
+            'message' => 'Tovar sevimlilar ro\'yxatidan olib tashlandi.'
         ], 200);
     }
 }
