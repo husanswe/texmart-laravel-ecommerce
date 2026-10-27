@@ -14,9 +14,17 @@ use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // 
+        $user = $request->user();
+
+        $orders = Order::where('user_id', $user->id)
+            ->latest()
+            ->paginate(10);
+
+        return response()->json([
+            'data' => $orders
+        ]);
     }
 
 
@@ -112,9 +120,18 @@ class OrderController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        //
+        $user = $request->user();
+
+        $order = Order::where('user_id', $user->id)
+            ->where('id', $request->id)
+            ->with('orderItems')
+            ->firstOrFail();
+
+        return response()->json([
+            'data' => $order
+        ]);
     }
 
 
