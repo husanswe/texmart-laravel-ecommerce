@@ -11,6 +11,8 @@ use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Gate;
+
 
 class OrderController extends Controller
 {
@@ -125,9 +127,11 @@ class OrderController extends Controller
         $user = $request->user();
 
         $order = Order::where('user_id', $user->id)
-            ->where('id', $request->id)
+            ->where('id', $id)
             ->with('orderItems')
             ->firstOrFail();
+
+        Gate::authorize('view', $order);
 
         return response()->json([
             'data' => $order
