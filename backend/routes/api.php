@@ -55,6 +55,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::post('/orders', [OrderController::class, 'store']);
         Route::get('/orders/{id}', [OrderController::class, 'show']);
+
+        Route::get('/admin/dashboard', function () {
+            return response()->json([
+                'message' => 'Admin access granted'
+            ]);
+        })->middleware('admin');
+
     });
 
     // Cart
