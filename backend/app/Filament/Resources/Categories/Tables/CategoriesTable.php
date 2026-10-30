@@ -14,16 +14,13 @@ class CategoriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('slug')
-            ])
-
-            ->searchable([
-                
-            ])
-
-            ->sortable([
-
+                    ->searchable()
+                    ->sortable(),
             ])
 
             ->filters([
