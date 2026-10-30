@@ -26,7 +26,8 @@ class ProductForm
                     ->required(),
 
                 Select::make('brand_id')
-                    ->relationship('brand', 'name'),
+                    ->relationship('brand', 'name')
+                    ->required(),
                     
                 TextInput::make('price')
                     ->numeric()
