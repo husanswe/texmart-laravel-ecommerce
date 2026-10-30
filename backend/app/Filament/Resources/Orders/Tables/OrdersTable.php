@@ -25,16 +25,15 @@ class OrdersTable
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'pending' => 'warning',
-                        'processing' => 'info',
-                        'completed', 'shipped' => 'success',
-                        'cancelled', 'refunded' => 'danger',
+                        'completed' => 'success',
+                        'canceled' => 'danger',
                         default => 'gray',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'pending' => 'heroicon-m-clock',
                         'processing' => 'heroicon-m-arrow-path',
                         'completed', 'shipped' => 'heroicon-m-check-circle',
-                        'cancelled', 'refunded' => 'heroicon-m-x-circle',
+                        'canceled', 'refunded' => 'heroicon-m-x-circle',
                         default => 'heroicon-m-question-mark-circle',
                     })
                     ->searchable()
@@ -44,15 +43,18 @@ class OrdersTable
                     ->label('Payment Status')
                     ->badge()
                     ->color(fn (string $state): string => match($state) {
-                        'pending' => 'Pending',
-                        'paid' => 'Paid',
-                        'unpaid' => 'Unpaid',
-                    })
-            ])
+                        'pending' => 'warning',
+                        'paid' => 'success',
+                        'unpaid' => 'danger',
+                        default => 'gray',
+                    }),
 
-            ->filters([
-                //
-            ])
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
+                ])
+
+            ->filters([])
 
             ->recordActions([
                 EditAction::make(),
