@@ -10,13 +10,13 @@ class OrderPolicy
 {
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
 
     public function view(User $user, Order $order): bool
     {
-        return $user->id === $order->user_id;
+        return $user->id ||  $user->id === $order->user_id;
     }
 
 
@@ -28,7 +28,7 @@ class OrderPolicy
 
     public function update(User $user, Order $order): bool
     {
-        return $user->id === $order->user_id;
+        return $user->is_admin;
     }
 
 
