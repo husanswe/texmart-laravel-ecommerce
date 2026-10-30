@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 
+
 class ProductVariantsTable
 {
     public static function configure(Table $table): Table
