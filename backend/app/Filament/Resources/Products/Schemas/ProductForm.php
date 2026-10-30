@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\Concerns\CanBeSearchable;
 
 class ProductForm
 {
@@ -23,14 +24,19 @@ class ProductForm
 
                 Select::make('category_id')
                     ->relationship('category', 'name')
+                    ->searchable()
+                    ->prelaod()
                     ->required(),
 
                 Select::make('brand_id')
                     ->relationship('brand', 'name')
+                    ->searchable()
+                    ->prelaod()
                     ->required(),
                     
                 TextInput::make('price')
                     ->numeric()
+                    ->minValue(0)
                     ->required(),
 
                 Textarea::make('description')
