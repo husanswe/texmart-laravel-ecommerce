@@ -16,15 +16,9 @@ class OrderForm
                     ->options([
                         'pending' => 'Pending',
                         'completed' => 'Completed',
-                        'canceled' => 'Cancelled',
+                        'canceled' => 'Canceled',
                     ])
-                    ->required()
-
-                    ->colors([
-                        'pending' => 'warning',
-                        'completed' => 'success',
-                        'canceled' => 'danger',
-                    ]),
+                    ->required(),
 
 
                 Select::make('payment_status')
@@ -33,17 +27,7 @@ class OrderForm
                         'paid' => 'Paid',
                         'unpaid' => 'Unpaid',
                     ])
-                    ->required()
-
-                    ->colors([
-                        'pending' => 'amber',
-                        'paid' => 'success',
-                        'unpaid' => 'danger',
-                    ])
-                    
-
-            ]);
-
-                
+                    ->required(),
+            ]);        
     }
 }
