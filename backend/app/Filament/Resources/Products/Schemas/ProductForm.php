@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class ProductForm
@@ -10,7 +13,27 @@ class ProductForm
     {
         return $schema
             ->components([
-                //
-            ]);
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('slug')
+                    ->required()
+                    ->maxLength(255),
+
+                Select::make('category_id')
+                    ->relationship('category', 'name')
+                    ->required(),
+
+                Select::make('brand_id')
+                    ->relationship('brand', 'name'),
+                    
+                TextInput::make('price')
+                    ->numeric()
+                    ->required(),
+
+                Textarea::make('description')
+                    ->required(),
+                ]);
     }
 }
