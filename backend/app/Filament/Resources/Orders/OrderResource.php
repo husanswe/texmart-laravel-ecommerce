@@ -14,6 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
+
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
@@ -22,15 +23,18 @@ class OrderResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+
     public static function form(Schema $schema): Schema
     {
         return OrderForm::configure($schema);
     }
 
+
     public static function table(Table $table): Table
     {
         return OrdersTable::configure($table);
     }
+
 
     public static function getRelations(): array
     {
@@ -38,6 +42,7 @@ class OrderResource extends Resource
             //
         ];
     }
+
 
     public static function getPages(): array
     {
