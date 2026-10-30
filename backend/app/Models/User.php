@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Sanctum\HasApiTokens;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
 
 class User extends Authenticatable
@@ -36,6 +38,11 @@ class User extends Authenticatable
             'is_admin' => 'boolean',
             'birth_date' => 'date'
         ];
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // 
     }
 
     public function order(): HasMany
