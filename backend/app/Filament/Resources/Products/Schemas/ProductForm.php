@@ -25,13 +25,13 @@ class ProductForm
                 Select::make('category_id')
                     ->relationship('category', 'name')
                     ->searchable()
-                    ->prelaod()
+                    ->preload()
                     ->required(),
 
                 Select::make('brand_id')
                     ->relationship('brand', 'name')
                     ->searchable()
-                    ->prelaod()
+                    ->preload()
                     ->required(),
                     
                 TextInput::make('price')
