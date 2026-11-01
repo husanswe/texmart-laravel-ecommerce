@@ -12,7 +12,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
     use HasApiTokens;
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // 
+        return ($panel->getId() === 'admin') && $this->is_admin;    
     }
 
     public function order(): HasMany
