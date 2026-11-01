@@ -14,8 +14,7 @@ use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable;
-    use HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = [
         'name',
@@ -45,17 +44,17 @@ class User extends Authenticatable implements FilamentUser
         return ($panel->getId() === 'admin') && $this->is_admin;    
     }
 
-    public function order(): HasMany
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
 
-    public function cart(): HasMany
+    public function carts(): HasMany
     {
         return $this->hasMany(Cart::class);
     }
 
-    public function favorite(): HasMany
+    public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }
