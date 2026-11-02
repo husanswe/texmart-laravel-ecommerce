@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Observers\AttributeObserver;
+use App\Observers\AttributeValueObserver;
 use App\Observers\BrandObserver;
 use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Model;
@@ -24,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading(! app()->isProduction());
         Category::observe(CategoryObserver::class);
         Brand::observe(BrandObserver::class);
+        Attribute::observe(AttributeObserver::class);
+        AttributeValue::observe(AttributeValueObserver::class);
     }
 }
