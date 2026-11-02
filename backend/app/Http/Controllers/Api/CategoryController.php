@@ -21,7 +21,7 @@ class CategoryController extends Controller
                 ->get();
         });
 
-        return CategoryResource::collection($parentCategories);
+        return CategoryResource::collection($parentCategories)->resolve();
     }
 
 

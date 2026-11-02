@@ -6,14 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\BrandResource;
 use App\Models\Brand;
+use Illuminate\Support\Facades\Cache;
+
 
 class BrandController extends Controller
 {
     public function index()
     {
-        $brands = Brand::select('id', 'name', 'slug', 'logo_path')->orderBy('name')->get();
+        return Cache::remember('brands.list', 3600, function () {
 
-        return BrandResource::collection($brands);
+            $brands = Brand::select('id', 'name', 'slug', 'logo_path')
+                ->orderBy('name')
+                ->get();
+
+            return BrandResource::collection($brands)->resolve();
+        });
     }
 
 
