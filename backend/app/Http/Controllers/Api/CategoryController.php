@@ -14,6 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         $parentCategories = Cache::remember('categories.tree', 3600, function () {
+            // logger('DB Query executed for categories');
+            
             return Category::whereNull('parent_id')
                 ->with('children')
                 ->get();
