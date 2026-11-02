@@ -6,14 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\Cache;
+
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $parentCategories = Category::whereNull('parent_id')
-            ->with('children')
-            ->get();
+        $parentCategories = Cache::remember('categories.tree', 3600, function () {
+            return Category::whereNull('parent_id')
+                ->with('children')
+                ->get();
+        });
 
         return CategoryResource::collection($parentCategories);
     }
