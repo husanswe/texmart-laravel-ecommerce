@@ -12,6 +12,8 @@ use App\Observers\BrandObserver;
 use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
@@ -42,5 +44,11 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
+
+        if (app()->isLocal()) {
+            DB::listen(function ($query) {
+                Log::info("SQL ({$query->time}ms): {$query->sql} | Bindings: " . implode(', ', $query->bindings));
+            });
+        }
     }
 }
