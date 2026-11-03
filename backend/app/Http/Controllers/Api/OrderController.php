@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Gate;
+use App\Jobs\SendOrderConfirmationEmail;
 
 
 class OrderController extends Controller
@@ -114,6 +115,8 @@ class OrderController extends Controller
 
             return $order;
         });
+
+        SendOrderConfirmationEmail::dispatch($order);
         
         return response()->json([
             'message' => 'Order created successfully.',
