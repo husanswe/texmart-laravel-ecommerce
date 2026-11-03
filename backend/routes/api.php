@@ -18,23 +18,26 @@ Route::prefix('v1')->group(function () {
     
     // Auth (public)
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::middleware('throttle:login')->post('/login', [AuthController::class, 'login']);
     
+
     // Catalog (public)
-    Route::get('/categories', [CategoryController::class, 'index']);
-    Route::get('/categories/{slug}', [CategoryController::class, 'show']);
-    Route::get('/ping', fn () => response()->json(['message' => 'pong']));
+    Route::middleware('throttle:api')->group(function () {
+        Route::get('/categories', [CategoryController::class, 'index']);
+        Route::get('/categories/{slug}', [CategoryController::class, 'show']);
+        Route::get('/ping', fn () => response()->json(['message' => 'pong']));
 
-    Route::get('/brands', [BrandController::class, 'index']);
+        Route::get('/brands', [BrandController::class, 'index']);
 
-    Route::get('/products', [ProductController::class, 'index']);
-    Route::get('/products/compare', [ProductController::class, 'compare']);
-    Route::get('/products/{slug}', [ProductController::class, 'show']);
+        Route::get('/products', [ProductController::class, 'index']);
+        Route::get('/products/compare', [ProductController::class, 'compare']);
+        Route::get('/products/{slug}', [ProductController::class, 'show']);
 
-    Route::get('/search', [SearchController::class, 'index']);
-    Route::get('/filter', [FilterController::class, 'index']);
+        Route::get('/search', [SearchController::class, 'index']);
+        Route::get('/filter', [FilterController::class, 'index']);
+    });
 
-
+    
     // Protected routes (requires Sanctum tokens)
     Route::middleware('auth:sanctum')->group(function () {
 
