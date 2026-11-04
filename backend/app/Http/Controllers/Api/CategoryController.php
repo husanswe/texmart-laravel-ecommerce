@@ -13,15 +13,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $parentCategories = Cache::remember('categories.tree', 3600, function () {
-            // logger('DB Query executed for categories');
-            
-            return Category::whereNull('parent_id')
-                ->with('children')
-                ->get();
-        });
-
-        return CategoryResource::collection($parentCategories)->resolve();
+        $categories = Category::whereNull('parent_id')->with('children')->get();
+        return CategoryResource::collection($categories);
     }
 
 
@@ -33,7 +26,7 @@ class CategoryController extends Controller
 
     public function show(string $slug)
     {
-        $category = Category::where('slug', $slug)->with('children')->get();
+        $category = Category::where('slug', $slug)->with('children')->firstOrFail();
 
         return new CategoryResource($category);
     }
