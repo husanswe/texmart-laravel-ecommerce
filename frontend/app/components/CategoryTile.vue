@@ -7,7 +7,7 @@ defineProps<{ category: Category }>()
 <template>
   <NuxtLink
     :to="`/c/${category.slug}`"
-    class="group relative flex min-h-[132px] flex-col overflow-hidden rounded-lg border border-line bg-canvas p-4 transition-colors hover:border-brand-300 sm:min-h-[150px] sm:p-5"
+    class="group relative flex min-h-33 flex-col overflow-hidden rounded-lg border border-line bg-canvas p-4 transition-colors hover:border-brand-300 sm:min-h-[150px] sm:p-5"
   >
     <h3 class="relative z-10 max-w-[16ch] text-h3-m text-ink-900 md:text-h3">
       {{ category.name }}
