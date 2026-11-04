@@ -1,27 +1,33 @@
 <script setup lang="ts">
-import { CreditCard, ShieldCheck, Store, Truck } from '@lucide/vue'
-import { listCategories } from '~/repositories/categoryRepo'
+  import { CreditCard, ShieldCheck, Store, Truck } from '@lucide/vue'
+  import { listCategories } from '~/repositories/categoryRepo'
 
-useSeoMeta({
-  title: 'Maishiy texnika va elektronika',
-  description:
-    "Texmart — smartfonlar, noutbuklar, televizorlar, sovutgichlar va maishiy texnika. Muddatli to'lov 24 oygacha, O'zbekiston bo'ylab yetkazib berish.",
-})
+  useSeoMeta({
+    title: 'Maishiy texnika va elektronika',
+    description:
+      "Texmart — smartfonlar, noutbuklar, televizorlar, sovutgichlar va maishiy texnika. Muddatli to'lov 24 oygacha, O'zbekiston bo'ylab yetkazib berish.",
+  })
 
-const { data: categories, error } = await useAsyncData('homepage-categories', () => listCategories(), {
-  default: () => [],
-})
+  const { data: rawCategories} = await useAsyncData('homepage-categories', () => listCategories(), {
+    default: () => [],
+  })
 
-if (error.value) {
-  console.error('Categories Fetch Error:', error.value)
-}
+  const categories = computed(() => {
+    const val = unref(rawCategories)
+    return Array.isArray(val) ? val : (val as any)?.data ?? []
+  })
+  /* if (error.value) 
+  {
+    console.error('Categories Fetch Error:', error.value)
+  }
+  */
 
-const TRUST = [
-  { icon: ShieldCheck, title: 'Rasmiy kafolat', body: 'Barcha mahsulotlarga ishlab chiqaruvchi kafolati' },
-  { icon: Truck, title: 'Tez yetkazib berish', body: "O'zbekiston bo'ylab 1–3 kun ichida" },
-  { icon: CreditCard, title: "Muddatli to'lov", body: "24 oygacha, boshlang'ich to'lovsiz" },
-  { icon: Store, title: '30 ta do‘kon', body: 'Buyurtmani do‘kondan olib ketish mumkin' },
-]
+  const TRUST = [
+    { icon: ShieldCheck, title: 'Rasmiy kafolat', body: 'Barcha mahsulotlarga ishlab chiqaruvchi kafolati' },
+    { icon: Truck, title: 'Tez yetkazib berish', body: "O'zbekiston bo'ylab 1–3 kun ichida" },
+    { icon: CreditCard, title: "Muddatli to'lov", body: "24 oygacha, boshlang'ich to'lovsiz" },
+    { icon: Store, title: '30 ta do‘kon', body: 'Buyurtmani do‘kondan olib ketish mumkin' },
+  ]
 </script>
 
 <template>

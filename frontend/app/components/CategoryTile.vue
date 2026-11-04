@@ -13,14 +13,11 @@ defineProps<{ category: Category }>()
       {{ category.name }}
     </h3>
     <p class="relative z-10 mt-1 text-small text-ink-500 tnum">
-      {{ category.productCount }} ta mahsulot
+      {{ category.productCount ?? category.children?.length ?? 0 }} ta mahsulot
     </p>
 
     <!-- The category mark bleeds out of the bottom-right corner and is clipped
          by the card, standing in for the product photograph. -->
-    <!-- <CategoryIcon
-      :name="category.icon"
-      class="absolute -right-4 -bottom-5 size-28 text-brand-300/45 transition-colors group-hover:text-brand-300/70 sm:-right-5 sm:-bottom-6 sm:size-32"
-    /> -->
+
   </NuxtLink>
 </template>
