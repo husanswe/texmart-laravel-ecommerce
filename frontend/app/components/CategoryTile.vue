@@ -18,9 +18,9 @@ defineProps<{ category: Category }>()
 
     <!-- The category mark bleeds out of the bottom-right corner and is clipped
          by the card, standing in for the product photograph. -->
-    <CategoryIcon
+    <!-- <CategoryIcon
       :name="category.icon"
       class="absolute -right-4 -bottom-5 size-28 text-brand-300/45 transition-colors group-hover:text-brand-300/70 sm:-right-5 sm:-bottom-6 sm:size-32"
-    />
+    /> -->
   </NuxtLink>
 </template>

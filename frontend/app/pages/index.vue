@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CreditCard, ShieldCheck, Store, Truck } from '@lucide/vue'
+import { listCategories } from '~/repositories/categoryRepo'
 
 useSeoMeta({
   title: 'Maishiy texnika va elektronika',
@@ -7,9 +8,13 @@ useSeoMeta({
     "Texmart — smartfonlar, noutbuklar, televizorlar, sovutgichlar va maishiy texnika. Muddatli to'lov 24 oygacha, O'zbekiston bo'ylab yetkazib berish.",
 })
 
-const { data: categories } = await useAsyncData('home-categories', () => listCategories(), {
+const { data: categories, error } = await useAsyncData('homepage-categories', () => listCategories(), {
   default: () => [],
 })
+
+if (error.value) {
+  console.error('Categories Fetch Error:', error.value)
+}
 
 const TRUST = [
   { icon: ShieldCheck, title: 'Rasmiy kafolat', body: 'Barcha mahsulotlarga ishlab chiqaruvchi kafolati' },
