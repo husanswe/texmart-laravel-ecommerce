@@ -16,7 +16,11 @@ class ProductController extends Controller
         $query = Product::with(['brand', 'category', 'images']);
 
         $query->when($request->filled('category'), function ($q) use ($request) {
-            $q->whereIn('category_id', (array) $request->category);
+            $categories = (array) $request->category;
+            $q->where(function ($sub) use ($categories) {
+                $sub->whereIn('category_id', $categories)
+                    ->orWhereHas('category', fn($catQ) => $catQ->whereIn('slug', $categories));
+            });
         });
 
         $query->when($request->filled('brand'), function ($q) use ($request) {
@@ -57,13 +61,12 @@ class ProductController extends Controller
         
         if ($request->sort === 'price_asc') {
             $query->orderBy('price', 'asc');
+        } elseif ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        } else {
+            $query->latest();
         }
         
-        if ($request->sort === 'price_desc') {
-            $query->orderby('price', 'desc');
-        }
-        
-
         $products = $query->paginate(20)->withQueryString();
 
 
@@ -80,7 +83,9 @@ class ProductController extends Controller
 
     public function show(string $slug)
     {
-        $product = Product::where('slug', $slug)->with('brand', 'category', 'images', 'variants')->firstOrFail();
+        $product = Product::where('slug', $slug)
+            ->with('brand', 'category', 'images', 'variants')
+            ->firstOrFail();
 
         return new ProductResource($product);
     }
@@ -114,10 +119,6 @@ class ProductController extends Controller
             ->whereIn('id', $validated['ids'])
             ->get();
 
-        return response()->json([
-            'success' => true,
-            'count' => $products->count(),
-            'data' => $products
-        ], 200);
+        return ProductResource::collection($products);
     }
 }
