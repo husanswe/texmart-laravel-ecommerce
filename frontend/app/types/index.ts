@@ -13,7 +13,7 @@ export interface Category {
   parentId: number | null
   /** Lucide icon name, resolved by CategoryIcon.vue. */
   icon: string
-  productCount: number
+  products_count?: number
   children?: Category[]
 }
 

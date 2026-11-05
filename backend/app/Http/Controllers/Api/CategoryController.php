@@ -13,7 +13,11 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::whereNull('parent_id')->with('children')->get();
+        $categories = Category::whereNull('parent_id')
+            ->with('children')
+            ->withCount('products')
+            ->get();
+
         return CategoryResource::collection($categories);
     }
 
