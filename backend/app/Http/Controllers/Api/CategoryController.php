@@ -14,7 +14,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::whereNull('parent_id')
-            ->with('children')
+            ->with(['children' => function ($query) {
+                $query->withCount('products');
+            }])
             ->withCount('products')
             ->get();
 

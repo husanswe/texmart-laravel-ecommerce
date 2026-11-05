@@ -8,7 +8,7 @@
       "Texmart — smartfonlar, noutbuklar, televizorlar, sovutgichlar va maishiy texnika. Muddatli to'lov 24 oygacha, O'zbekiston bo'ylab yetkazib berish.",
   })
 
-  const { data: rawCategories} = await useAsyncData('homepage-categories', () => listCategories(), {
+  const { data: rawCategories} = await useAsyncData('homepage-categories', () => useApi('/categories'), {
     default: () => [],
   })
 
@@ -16,11 +16,7 @@
     const val = unref(rawCategories)
     return Array.isArray(val) ? val : (val as any)?.data ?? []
   })
-  /* if (error.value) 
-  {
-    console.error('Categories Fetch Error:', error.value)
-  }
-  */
+
 
   const TRUST = [
     { icon: ShieldCheck, title: 'Rasmiy kafolat', body: 'Barcha mahsulotlarga ishlab chiqaruvchi kafolati' },
