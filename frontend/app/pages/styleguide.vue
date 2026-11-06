@@ -486,7 +486,7 @@ function demoLoading() {
       <div class="grid gap-6 lg:grid-cols-2">
         <div class="rounded-lg border border-line bg-surface p-4">
           <h3 class="mb-3 text-micro uppercase text-ink-500">Skeleton — karta o'lchamlari</h3>
-          <div class="max-w-[264px] rounded-lg border border-line p-4">
+          <div class="max-w-sidebar rounded-lg border border-line p-4">
             <UiSkeleton class="aspect-square w-full" rounded="md" />
             <UiSkeleton class="mt-4 h-4 w-full" />
             <UiSkeleton class="mt-2 h-4 w-2/3" />
