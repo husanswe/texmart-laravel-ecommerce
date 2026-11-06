@@ -1,20 +1,20 @@
 <script setup lang="ts">
-const route = useRoute()
+  const route = useRoute()
 
-// Computed category slug to enforce reactivity
-const categorySlug = computed(() => route.params.slug as string)
+  // Computed category slug to enforce reactivity
+  const categorySlug = computed(() => route.params.slug as string)
 
-// Fetch products dynamically with route parameter watching enabled
-const { data: rawData, pending, error } = await useAsyncData(
-  `category-products-${categorySlug.value}`,
-  () => useApi('/products', { query: { category: categorySlug.value } }),
-  { watch: [categorySlug] }
-)
+  // Fetch products dynamically with route parameter watching enabled
+  const { data: rawData, pending, error } = await useAsyncData(
+    `category-products-${categorySlug.value}`,
+    () => useApi('/products', { query: { category: categorySlug.value } }),
+    { watch: [categorySlug] }
+  )
 
-const products = computed(() => {
-  const val = unref(rawData)
-  return Array.isArray(val) ? val : (val as any)?.data ?? []
-})
+  const products = computed(() => {
+    const val = unref(rawData)
+    return Array.isArray(val) ? val : (val as any)?.data ?? []
+  })
 </script>
 
 <template>
@@ -34,14 +34,15 @@ const products = computed(() => {
     </div>
 
     <div v-else class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-      <div
+      <NuxtLink
         v-for="product in products"
         :key="product.id"
-        class="rounded-lg border border-line bg-canvas p-4"
+        :to="`/p/${product.slug}`"
+        class="block rounded-lg border border-line bg-canvas p-4 transition-colors hover:border-brand-300"
       >
         <h4 class="font-medium text-ink-900">{{ product.name }}</h4>
         <p class="mt-1 text-small text-ink-500">{{ product.price }} UZS</p>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
