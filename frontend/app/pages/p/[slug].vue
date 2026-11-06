@@ -1,19 +1,21 @@
 <script setup lang="ts">
-const route = useRoute()
-const productSlug = computed(() => route.params.slug as string)
+    const route = useRoute()
+    const productSlug = computed(() => route.params.slug as string)
 
-// Fetch product details from Laravel API endpoint (/api/v1/products/{slug})
-const { data: rawData, pending, error } = await useAsyncData(
-  `product-detail-${productSlug.value}`,
-  () => useApi(`/products/${productSlug.value}`),
-  { watch: [productSlug] }
-)
+    const { data: rawData, pending, error } = await useAsyncData(
+    `product-detail-${productSlug.value}`,
+    () => useApi(`/products/${productSlug.value}`),
+    { watch: [productSlug] }
+    )
 
-const product = computed(() => {
-  const val = unref(rawData)
-  return (val as any)?.data ?? val
-})
+    const product = computed(() => {
+    const val = unref(rawData)
+    return (val as any)?.data ?? val
+    })
+
+    const selectedImageIndex = ref(0)
 </script>
+
 
 <template>
   <div class="container-page py-6 md:py-8">
@@ -26,12 +28,36 @@ const product = computed(() => {
     </div>
 
     <div v-else-if="product" class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <!-- Product Image Placeholder -->
-      <div class="aspect-square flex items-center justify-center rounded-lg border border-line bg-canvas p-4">
-        <span class="text-ink-500">Mahsulot rasmi</span>
+      <!-- Image Gallery -->
+      <div class="flex flex-col gap-4">
+        <div class="aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4">
+          <img
+            v-if="product.images && product.images.length > 0"
+            :src="product.images[selectedImageIndex]"
+            :alt="product.name"
+            class="h-full w-full object-contain"
+          />
+          <span v-else class="text-ink-500">Mahsulot rasmi yo'q</span>
+        </div>
+
+        <div v-if="product.images && product.images.length > 1" class="flex gap-3 overflow-x-auto pb-2">
+            <button
+                v-for="(img, idx) in product.images"
+                :key="idx"
+                @click="selectedImageIndex = Number(idx)"
+                class="h-20 w-20 shrink-0 overflow-hidden rounded-md border p-1 transition"
+                :class="selectedImageIndex === Number(idx) ? 'border-brand-600 ring-2 ring-brand-600/20' : 'border-line opacity-70 hover:opacity-100'"
+            >
+                <img
+                :src="img"
+                :alt="product.name + ' ' + (Number(idx) + 1)"
+                class="h-full w-full object-contain"
+                />
+            </button>
+        </div>
       </div>
 
-      <!-- Product Details -->
+      <!-- Product Info -->
       <div class="flex flex-col justify-between">
         <div>
           <h1 class="text-h2 mb-4 text-ink-900">{{ product.name }}</h1>
