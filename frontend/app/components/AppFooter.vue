@@ -86,7 +86,7 @@ const year = new Date().getFullYear()
         <!-- Contact -->
         <div>
           <h2 class="mb-4 text-h3-m text-white md:text-h3">Qayta aloqa</h2>
-          <UiButton variant="secondary" class="!border-white/25 !bg-transparent !text-white hover:!border-brand-300">
+          <UiButton variant="secondary" class="border-white/25! !bg-transparent !text-white hover:!border-brand-300">
             Xabar qoldirish
           </UiButton>
 
