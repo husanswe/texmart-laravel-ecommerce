@@ -12,7 +12,7 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
+            'slug' => is_array($this->slug) ? ($this->slug['uz'] ?? '') : $this->slug,
             'price' => $this->price,
             'description' => $this->description,
             'images' => ProductImageResource::collection($this->whenLoaded('images')),
