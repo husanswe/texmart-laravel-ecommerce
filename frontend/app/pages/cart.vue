@@ -3,7 +3,8 @@
 
   const { data: rawData, pending, error, refresh } = await useAsyncData(
     'cart-page',
-    () => useApi('/cart', { headers: { 'X-Cart-Token': String(localStorage.getItem('cart_token') ?? '') ?? '' } })
+    () => useApi('/cart', { headers: { 'X-Cart-Token': String(localStorage.getItem('cart_token') ?? '') ?? '' } }),
+    { server: false }
   )
 
   const serverCart = computed(() => {

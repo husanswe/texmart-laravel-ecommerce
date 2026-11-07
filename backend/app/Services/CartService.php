@@ -38,7 +38,7 @@ class CartService
             }
         }
 
-        $cartToken = (string) Str::uuid();
+        $cartToken = $cartToken ?: (string) Str::uuid();
 
         return Cart::create([
             'user_id' => null,
