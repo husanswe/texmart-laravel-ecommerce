@@ -16,7 +16,7 @@
       { server: false }
     )
 
-const items = computed(() => (unref(rawData) as any)?.cart?.cart_items ?? [])
+  const items = computed(() => (unref(rawData) as any)?.cart?.cart_items ?? [])
 
   async function remove(itemId: number) {
     await useApi(`/cart/items/${itemId}`, {
