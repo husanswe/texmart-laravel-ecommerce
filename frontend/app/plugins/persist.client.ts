@@ -9,7 +9,7 @@ const KEYS = {
   locale: 'texmart:locale',
 } as const
 
-function read<T>(key: string, fallback: T): T {
+function read<T>(key: string, p0: never[], fallback: T): T {
   try {
     const raw = localStorage.getItem(key)
     return raw ? (JSON.parse(raw) as T) : fallback
