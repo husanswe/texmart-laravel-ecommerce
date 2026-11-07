@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::with(['brand', 'category', 'images']);
+        $query = Product::with(['brand', 'category', 'productImage']);
 
         $query->when($request->filled('category'), function ($q) use ($request) {
             $categories = (array) $request->category;
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $products = Product::with([
             'brand',
             'category', 
-            'images', 
+            'productImage', 
             'variants', 
             'attributeValue.attribute'
         ])
