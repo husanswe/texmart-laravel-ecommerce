@@ -13,10 +13,33 @@ class CartController extends Controller
     public function index(Request $request, CartService $cartService)
     {
         $cart = $cartService->getOrCreateCart($request)
-            ->load('cartItems');
+            ->load('cartItems.productVariant.product.productImage');
+
+        $items = $cart->cartItems->map(function ($item) {
+            $variant = $item->productVariant;
+            $product = $variant->product;
+            $image   = $product->productImage->sortBy('sort_order')->first();
+            $slug    = is_array($product->slug) ? ($product->slug['uz'] ?? '') : $product->slug;
+
+            return [
+                'id'           => $item->id,
+                'quantity'     => $item->quantity,
+                'variant_id'   => $variant->id,
+                'product_id'   => $product->id,
+                'name'         => $product->name,
+                'variant_name' => $variant->name,
+                'sku'          => $variant->sku,
+                'slug'         => $slug,
+                'price'        => $variant->price,
+                'line_total'   => $variant->price * $item->quantity,
+                'stock'        => $variant->stock,
+                'image'        => $image ? asset('storage/' . $image->image_path) : null,
+            ];
+        });
 
         return response()->json([
-            'cart' => $cart,
+            'items'      => $items->values(),
+            'total'      => $items->sum('line_total'),
             'cart_token' => $cart->session_id,
         ]);
     }
