@@ -3,18 +3,20 @@
 
   const { data: rawData, pending, error, refresh } = await useAsyncData(
     'cart-page',
-    () => useApi('/cart', { headers: { 'X-Cart-Token': String(localStorage.getItem('cart_token') ?? '') ?? '' } }),
-    { server: false }
-  )
+    
+    async () => {
 
+      const res: any = await useApi('/cart', {
+        headers: { 'X-Cart-Token': localStorage.getItem('cart_token') ?? '' },
+      })
 
-  const serverCart = computed(() => {
-    const val = unref(rawData)
-    return (val as any)?.data ?? val
-  })
+    if (res?.cart_token) localStorage.setItem('cart_token', res.cart_token)
+        return res
+    },
+      { server: false }
+    )
 
-  
-  const items = computed(() => serverCart.value?.cart_items ?? serverCart.value?.cartItems ?? [])
+const items = computed(() => (unref(rawData) as any)?.cart?.cart_items ?? [])
 
   async function remove(itemId: number) {
     await useApi(`/cart/items/${itemId}`, {
