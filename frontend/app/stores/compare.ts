@@ -1,45 +1,34 @@
 import { defineStore } from 'pinia'
 
-/** The compare table is unreadable beyond four columns. */
-export const COMPARE_LIMIT = 4
+export const MAX_COMPARE = 4
 
 export const useCompareStore = defineStore('compare', () => {
   const ids = ref<number[]>([])
-
   const count = computed(() => ids.value.length)
-  const isFull = computed(() => ids.value.length >= COMPARE_LIMIT)
-  const has = (productId: number) => ids.value.includes(productId)
+  const has = (id: number) => ids.value.includes(id)
+  const isFull = computed(() => ids.value.length >= MAX_COMPARE)
 
-  /**
-   * Returns false when the list is already full, so the caller can tell the
-   * user why nothing happened instead of failing silently.
-   */
-  function add(productId: number): boolean {
-    if (has(productId)) return true
-    if (isFull.value) return false
-    ids.value = [...ids.value, productId]
-    return true
+  function persist() {
+    localStorage.setItem('compare', JSON.stringify(ids.value))
   }
 
-  function remove(productId: number) {
-    ids.value = ids.value.filter((id) => id !== productId)
-  }
-
-  function toggle(productId: number): boolean {
-    if (has(productId)) {
-      remove(productId)
-      return true
+  function hydrate() {
+    try {
+      ids.value = JSON.parse(localStorage.getItem('compare') ?? '[]')
+    } catch {
+      ids.value = []
     }
-    return add(productId)
   }
 
-  function clear() {
-    ids.value = []
+  function toggle(id: number) {
+    if (has(id)) {
+      ids.value = ids.value.filter((i) => i !== id)
+    } else {
+      if (isFull.value) return
+      ids.value = [...ids.value, id]
+    }
+    persist()
   }
 
-  function hydrate(saved: number[]) {
-    ids.value = saved.slice(0, COMPARE_LIMIT)
-  }
-
-  return { ids, count, isFull, has, add, remove, toggle, clear, hydrate }
+  return { ids, count, has, isFull, hydrate, toggle }
 })
