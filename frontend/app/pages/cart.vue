@@ -3,7 +3,7 @@
 
   const { data: rawData, pending, error, refresh } = await useAsyncData(
     'cart-page',
-    
+
     async () => {
 
       const res: any = await useApi('/cart', {
@@ -26,6 +26,7 @@ const items = computed(() => (unref(rawData) as any)?.cart?.cart_items ?? [])
     await refresh()
   }
 </script>
+
 
 <template>
   <div class="container-page py-6 md:py-8">
