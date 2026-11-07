@@ -10,6 +10,7 @@ export const useCartStore = defineStore('cart', () => {
 
   const has = (productId: number) => lines.value.some((l) => l.productId === productId)
 
+
   function add(productId: number, variantId: number, qty = 1) {
     const existing = lines.value.find(
       (l) => l.productId === productId && l.variantId === variantId,
@@ -22,6 +23,7 @@ export const useCartStore = defineStore('cart', () => {
     lines.value = [...lines.value, { productId, variantId, qty }]
   }
 
+
   function setQty(productId: number, variantId: number, qty: number) {
     if (qty <= 0) return remove(productId, variantId)
     lines.value = lines.value.map((l) =>
@@ -29,37 +31,33 @@ export const useCartStore = defineStore('cart', () => {
     )
   }
 
+
   function remove(productId: number, variantId: number) {
     lines.value = lines.value.filter(
       (l) => !(l.productId === productId && l.variantId === variantId),
     )
   }
 
+
   function clear() {
     lines.value = []
   }
+
 
   function hydrate(saved: CartLine[]) {
     lines.value = saved
   }
 
+
   async function addToServer(variantId: number, productId: number, qty = 1) {
-    const token = getToken()
-    await useApi('/cart/items', {
+    const res: any = await useApi('/cart/items', {
       method: 'POST',
-      headers: { 'X-Cart-Token': token },
+      headers: { 'X-Cart-Token': localStorage.getItem('cart_token') ?? '' },
       body: { product_variant_id: variantId, quantity: qty },
     })
+    const token = res?.data?.session_id
+    if (token) localStorage.setItem('cart_token', token)
     add(productId, variantId, qty)
-  }
-
-  function getToken(): string {
-    let token = localStorage.getItem('cart_token')
-    if (!token) {
-      token = crypto.randomUUID()
-      localStorage.setItem('cart_token', token)
-    }
-    return token
   }
 
   return { lines, count, totalQty, has, add, setQty, remove, clear, hydrate, addToServer }
