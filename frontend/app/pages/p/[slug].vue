@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    const cart = useCartStore()
     const route = useRoute()
     const productSlug = computed(() => route.params.slug as string)
 
@@ -65,7 +66,10 @@
           <p v-if="product.description" class="mb-6 text-ink-500">{{ product.description }}</p>
         </div>
 
-        <button class="w-full rounded-lg bg-brand-600 py-3 font-medium text-white transition hover:bg-brand-700 sm:w-auto sm:px-6">
+        <button
+          @click="cart.addToServer(product.productVariant[0].id, product.id)"
+          class="w-full rounded-lg bg-brand-600 py-3 font-medium text-white transition hover:bg-brand-700 sm:w-auto sm:px-6"
+        >
           Savatga qo'shish
         </button>
       </div>

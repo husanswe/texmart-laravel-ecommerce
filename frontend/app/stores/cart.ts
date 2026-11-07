@@ -43,5 +43,24 @@ export const useCartStore = defineStore('cart', () => {
     lines.value = saved
   }
 
-  return { lines, count, totalQty, has, add, setQty, remove, clear, hydrate }
+  async function addToServer(variantId: number, productId: number, qty = 1) {
+    const token = getToken()
+    await useApi('/cart/items', {
+      method: 'POST',
+      headers: { 'X-Cart-Token': token },
+      body: { product_variant_id: variantId, quantity: qty },
+    })
+    add(productId, variantId, qty)
+  }
+
+  function getToken(): string {
+    let token = localStorage.getItem('cart_token')
+    if (!token) {
+      token = crypto.randomUUID()
+      localStorage.setItem('cart_token', token)
+    }
+    return token
+  }
+
+  return { lines, count, totalQty, has, add, setQty, remove, clear, hydrate, addToServer }
 })
