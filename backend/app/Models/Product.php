@@ -27,7 +27,7 @@ class Product extends Model
         return $this->hasMany(Favorite::class);
     }
 
-    public function variants(): HasMany
+    public function productVariant(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
     }

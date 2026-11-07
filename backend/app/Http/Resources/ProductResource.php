@@ -18,7 +18,15 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'images' => ProductImageResource::collection($this->whenLoaded('productImage')),
             'brand' => new BrandResource($this->whenLoaded('brand')),
-            'category' => new CategoryResource($this->whenLoaded('category'))
+            'category' => new CategoryResource($this->whenLoaded('category')),
+
+            'productVariant' => $this->whenLoaded('productVariant', fn() => $this->productVariant->map(fn($v) => [
+                'id' => $v->id,
+                'name' => $v->name,
+                'sku' => $v->sku,
+                'price' => $v->price,
+                'stock' => $v->stock,
+            ])),
         ];
     }
 }
