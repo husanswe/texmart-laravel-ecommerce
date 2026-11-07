@@ -68,7 +68,7 @@
 
         <button
           @click="cart.addToServer(product.productVariant[0].id, product.id)"
-          class="w-full rounded-lg bg-brand-600 py-3 font-medium text-white transition hover:bg-brand-700 sm:w-auto sm:px-6"
+          class="btn-press w-full rounded-lg bg-brand-600 py-3 font-medium text-white transition hover:bg-brand-700 sm:w-auto sm:px-6"
         >
           Savatga qo'shish
         </button>
