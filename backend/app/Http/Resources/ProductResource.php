@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
             'slug' => is_array($this->slug) ? ($this->slug['uz'] ?? '') : $this->slug,
             'price' => $this->price,
             'description' => $this->description,
-            'images' => ProductImageResource::collection($this->whenLoaded('images')),
+            'images' => ProductImageResource::collection($this->whenLoaded('productImage')),
             'brand' => new BrandResource($this->whenLoaded('brand')),
             'category' => new CategoryResource($this->whenLoaded('category'))
         ];

@@ -84,7 +84,7 @@ class ProductController extends Controller
     public function show(string $slug)
     {
         $product = Product::where('slug', $slug)
-            ->with('brand', 'category', 'images', 'variants')
+            ->with('brand', 'category', 'productImage', 'variants')
             ->firstOrFail();
 
         return new ProductResource($product);

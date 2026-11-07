@@ -33,7 +33,7 @@
         <div class="aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4">
           <img
             v-if="product.images && product.images.length > 0"
-            :src="product.images[selectedImageIndex]"
+            :src="product.images[selectedImageIndex]?.url"
             :alt="product.name"
             class="h-full w-full object-contain"
           />
@@ -49,7 +49,7 @@
                 :class="selectedImageIndex === Number(idx) ? 'border-brand-600 ring-2 ring-brand-600/20' : 'border-line opacity-70 hover:opacity-100'"
             >
                 <img
-                :src="img"
+                :src="img.url"
                 :alt="product.name + ' ' + (Number(idx) + 1)"
                 class="h-full w-full object-contain"
                 />
