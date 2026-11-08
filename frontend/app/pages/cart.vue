@@ -25,11 +25,18 @@ watch(data, (val: any) => {
   )
 })
 
+const qtyError = ref('')
+
 async function changeQty(item: any, qty: number) {
-  if (qty < 1 || qty > item.stock) return
+  qtyError.value = ''
+  if (qty < 1) return
+  // Block only increases past stock; decreasing is always allowed.
+  if (qty > item.quantity && qty > item.stock) return
   try {
     await useApi(`/cart/items/${item.id}`, { method: 'PUT', headers: headers(), body: { quantity: qty } })
-  } catch {}
+  } catch (e) {
+    qtyError.value = apiErrorMessage(e)
+  }
   await refresh()
 }
 
@@ -51,6 +58,10 @@ async function remove(item: any) {
       Savatchangiz bo'sh.
       <NuxtLink to="/catalog" class="mt-3 block font-semibold text-brand-700">Xarid qilishni boshlash →</NuxtLink>
     </div>
+
+    <p v-if="qtyError" class="mb-4 rounded-md bg-red-50 px-3 py-2 text-small text-red-600" role="alert">
+      {{ qtyError }}
+    </p>
 
     <div v-else class="grid gap-6 lg:grid-cols-[1fr_360px]">
       <!-- Items -->
