@@ -13,7 +13,7 @@ use App\Services\CartService;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request) {
+    public function register(RegisterRequest $request, CartService $cartService) {
         $validatedData = $request->validated();
 
         $user = User::create([
@@ -21,6 +21,12 @@ class AuthController extends Controller
             'phone' => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']) 
         ]);
+
+        $cartToken = $request->header('X-Cart-Token');      // ← 2) read the guest cart token
+
+        if ($cartToken) {                                    // ← 3) merge guest cart into the new account
+            $cartService->mergeGuestCart($user, $cartToken);
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
