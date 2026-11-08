@@ -1,20 +1,52 @@
 <script setup lang="ts">
+
+    import { ChevronLeft, ChevronRight } from '@lucide/vue'
     const cart = useCartStore()
     const route = useRoute()
     const productSlug = computed(() => route.params.slug as string)
 
     const { data: rawData, pending, error } = await useAsyncData(
-    `product-detail-${productSlug.value}`,
-    () => useApi(`/products/${productSlug.value}`),
-    { watch: [productSlug] }
+      `product-detail-${productSlug.value}`,
+      () => useApi(`/products/${productSlug.value}`),
+      { watch: [productSlug] }
     )
 
     const product = computed(() => {
-    const val = unref(rawData)
-    return (val as any)?.data ?? val
+      const val = unref(rawData)
+      return (val as any)?.data ?? val
     })
 
     const selectedImageIndex = ref(0)
+
+    
+    // ── Image gallery: arrows, keyboard and swipe ──
+    const imageCount = computed(() => product.value?.images?.length ?? 0)
+
+    function nextImage() {
+      if (imageCount.value < 2) return
+      selectedImageIndex.value = (selectedImageIndex.value + 1) % imageCount.value
+    }
+
+    function prevImage() {
+      if (imageCount.value < 2) return
+      selectedImageIndex.value = (selectedImageIndex.value - 1 + imageCount.value) % imageCount.value
+    }
+
+    // Swipe on phones: a horizontal drag of more than 40px changes the image.
+    let touchStartX = 0
+    function onTouchStart(e: TouchEvent) {
+      touchStartX = e.touches[0]?.clientX ?? 0
+    }
+    function onTouchEnd(e: TouchEvent) {
+      const delta = (e.changedTouches[0]?.clientX ?? 0) - touchStartX
+      if (delta > 40) prevImage()
+      if (delta < -40) nextImage()
+    }
+
+    // Opening another product starts from its first image.
+    watch(productSlug, () => {
+      selectedImageIndex.value = 0
+    })
 </script>
 
 
@@ -31,8 +63,15 @@
     <div v-else-if="product" class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <!-- Image Gallery -->
       <div class="flex flex-col gap-4">
-        <div class="relative aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4">
-          <ProductActions :product-id="product.id" class="absolute left-3 top-3 z-10" />
+        <div
+          class="group relative aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4 outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          tabindex="0"
+          aria-roledescription="carousel"
+          @keydown.right.prevent="nextImage"
+          @keydown.left.prevent="prevImage"
+          @touchstart.passive="onTouchStart"
+          @touchend="onTouchEnd"
+        >
           <img
             v-if="product.images && product.images.length > 0"
             :src="product.images[selectedImageIndex]?.url"
