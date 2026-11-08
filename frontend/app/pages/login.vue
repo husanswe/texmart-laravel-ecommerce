@@ -1,4 +1,6 @@
 <script setup lang="ts">
+
+import { Eye, EyeOff } from '@lucide/vue'
 definePageMeta({ middleware: 'guest' })
 useSeoMeta({ title: 'Kirish' })
 
@@ -7,6 +9,7 @@ const route = useRoute()
 
 const phone = ref('')
 const password = ref('')
+const showPassword = ref(false)
 const loading = ref(false)
 const errorMessage = ref('')
 
@@ -46,13 +49,23 @@ async function submit() {
 
       <label class="mt-4 block">
         <span class="text-small font-medium text-ink-700">Parol</span>
-        <input
-          v-model="password"
-          type="password"
-          autocomplete="current-password"
-          required
-          class="mt-1 h-12 w-full rounded-md border border-line bg-white px-4 text-ink-900 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
-        />
+          <div class="relative mt-1">
+            <input
+              v-model="password"
+              :type="showPassword ? 'text' : 'password'"
+              autocomplete="current-password"
+              required
+              class="h-12 w-full rounded-md border border-line bg-white pl-4 pr-12 text-ink-900 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+            />
+            <button
+              type="button"
+              class="absolute inset-y-0 right-0 grid w-12 place-items-center text-ink-500 transition-colors hover:text-ink-900"
+              :aria-label="showPassword ? 'Parolni yashirish' : 'Parolni ko\'rsatish'"
+              @click="showPassword = !showPassword"
+            >
+              <component :is="showPassword ? EyeOff : Eye" class="size-5" aria-hidden="true" />
+            </button>
+          </div>
       </label>
 
       <p v-if="errorMessage" class="mt-4 rounded-md bg-red-50 px-3 py-2 text-small text-red-600" role="alert">
