@@ -236,7 +236,7 @@ const actions = computed(() => [
             >
               <CategoryIcon :name="category.icon" class="size-5 shrink-0 text-brand-500" />
               <span class="min-w-0 flex-1 truncate">{{ category.name }}</span>
-              <span class="shrink-0 text-small text-ink-300 tnum">{{ category.productCount }}</span>
+              <span class="shrink-0 text-small text-ink-300 tnum">{{ category.products_count }}</span>
             </NuxtLink>
           </li>
         </ul>

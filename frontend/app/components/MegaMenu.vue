@@ -63,7 +63,7 @@ watch(isOpen, (open) => {
                   <CategoryIcon :name="category.icon" class="size-5 shrink-0" />
                   <span class="min-w-0 flex-1 truncate">{{ category.name }}</span>
                   <span class="shrink-0 text-small text-ink-300 tnum">
-                    {{ category.productCount }}
+                    {{ category.products_count }}
                   </span>
                   <ChevronRight class="size-4 shrink-0 text-ink-300 lg:hidden" aria-hidden="true" />
                 </NuxtLink>
@@ -90,7 +90,7 @@ watch(isOpen, (open) => {
                   >
                     <span class="min-w-0 flex-1 truncate">{{ child.name }}</span>
                     <span class="shrink-0 text-small text-ink-300 tnum">
-                      {{ child.productCount }}
+                      {{ child.products_count }}
                     </span>
                   </NuxtLink>
                 </li>
