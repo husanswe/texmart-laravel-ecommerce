@@ -1,4 +1,6 @@
 <script setup lang="ts">
+
+import { Eye, EyeOff } from '@lucide/vue'
 definePageMeta({ middleware: 'guest' })
 useSeoMeta({ title: "Ro'yxatdan o'tish" })
 
@@ -7,6 +9,8 @@ const auth = useAuthStore()
 const form = reactive({ name: '', phone: '', password: '', password_confirmation: '' })
 const loading = ref(false)
 const errorMessage = ref('')
+const showPassword = ref(false)
+
 
 async function submit() {
   errorMessage.value = ''
@@ -55,19 +59,46 @@ const inputClass =
 
       <label class="mt-4 block">
         <span class="text-small font-medium text-ink-700">Parol (kamida 8 belgi)</span>
-        <input v-model="form.password" type="password" autocomplete="new-password" required minlength="8" :class="inputClass" />
+        <div class="relative mt-1">
+          <input
+            v-model="form.password"
+            :type="showPassword ? 'text' : 'password'"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            :class="[inputClass, 'pr-12']"
+          />
+          <button
+            type="button"
+            class="absolute inset-y-0 right-0 grid w-12 place-items-center text-ink-500 transition-colors hover:text-ink-900"
+            :aria-label="showPassword ? 'Parolni yashirish' : 'Parolni ko\'rsatish'"
+            @click="showPassword = !showPassword"
+          >
+            <component :is="showPassword ? EyeOff : Eye" class="size-5" aria-hidden="true" />
+          </button>
+        </div>
       </label>
 
       <label class="mt-4 block">
         <span class="text-small font-medium text-ink-700">Parolni tasdiqlang</span>
-        <input
-          v-model="form.password_confirmation"
-          type="password"
-          autocomplete="new-password"
-          required
-          minlength="8"
-          :class="inputClass"
-        />
+        <div class="relative mt-1">
+          <input
+            v-model="form.password_confirmation"
+            :type="showPassword ? 'text' : 'password'"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            :class="[inputClass, 'pr-12']"
+          />
+          <button
+            type="button"
+            class="absolute inset-y-0 right-0 grid w-12 place-items-center text-ink-500 transition-colors hover:text-ink-900"
+            :aria-label="showPassword ? 'Parolni yashirish' : 'Parolni ko\'rsatish'"
+            @click="showPassword = !showPassword"
+          >
+            <component :is="showPassword ? EyeOff : Eye" class="size-5" aria-hidden="true" />
+          </button>
+        </div>
       </label>
 
       <p v-if="errorMessage" class="mt-4 rounded-md bg-red-50 px-3 py-2 text-small text-red-600" role="alert">
