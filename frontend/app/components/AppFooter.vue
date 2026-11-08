@@ -45,7 +45,7 @@ const year = new Date().getFullYear()
 
 <template>
   <footer class="mt-auto bg-ink-900 text-ink-300">
-    <div class="container-page py-10 md:py-14">
+    <div class="container-page py-7 md:py-10">
       <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1.3fr]">
         <!-- Wordmark + social -->
         <div>
@@ -126,7 +126,7 @@ const year = new Date().getFullYear()
 
     <div class="border-t border-white/10">
       <div
-        class="container-page flex flex-col gap-2 py-5 text-small text-ink-500 sm:flex-row sm:items-center sm:justify-between"
+        class="container-page flex flex-col gap-2 py-4 text-small text-ink-500 sm:flex-row sm:items-center sm:justify-between"
       >
         <p class="tnum">{{ year }} © Texmart — internet-do'kon</p>
         <p>Portfolio loyihasi. Hech qanday real do'kon bilan bog'liq emas.</p>
