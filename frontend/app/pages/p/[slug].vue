@@ -64,7 +64,7 @@
       <!-- Image Gallery -->
       <div class="flex flex-col gap-4">
         <div
-          class="group relative aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4 outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          class="group relative aspect-square flex items-center justify-center rounded-lg border border-line bg-canvas p-4 outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           tabindex="0"
           aria-roledescription="carousel"
           @keydown.right.prevent="nextImage"
@@ -78,7 +78,7 @@
         <template v-if="imageCount > 1">
           <button
             type="button"
-            class="absolute left-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
+            class="absolute left-3 md:-left-5 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
             aria-label="Oldingi rasm"
             @click="prevImage"
           >
@@ -86,7 +86,7 @@
           </button>
           <button
             type="button"
-            class="absolute right-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
+            class="absolute right-3 md:-right-5 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
             aria-label="Keyingi rasm"
             @click="nextImage"
           >
