@@ -8,16 +8,8 @@ export const useCompareStore = defineStore('compare', () => {
   const has = (id: number) => ids.value.includes(id)
   const isFull = computed(() => ids.value.length >= MAX_COMPARE)
 
-  function persist() {
-    localStorage.setItem('compare', JSON.stringify(ids.value))
-  }
-
-  function hydrate() {
-    try {
-      ids.value = JSON.parse(localStorage.getItem('compare') ?? '[]')
-    } catch {
-      ids.value = []
-    }
+  function hydrate(saved: number[]) {
+    ids.value = saved
   }
 
   function toggle(id: number) {
@@ -27,7 +19,6 @@ export const useCompareStore = defineStore('compare', () => {
       if (isFull.value) return
       ids.value = [...ids.value, id]
     }
-    persist()
   }
 
   return { ids, count, has, isFull, hydrate, toggle }
