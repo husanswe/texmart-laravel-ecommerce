@@ -3,6 +3,7 @@ import { Heart, House, LayoutGrid, ShoppingBag, User } from '@lucide/vue'
 
 const cart = useCartStore()
 const favorites = useFavoritesStore()
+const auth = useAuthStore()
 const route = useRoute()
 
 const items = computed(() => [
@@ -10,7 +11,7 @@ const items = computed(() => [
   { label: 'Katalog', to: '/catalog', icon: LayoutGrid, count: 0 },
   { label: 'Savatcha', to: '/cart', icon: ShoppingBag, count: cart.count },
   { label: 'Sevimlilar', to: '/favorites', icon: Heart, count: favorites.count },
-  { label: 'Profil', to: '/cabinet', icon: User, count: 0 },
+  { label: 'Profil', to: auth.isLoggedIn ? '/cabinet' : '/login', icon: User, count: 0 },
 ])
 
 const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.startsWith(to))
