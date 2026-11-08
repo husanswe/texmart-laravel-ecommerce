@@ -72,6 +72,31 @@
           @touchstart.passive="onTouchStart"
           @touchend="onTouchEnd"
         >
+
+        <ProductActions :product-id="product.id" class="absolute left-3 top-3 z-10" />
+
+        <template v-if="imageCount > 1">
+          <button
+            type="button"
+            class="absolute left-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
+            aria-label="Oldingi rasm"
+            @click="prevImage"
+          >
+            <ChevronLeft class="size-5" />
+          </button>
+          <button
+            type="button"
+            class="absolute right-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink-700 shadow-sm transition hover:bg-white hover:text-brand-600"
+            aria-label="Keyingi rasm"
+            @click="nextImage"
+          >
+            <ChevronRight class="size-5" />
+          </button>
+          <span class="absolute bottom-3 right-3 z-10 rounded-full bg-ink-900/60 px-2 py-0.5 text-[12px] text-white tnum">
+            {{ selectedImageIndex + 1 }} / {{ imageCount }}
+          </span>
+        </template>
+
           <img
             v-if="product.images && product.images.length > 0"
             :src="product.images[selectedImageIndex]?.url"
