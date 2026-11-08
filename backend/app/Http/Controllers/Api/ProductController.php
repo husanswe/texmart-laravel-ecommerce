@@ -16,6 +16,10 @@ class ProductController extends Controller
     {
         $query = Product::with(['brand', 'category', 'productImage']);
 
+        $query->when($request->filled('ids'), function ($q) use ($request) {
+            $q->whereIn('id', (array) $request->ids);
+        });
+
         $query->when($request->filled('category'), function ($q) use ($request) {
             $categories = (array) $request->category;
             $q->where(function ($sub) use ($categories) {

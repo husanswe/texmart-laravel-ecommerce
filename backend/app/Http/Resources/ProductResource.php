@@ -27,6 +27,12 @@ class ProductResource extends JsonResource
                 'price' => $v->price,
                 'stock' => $v->stock,
             ])),
+
+            'attributes' => $this->whenLoaded('attributeValue', fn() => $this->attributeValue->map(fn($v) => [
+                'name' => $v->attribute?->name,
+                'unit' => $v->attribute?->unit,
+                'value' => $v->value,
+            ])),
         ];
     }
 }

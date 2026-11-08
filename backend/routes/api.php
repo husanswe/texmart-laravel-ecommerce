@@ -52,6 +52,7 @@ Route::prefix('v1')->group(function () {
         // Favorites
         Route::get('/favorites', [FavoriteController::class, 'index']);
         Route::post('/favorites', [FavoriteController::class, 'store']);
+        Route::post('/favorites/sync', [FavoriteController::class, 'sync']);
         Route::delete('/favorites/{productId}', [FavoriteController::class, 'destroy']);
         
         // Orders
