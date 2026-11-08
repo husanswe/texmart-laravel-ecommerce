@@ -35,7 +35,7 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
             <component :is="item.icon" class="size-5.5" aria-hidden="true" />
             <span
               v-if="item.count > 0"
-              class="absolute -top-1.5 -right-2 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-brand-500 px-1 text-[11px] leading-none font-semibold text-white tnum"
+              class="absolute -top-1.5 -right-2 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-brand-500 px-1 text-[11px] leading-none font-semibold text-white tnum"
             >
               {{ item.count }}
             </span>
