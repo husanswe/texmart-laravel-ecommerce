@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Heart, LayoutGrid, Menu, Phone, ShoppingBag, User, X } from '@lucide/vue'
+import { Heart, LayoutGrid, Menu, Phone, Scale, ShoppingBag, User, X } from '@lucide/vue'
 import type { Category } from '~/types'
 
 defineProps<{ categories: Category[] }>()
 
 const cart = useCartStore()
 const favorites = useFavoritesStore()
+const compare = useCompareStore()
+const auth = useAuthStore()
 
 const megaOpen = ref(false)
 const drawerOpen = ref(false)
@@ -84,7 +86,13 @@ onBeforeUnmount(() => {
 const actions = computed(() => [
   { label: 'Tanlanganlar', to: '/favorites', icon: Heart, count: favorites.count },
   { label: 'Savatcha', to: '/cart', icon: ShoppingBag, count: cart.count },
-  { label: 'Mening profilim', to: '/cabinet', icon: User, count: 0 },
+  { label: 'Taqqoslash', to: '/compare', icon: Scale, count: compare.count },
+  {
+    label: auth.isLoggedIn ? 'Mening profilim' : 'Kirish',
+    to: auth.isLoggedIn ? '/cabinet' : '/login',
+    icon: User,
+    count: 0,
+  },
 ])
 </script>
 
