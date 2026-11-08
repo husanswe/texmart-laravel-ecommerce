@@ -8,7 +8,10 @@ const brands = brandsFixture as Brand[]
 /** The full category tree — top-level categories each carrying their children. */
 export async function listCategories(): Promise<Category[]> {
   if (usingMocks()) return categories
-  return useApi<Category[]>('/categories')
+  
+  // Laravel's CategoryResource::collection wraps the list in { data: [...] }
+  const res = await useApi<{ data: Category[] } | Category[]>('/categories')
+  return Array.isArray(res) ? res : res.data
 }
 
 /** One category by slug, matching either a top-level entry or a child. */
