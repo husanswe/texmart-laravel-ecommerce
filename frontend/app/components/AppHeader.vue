@@ -88,7 +88,7 @@ const actions = computed(() => [
   { label: 'Savatcha', to: '/cart', icon: ShoppingBag, count: cart.count },
   { label: 'Taqqoslash', to: '/compare', icon: Scale, count: compare.count },
   {
-    label: auth.isLoggedIn ? 'Mening profilim' : 'Kirish',
+    label: auth.isLoggedIn ? (auth.user?.name.split(' ')[0] ?? 'Mening profilim') : 'Kirish',
     to: auth.isLoggedIn ? '/cabinet' : '/login',
     icon: User,
     count: 0,
@@ -196,7 +196,7 @@ const actions = computed(() => [
                  the width the search bar needs to stay the prominent element.
                  whitespace-nowrap on every label, so none of them can wrap to a
                  second line and unbalance the row. -->
-            <span class="hidden whitespace-nowrap text-[11px] leading-tight xl:block">
+            <span class="hidden max-w-24 truncate whitespace-nowrap text-[11px] leading-tight xl:block">
               {{ action.label }}
             </span>
             <span class="sr-only xl:hidden">{{ action.label }}</span>
