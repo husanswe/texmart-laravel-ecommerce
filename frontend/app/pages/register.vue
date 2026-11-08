@@ -29,6 +29,7 @@ const inputClass =
   'mt-1 h-12 w-full rounded-md border border-line bg-white px-4 text-ink-900 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20'
 </script>
 
+
 <template>
   <div class="container-page flex justify-center py-10 md:py-16">
     <form class="w-full max-w-md rounded-lg border border-line bg-surface p-6 md:p-8" @submit.prevent="submit">
