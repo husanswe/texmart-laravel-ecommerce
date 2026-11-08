@@ -89,7 +89,8 @@ class CartService
         
         $variant = ProductVariant::findOrFail($cartItem->product_variant_id);
         
-        if ($quantity > $variant->stock) {
+        // Reject only increases past stock — reducing an over-stock quantity must always work.
+        if ($quantity > $cartItem->quantity && $quantity > $variant->stock) {
             throw ValidationException::withMessages([
                 'quantity' => "So'ralgan miqdor mavjud zaxiradan oshib ketdi."
             ]);
