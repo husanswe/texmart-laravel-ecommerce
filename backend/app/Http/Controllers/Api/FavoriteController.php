@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 
@@ -59,5 +60,27 @@ class FavoriteController extends Controller
             'success' => true,
             'message' => 'Tovar sevimlilar ro\'yxatidan olib tashlandi.'
         ], 200);
+    }
+
+    /**
+     * Called right after login: merges the guest's local favorites into the
+     * account and returns the full list of favorite product ids.
+     */
+    public function sync(Request $request)
+    {
+        $request->validate([
+            'ids' => 'present|array',
+            'ids.*' => 'integer',
+        ]);
+
+        // Drop ids of products that no longer exist (e.g. after migrate:fresh)
+        $ids = Product::whereIn('id', $request->input('ids', []))->pluck('id');
+
+        $user = $request->user();
+        $user->favoriteProducts()->syncWithoutDetaching($ids);
+
+        return response()->json([
+            'ids' => $user->favoriteProducts()->pluck('products.id'),
+        ]);
     }
 }
