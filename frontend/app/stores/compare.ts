@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+/** Matches the backend rule `ids => max:4` on GET /products/compare. */
 export const MAX_COMPARE = 4
 
 export const useCompareStore = defineStore('compare', () => {
@@ -21,5 +22,9 @@ export const useCompareStore = defineStore('compare', () => {
     }
   }
 
-  return { ids, count, has, isFull, hydrate, toggle }
+  function clear() {
+    ids.value = []
+  }
+
+  return { ids, count, has, isFull, hydrate, toggle, clear }
 })
