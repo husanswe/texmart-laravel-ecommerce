@@ -115,7 +115,7 @@ const actions = computed(() => [
 
     <!-- ── Row 2 — main bar ────────────────────────────────────────────── -->
     <div class="border-b border-line">
-      <div class="container-page flex h-16 items-center gap-3 md:h-[72px] md:gap-5">
+      <div class="container-page flex h-16 items-center gap-3 md:h-18 md:gap-5">
         <!-- Mobile: menu trigger -->
         <button
           type="button"
@@ -173,13 +173,13 @@ const actions = computed(() => [
             v-for="action in actions"
             :key="action.label"
             :to="action.to"
-            class="relative hidden w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 sm:flex xl:w-auto xl:min-w-[72px] xl:px-1.5"
+            class="relative hidden w-11 flex-col items-center gap-1 rounded-md py-1.5 text-ink-700 transition-colors hover:text-brand-600 sm:flex xl:w-auto xl:min-w-18 xl:px-1.5"
           >
             <span class="relative">
               <component :is="action.icon" class="size-6" aria-hidden="true" />
               <span
                 v-if="action.count > 0"
-                class="absolute -top-1.5 -right-2 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-brand-500 px-1 text-[11px] leading-none font-semibold text-white tnum"
+                class="absolute -top-1.5 -right-2 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-brand-500 px-1 text-[11px] leading-none font-semibold text-white tnum"
               >
                 {{ action.count }}
               </span>
@@ -258,7 +258,7 @@ const actions = computed(() => [
        mounted, the measured height takes over. -->
   <div
     aria-hidden="true"
-    class="h-[121px] shrink-0 md:h-[118px] lg:h-[167px]"
+    class="h-30.25 shrink-0 md:h-29.5 lg:h-41.75"
     :style="spacerHeight != null ? { height: `${spacerHeight}px` } : undefined"
   />
 </template>
