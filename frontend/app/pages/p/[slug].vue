@@ -31,7 +31,8 @@
     <div v-else-if="product" class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <!-- Image Gallery -->
       <div class="flex flex-col gap-4">
-        <div class="aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4">
+        <div class="relative aspect-square flex items-center justify-center overflow-hidden rounded-lg border border-line bg-canvas p-4">
+          <ProductActions :product-id="product.id" class="absolute left-3 top-3 z-10" />
           <img
             v-if="product.images && product.images.length > 0"
             :src="product.images[selectedImageIndex]?.url"
@@ -62,7 +63,7 @@
       <div class="flex flex-col justify-between">
         <div>
           <h1 class="text-h2 mb-4 text-ink-900">{{ product.name }}</h1>
-          <p class="text-h3 mb-6 font-semibold text-brand-600">{{ product.price }} UZS</p>
+          <p class="text-h3 mb-6 font-semibold text-brand-600">{{ formatSum(product.price) }}</p>
           <p v-if="product.description" class="mb-6 text-ink-500">{{ product.description }}</p>
         </div>
 
