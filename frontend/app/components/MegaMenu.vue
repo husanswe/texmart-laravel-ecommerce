@@ -1,6 +1,7 @@
 <script setup lang="ts">
+
 import { ChevronRight } from '@lucide/vue'
-import type { Category } from '~/types'
+import type { Brand, Category } from '~/types'
 
 const props = defineProps<{
   modelValue: boolean
@@ -19,7 +20,7 @@ function close() {
 // Escape, focus trap, focus restore, scroll lock, close-on-navigate.
 useOverlay(isOpen, panel, close)
 
-/** The category whose children fill the right-hand area. */
+/** The category whose children fill the middle column. */
 const activeId = ref<number | null>(null)
 
 const active = computed(
@@ -29,73 +30,89 @@ const active = computed(
 watch(isOpen, (open) => {
   if (open) activeId.value = props.categories[0]?.id ?? null
 })
+
+// Brands for the right column. Loaded once, on the client, the first time it's needed.
+const { data: brands } = await useAsyncData('mega-menu-brands', () => listBrands(), {
+  server: false,
+  default: () => [] as Brand[],
+})
 </script>
+
 
 <template>
   <ClientOnly>
-    <div v-if="modelValue" class="fixed inset-0 top-0 z-40">
-      <div class="absolute inset-0 bg-ink-900/40" aria-hidden="true" @click="close" />
+    <!-- Positioned against the fixed header: drops down right under it, like idea.uz -->
+    <div v-if="modelValue" class="absolute inset-x-0 top-full hidden lg:block">
+      <!-- Dims the page below the header; the header itself stays bright and clickable. -->
+      <div class="absolute inset-x-0 top-0 h-screen bg-ink-900/40" aria-hidden="true" @click="close" />
 
       <div
         ref="panel"
-        class="relative max-h-[86vh] overflow-y-auto border-b border-line bg-surface shadow-float outline-none"
+        class="relative border-t border-line bg-surface shadow-float outline-none"
         role="dialog"
         aria-modal="true"
         aria-label="Mahsulotlar katalogi"
         tabindex="-1"
       >
-        <div class="container-page py-5">
-          <div class="grid gap-6 lg:grid-cols-[280px_1fr]">
-            <!-- Left: top-level categories -->
-            <ul class="min-w-0 lg:border-r lg:border-line lg:pr-4">
-              <li v-for="category in categories" :key="category.id">
+        <div class="container-page grid h-[min(560px,calc(100vh-180px))] grid-cols-[300px_1fr_280px] py-4">
+          <!-- Left: top-level categories -->
+          <ul class="min-h-0 overflow-y-auto border-r border-line pr-3">
+            <li v-for="category in categories" :key="category.id">
+              <NuxtLink
+                :to="`/c/${category.slug}`"
+                class="flex items-center gap-3 rounded-md px-3 py-2.5 text-body transition-colors"
+                :class="
+                  active?.id === category.id
+                    ? 'bg-brand-50 font-medium text-brand-700'
+                    : 'text-ink-700 hover:bg-canvas'
+                "
+                @mouseenter="activeId = category.id"
+                @focus="activeId = category.id"
+              >
+                <CategoryIcon :name="category.icon" class="size-5 shrink-0" />
+                <span class="min-w-0 flex-1 truncate">{{ category.name }}</span>
+                <ChevronRight class="size-4 shrink-0" aria-hidden="true" />
+              </NuxtLink>
+            </li>
+          </ul>
+
+          <!-- Middle: the highlighted category and its subcategories -->
+          <div v-if="active" class="min-h-0 overflow-y-auto px-8">
+            <h2 class="text-display-m text-ink-900">{{ active.name }}</h2>
+
+            <NuxtLink
+              :to="`/c/${active.slug}`"
+              class="mt-5 block text-body font-semibold text-ink-900 transition-colors hover:text-brand-700"
+            >
+              Barcha {{ active.name.toLowerCase() }}
+              <span class="font-normal text-ink-300 tnum">({{ active.products_count ?? 0 }})</span>
+            </NuxtLink>
+
+            <ul v-if="active.children?.length" class="mt-3 space-y-1">
+              <li v-for="child in active.children" :key="child.id">
                 <NuxtLink
-                  :to="`/c/${category.slug}`"
-                  class="flex items-center gap-3 rounded-md px-3 py-2.5 text-body transition-colors"
-                  :class="
-                    active?.id === category.id
-                      ? 'bg-brand-50 text-brand-700'
-                      : 'text-ink-700 hover:bg-canvas'
-                  "
-                  @mouseenter="activeId = category.id"
-                  @focus="activeId = category.id"
+                  :to="`/c/${child.slug}`"
+                  class="block py-1.5 text-body text-ink-500 transition-colors hover:text-brand-700"
                 >
-                  <CategoryIcon :name="category.icon" class="size-5 shrink-0" />
-                  <span class="min-w-0 flex-1 truncate">{{ category.name }}</span>
-                  <span class="shrink-0 text-small text-ink-300 tnum">
-                    {{ category.products_count }}
-                  </span>
-                  <ChevronRight class="size-4 shrink-0 text-ink-300 lg:hidden" aria-hidden="true" />
+                  {{ child.name }}
                 </NuxtLink>
               </li>
             </ul>
+            <p v-else class="mt-3 text-small text-ink-300">Bu kategoriyada bo'limlar yo'q.</p>
+          </div>
 
-            <!-- Right: children of the highlighted category, in three columns -->
-            <div v-if="active" class="hidden min-w-0 lg:block">
-              <div class="mb-3 flex items-baseline justify-between gap-4">
-                <h2 class="text-h3">{{ active.name }}</h2>
-                <NuxtLink
-                  :to="`/c/${active.slug}`"
-                  class="text-small text-brand-700 transition-colors hover:text-brand-500"
-                >
-                  Barchasini ko'rish →
-                </NuxtLink>
-              </div>
-
-              <ul class="columns-3 gap-6">
-                <li v-for="child in active.children" :key="child.id" class="mb-1 break-inside-avoid">
-                  <NuxtLink
-                    :to="`/c/${child.slug}`"
-                    class="flex items-baseline gap-2 rounded-sm px-2 py-1.5 text-body text-ink-700 transition-colors hover:text-brand-700"
-                  >
-                    <span class="min-w-0 flex-1 truncate">{{ child.name }}</span>
-                    <span class="shrink-0 text-small text-ink-300 tnum">
-                      {{ child.products_count }}
-                    </span>
-                  </NuxtLink>
-                </li>
-              </ul>
-            </div>
+          <!-- Right: brands -->
+          <div class="min-h-0 overflow-y-auto border-l border-line pl-6">
+            <p class="mb-3 text-small font-medium text-ink-500">Brendlar</p>
+            <ul class="grid grid-cols-2 gap-3">
+              <li
+                v-for="brand in brands"
+                :key="brand.id"
+                class="grid h-20 place-items-center rounded-md bg-canvas px-2 text-center text-h3 font-bold uppercase tracking-wide text-ink-300"
+              >
+                {{ brand.name }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
