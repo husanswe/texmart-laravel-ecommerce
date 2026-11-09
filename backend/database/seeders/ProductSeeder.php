@@ -87,39 +87,39 @@ class ProductSeeder extends Seeder
             $colorBlack->id
         ]);
 
-        $galaxyA55 = Product::create([
+        $galaxyA56 = Product::create([
             'category_id' => $smartphonesCat->id,
             'brand_id' => $SamsungBrand->id,
-            'name' => 'Samsung Galaxy A55',
-            'slug' => 'samsung-galaxy-a55',
+            'name' => 'Samsung Galaxy A56 5G',
+            'slug' => 'samsung-galaxy-a56-5g',
             'price' => 4299000,
-            'description' => 'Samsung Galaxy A55 — zamonaviy dizayn va kuchli kamera.',
+            'description' => 'Samsung Galaxy A56 5G — zamonaviy dizayn va kuchli kamera.',
         ]);
 
         ProductVariant::create([
-            'product_id' => $galaxyA55->id,
+            'product_id' => $galaxyA56->id,
             'name' => '8/256 Black',
-            'sku' => 'SAM-A55-8-256-BLK',
+            'sku' => 'SAM-A56-8-256-BLK',
             'price' => 4299000,
             'stock' => 20,
         ]);
 
         ProductVariant::create([
-            'product_id' => $galaxyA55->id,
+            'product_id' => $galaxyA56->id,
             'name' => '8/256 Blue',
-            'sku' => 'SAM-A55-8-256-BLU',
+            'sku' => 'SAM-A56-8-256-BLU',
             'price' => 4299000,
             'stock' => 12,
         ]);
 
         ProductImage::create([
-            'product_id' => $galaxyA55->id,
-            'image_path' => 'products/samsung-galaxy-a55-main.png',
+            'product_id' => $galaxyA56->id,
+            'image_path' => 'products/samsung-galaxy-a56-5g-main.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
-        $galaxyA55->attributeValue()->attach([
+        $galaxyA56->attributeValue()->attach([
             $ram8->id,
             $storage256->id,
             $colorBlack->id,

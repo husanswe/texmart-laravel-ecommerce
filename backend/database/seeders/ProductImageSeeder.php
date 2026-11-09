@@ -92,4 +92,9 @@ class ProductImageSeeder extends Seeder
             'microwave-oven-samsung-ME83KRW-1KBW-top.png',
         ],
     ];
+
+    public function run(): void 
+    {
+        
+    }
 }
