@@ -95,6 +95,9 @@ class ProductImageSeeder extends Seeder
 
     public function run(): void 
     {
-        
+        foreach ($this->images as $slug =>$files) 
+        {
+            
+        }
     }
 }
