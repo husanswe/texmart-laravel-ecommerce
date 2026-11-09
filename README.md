@@ -26,7 +26,5 @@ NUXT_PUBLIC_API_BASE=http://localhost:8000/api/v1
 Node 22 LTS and pnpm.
 
 ```bash
-cd frontend && pnpm install && pnpm dev
+cd frontend && npm install && npm run dev
 ```
-
-`pnpm build` produces the production server; `pnpm preview` runs it.
