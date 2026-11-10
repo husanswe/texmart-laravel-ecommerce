@@ -93,7 +93,21 @@ class ProductSeeder extends Seeder
             'name' => 'Samsung Galaxy A56 5G',
             'slug' => 'samsung-galaxy-a56-5g',
             'price' => 4299000,
-            'description' => 'Samsung Galaxy A56 5G — zamonaviy dizayn va kuchli kamera.',
+            'description' => 'Samsung Galaxy A56 5G — zamonaviy dizayn va kuchli kamera. Samsung Galaxy A56 8/128 Gray smartfoni - kundalik vazifalar va ko‘ngilxushliklar uchun zamonaviy va samarali smartfon. Zamonaviy texnologiyalar, nafis dizayn va ajoyib samaradorlikni o‘zida mujassam etgan holda, u har qanday vaziyatda ishonchli yordamchingizga aylanadi.
+
+            Samsung Galaxy A56 xususiyatlari:
+
+            Ekran: 6.7 dyuymli Super AMOLED displey videolar, o‘yinlar va ishlash uchun yorqin va to‘yingan ranglarga ega.
+            Unumdorlik: 8 GB tezkor xotira va 128 GB ichki xotira fayllar, suratlar va ilovalarni saqlash uchun. Kuchli protsessor qurilmaning kechikishlarsiz tez ishlashini ta’minlaydi.
+            Kamera: Sifatli suratlar va video qo‘ng‘iroqlar uchun 50 MP asosiy va 12 MP old kamera.
+            Akkumulyator: 5000 mA/soat quvvatga ega batareya, tez zaryadlashni qo‘llab-quvvatlaydi va uzoq vaqt davomida qayta zaryadlamasdan foydalanish imkonini beradi.
+            Dizayn: Qo‘lda qulay turadigan ingichka ramkali zamonaviy va didli kulrang korpus.
+            Afzalliklari:
+
+            Kontentni qulay qabul qilish uchun ajoyib displey.
+            Kuchli protsessor va ravon ishlash uchun dasturiy ta’minotni optimallashtirish.
+            Katta sig‘imli batareya tufayli uzoq muddatli avtonomlik.
+            Har qanday sharoitda suratga olish uchun ajoyib kameralar.',
         ]);
 
         ProductVariant::create([
@@ -697,7 +711,7 @@ class ProductSeeder extends Seeder
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $PhilipsBrand->id,
             'name' => 'Dazmol Philips DST8021/30',
-            'slug' => 'dazmol-philips-dst8021/30',
+            'slug' => 'dazmol-philips-dst8021-30',
             'price' => 1300000,
             'description' => "3000 W quvvatga ega dazmol tezda ish haroratiga yetib, kiyimlarni 
                 parvarish qilishni deyarli darhol boshlash imkonini beradi. 55 g/min gacha bo‘lgan 
@@ -813,7 +827,7 @@ class ProductSeeder extends Seeder
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $LgBrand->id,
             'name' => "Mikroto'lqinli Pech LG MS2042DB",
-            'slug' => "mikroto'lqinli-pech-lg-ms2042db",
+            'slug' => "mikrotolqinli-pech-lg-ms2042db",
             'price' => 1325000,
             'description' => "LG MS2042DB mikroto'lqinli pech oshxonadagi eng ishonchli yordamchidir. 
                 Ovqat tayyorlash jarayonini tezlashtiring va osonlashtiring. Тugmali va sensorli kalitlar 
