@@ -95,9 +95,31 @@ class ProductImageSeeder extends Seeder
 
     public function run(): void 
     {
-        foreach ($this->images as $slug =>$files) 
+        foreach ($this->images as $slug => $imageFiles) 
         {
-            
+            $product = Product::where('slug', $slug)->first();
+
+            if (!$product) {
+                $this->command->warn("Product not found: {$slug}" );
+                continue;
+            }
+
+            $product->productImage()->delete();
+
+            foreach ($imageFiles as $index => $fileName) {
+                $path = "product_images/{$fileName}";
+
+                if (!Storage::disk('public')->exists($path)) {
+                    $this->command->warn("Product image file missing: {$path}");
+                    continue;
+                } 
+
+                $product->productImage()->create([
+                    'image_path' => $path,
+                    'is_primary' => ($index === 0),
+                    'sort_order' => $index,
+                ]);
+            }
         }
     }
 }
