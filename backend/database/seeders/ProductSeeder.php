@@ -35,6 +35,7 @@ class ProductSeeder extends Seeder
 
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
         $toshibaBrand = Brand::where('slug', 'toshiba')->first();
+        $acCat = Category::where('slug', 'air-conditioner')->first();
 
         $SmallAppliancesCat = Category::where('slug', 'uy-uchun-kichik-texnika')->first();
         $BraunBrand = Brand::where('slug', 'braun')->first();
@@ -561,7 +562,7 @@ class ProductSeeder extends Seeder
         $lgColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $lgAC = Product::create([
-            'category_id' => $washingMachineCat->id,
+            'category_id' => $acCat->id,
             'brand_id' => $LgBrand->id,
             'name' => 'LG B18TS Konditsioneri',
             'slug' => 'lg-b18ts-konditsioneri',
