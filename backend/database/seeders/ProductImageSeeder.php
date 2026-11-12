@@ -19,12 +19,27 @@ class ProductImageSeeder extends Seeder
             'redmi-15c-midnight-black-sides.png',
             'redmi-15c-midnight-black-top-bottom.png',
         ],
-        'samsung-galaxy-a55' => [
+        'samsung-galaxy-a56-5g' => [
             'samsung-galaxy-a56-5g-black-main.png',
             'samsung-galaxy-a56-5g-black-front.png',
             'samsung-galaxy-a56-5g-black-back.png',
         ],
-        'apple-iphone-16' => [
+        'apple-iphone-16-pro' => [
+            'iphone-16-pro.png',
+            'iphone-16-pro-front.png',
+            'iphone-16-pro-back-and-side.png',
+        ],
+        'apple-iphone-17-pro-12-256gb' => [
+            'iphone-16-pro.png',
+            'iphone-16-pro-front.png',
+            'iphone-16-pro-back-and-side.png',
+        ],
+        'apple-iphone-18-pro-12-256gb' => [
+            'iphone-18-pro.png',
+            'iphone-18-pro-front.png',
+            'iphone-18-pro-back-and-side.png',
+        ],
+        'apple-iphone-18-pro-12-512gb' => [
             'iphone-18-pro.png',
             'iphone-18-pro-front.png',
             'iphone-18-pro-back-and-side.png',
