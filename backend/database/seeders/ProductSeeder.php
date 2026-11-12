@@ -224,6 +224,30 @@ class ProductSeeder extends Seeder
             $colorBlue->id,
         ]);
 
+        // iPhone 18 Pro
+        $iphone18Pro = Product::create([
+            'category_id' => $smartphonesCat->id,
+            'brand_id' => $appleBrand->id,
+            'name' => 'Apple iPhone 18 Pro 12/256 GB',
+            'slug' => 'apple-iphone-18-pro-12-256',
+            'price' => 19000000,
+            'description' => ' ',
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $iphone18Pro->id,
+            'name' => '12/256 Black',
+            'sku' => 'APL-IP17-12-256-BLK',
+            'price' => 19000000,
+            'stock' => 50,
+        ]);
+
+        $iphone18Pro->attributeValue()->attach([
+            $ram12->id,
+            $storage512->id,
+            $colorBlack->id,
+        ]);
+
 
         // Creating laptop product
         $asus = Product::Create([
