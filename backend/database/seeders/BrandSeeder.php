@@ -11,7 +11,7 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = ['Samsung', 'LG', 'Apple', 'Xiaomi', 'Artel', 'Honor', 'Bosch', 
-                'Philips', 'Asus', 'HP', 'Toshiba', 'Braun', 'Tefal', 'Polaris'];
+                'Philips', 'Asus', 'HP', 'Toshiba', 'Hisense', 'Braun', 'Tefal', 'Polaris'];
 
         foreach ($brands as $name) {
             Brand::create([

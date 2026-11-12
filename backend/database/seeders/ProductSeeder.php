@@ -36,6 +36,7 @@ class ProductSeeder extends Seeder
 
         $washingMachineCat = Category::where('slug', 'kir-yuvish-mashinalari')->first();
         $toshibaBrand = Brand::where('slug', 'toshiba')->first();
+        $hisenseBrand = Brand::where('slug', 'hisense')->first();
         $acCat = Category::where('slug', 'air-conditioner')->first();
 
         $SmallAppliancesCat = Category::where('slug', 'uy-uchun-kichik-texnika')->first();
@@ -43,6 +44,9 @@ class ProductSeeder extends Seeder
         $PhilipsBrand = Brand::where('slug', 'philips')->first();
         $TefalBrand = Brand::where('slug', 'tefal')->first();
         $PolarisBrand = Brand::where('slug', 'polaris')->first();
+
+        $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
+        $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '4K')->first();
 
         $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
         $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
@@ -336,9 +340,6 @@ class ProductSeeder extends Seeder
 
 
         // TVs. SAMSUNG TV
-        $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
-        $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '4K')->first();
-        
         $samsungTV = Product::create([
             'category_id' => $tvsCat->id,
             'brand_id' => $SamsungBrand->id,
@@ -367,6 +368,7 @@ class ProductSeeder extends Seeder
             $screen55->id,
             $res4k->id
         ]);
+
 
         // ARTEL TV
         $screen32 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '32')->first();
@@ -400,6 +402,7 @@ class ProductSeeder extends Seeder
             $screen32->id,
             $resFHD->id
         ]);
+
 
         // LG TV
         $screen65 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '65')->first();
@@ -642,9 +645,35 @@ class ProductSeeder extends Seeder
 
         $toshibaWashingMachine->attributeValue()->attach([
             $toshibaCap->id,
-            $toshibaColor->id
+            $toshibaColor->id,
         ]);
 
+
+        // Hisense Washing Machine
+        $hisenseCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '7 kg')->first();
+        $hisenseColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
+
+        $hisenseWashingMachine = Product::create([
+            'category_id' => $washingMachineCat->id,
+            'brand_id' => $hisenseBrand->id,
+            'name' => 'Kir yuvish mashinasi Hisense WFQP7012EVM',
+            'slug' => 'kir-yuvish-mashinasi-hisense-wfqp7012evm',
+            'price' => 4950000,
+            'description' => ' ',
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $hisenseWashingMachine->id,
+            'name' => 'Washing Machine Hisense WFQP7012EVM',
+            'sku' => 'HIS-WFQP7012EVM-7KG-WHT',
+            'price' => 4500000,
+            'stock' => 20
+        ]);
+
+        $hisenseWashingMachine->attributeValue()->attach([
+            $hisenseCap->id,
+            $hisenseColor->id,
+        ]);
 
         // AIR CONDITIONER LG B18TS
         $lgAcCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ac-capacity'))->where('value', '18000 BTU')->first();
