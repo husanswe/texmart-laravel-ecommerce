@@ -205,7 +205,7 @@ class ProductSeeder extends Seeder
             'category_id' => $smartphonesCat->id,
             'brand_id' => $appleBrand->id,
             'name' => 'Apple iPhone 17 Pro 12/256 GB',
-            'slug' => 'apple-iphone-17-pro-12-256',
+            'slug' => 'apple-iphone-17-pro-12-256gb',
             'price' => 18000000,
             'description' => ' ',
         ]);
@@ -220,29 +220,53 @@ class ProductSeeder extends Seeder
 
         $iphone17Pro->attributeValue()->attach([
             $ram12->id,
-            $storage512->id,
+            $storage256->id,
             $colorBlue->id,
         ]);
 
         // iPhone 18 Pro
-        $iphone18Pro = Product::create([
+        $iphone18Pro256 = Product::create([
             'category_id' => $smartphonesCat->id,
             'brand_id' => $appleBrand->id,
             'name' => 'Apple iPhone 18 Pro 12/256 GB',
-            'slug' => 'apple-iphone-18-pro-12-256',
+            'slug' => 'apple-iphone-18-pro-12-256gb',
             'price' => 19000000,
             'description' => ' ',
         ]);
 
         ProductVariant::create([
-            'product_id' => $iphone18Pro->id,
+            'product_id' => $iphone18Pro256->id,
             'name' => '12/256 Black',
-            'sku' => 'APL-IP17-12-256-BLK',
+            'sku' => 'APL-IP18-12-256-BLK',
             'price' => 19000000,
             'stock' => 50,
         ]);
 
-        $iphone18Pro->attributeValue()->attach([
+
+        $iphone18Pro256->attributeValue()->attach([
+            $ram12->id,
+            $storage512->id,
+            $colorBlack->id,
+        ]);
+
+        $iphone18Pro512 = Product::create([
+            'category_id' => $smartphonesCat->id,
+            'brand_id' => $appleBrand->id,
+            'name' => 'Apple iPhone 18 Pro 12/512 GB',
+            'slug' => 'apple-iphone-18-pro-12-512gb',
+            'price' => 25000000,
+            'description' => ' ',
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $iphone18Pro512->id,
+            'name' => '12/512 Black',
+            'sku' => 'APL-IP18-12-512-BLK',
+            'price' => 25000000,
+            'stock' => 50,
+        ]);
+
+        $iphone18Pro512->attributeValue()->attach([
             $ram12->id,
             $storage512->id,
             $colorBlack->id,
