@@ -8,6 +8,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\AttributeValue;
+use App\Models\Category;
 
 
 class ProductController extends Controller
@@ -22,10 +23,11 @@ class ProductController extends Controller
 
         $query->when($request->filled('category'), function ($q) use ($request) {
             $categories = (array) $request->category;
-            $q->where(function ($sub) use ($categories) {
-                $sub->whereIn('category_id', $categories)
-                    ->orWhereHas('category', fn($catQ) => $catQ->whereIn('slug', $categories));
-            });
+
+            $parentIds = Category::whereIn('slug', $categories)->pluck('id');
+            $childIds = Category::whereIn('parent_id', $parentIds)->pluck('id');
+
+            $q->whereIn('category_id', $parentIds->merge($childIds));
         });
 
         $query->when($request->filled('brand'), function ($q) use ($request) {
@@ -41,7 +43,7 @@ class ProductController extends Controller
         });
 
         $query->when($request->boolean('in_stock'), function ($q) {
-            $q->whereHas('variants', function ($variantQuery) {
+            $q->whereHas('productVariant', function ($variantQuery) {
                 $variantQuery->where('stock', '>', 0);
             });
         });
