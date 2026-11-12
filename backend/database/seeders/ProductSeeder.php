@@ -22,7 +22,8 @@ class ProductSeeder extends Seeder
         $SamsungBrand = Brand::where('slug', 'samsung')->first();
 
         $appleBrand = Brand::where('slug', 'apple')->first();
-        $ram8phone = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
+        $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
+        $ram12 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '12')->first();
         $storage128 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '128')->first();
         $colorWhite = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
         
@@ -43,11 +44,16 @@ class ProductSeeder extends Seeder
         $TefalBrand = Brand::where('slug', 'tefal')->first();
         $PolarisBrand = Brand::where('slug', 'polaris')->first();
 
+        $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
+        $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
+        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Silver')->first();
+        $hpBrand = Brand::where('slug', 'hp')->first();
+
 
         // Fetching attribute values i'll attach
-        $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
         $storage256 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '256')->first();
         $colorBlack = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
+        $colorBlue = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Blue')->first();
         
         // Creating product - Phone
         $redmi = Product::create([
@@ -140,51 +146,86 @@ class ProductSeeder extends Seeder
             $colorBlack->id,
         ]);
 
-        $iphone16 = Product::create([
+        // iPhones
+        $iphone16Pro = Product::create([
             'category_id' => $smartphonesCat->id,
             'brand_id' => $appleBrand->id,
-            'name' => 'Apple iPhone 16',
-            'slug' => 'apple-iphone-16',
+            'name' => 'Apple iPhone 16 Pro 8/128 GB',
+            'slug' => 'apple-iphone-16-pro',
             'price' => 14999000,
-            'description' => 'Apple iPhone 16 — eng yangi Apple smartfoni.',
+            'description' => 'iPhone 16 Pro – siz ko‘proq yutuqlarga erishishingiz uchun yaratilgan qurilmadir. Texnologiya sohasidagi eng so‘nggi kashfiyotlar va puxta ishlab chiqilgan dizayn uning peshqadamligini ta’minlaydi.
+            Apple Intelligence 
+            Intelligence’ning eng yangi versiyasi bilan smartfoningiz nafaqat noyob vositaga, balki ishonchli hamkoriga aylanadi. Tizim kundalik vazifalarni yengillashtirish, ularni soddalashtirish va shu bilan birga ma’lumotlar himoyasini kafolatlash uchun mo‘ljallangan. Ma’lumotlarning maxfiyligini ta’minlash maqsadida har bir jarayon bevosita qurilmada ishlov beriladi, bu esa ma’lumotlarning chiqib ketish xavfini istisno qiladi. Endi telefoningiz sizni yanada yaxshiroq tushunadi va sizning xohish-istaklaringizga asoslangan yechimlarni taklif qiladi.
+            Xavfsizlik
+            Maxfiylik tushunchasi yangi Private Cloud Compute bilan qayta ko‘rib chiqildi. Serverlar yordamida ma’lumotlarga ishlov berish maxfiylikka murosasiz resurs talab qiladigan vazifalarni bajarish imkonini beradi. Xavfsizlik va samaradorlikning bunday noyob uyg‘unligi hatto eng murakkab vazifalarni ham hal qilish imkonini beradi.
+            Kameralar
+            48 MP Fusion va avtofokusli ultra keng obyektivni o‘z ichiga olgan qudratli ikki kamerali tizim tufayli tasvirlaringiz yangi darajaga yetadi. Apple Vision orqali fazoviy 3D ko‘rinishga tayyor fotosuratlar yarating, shuningdek, eng mayda tafsilotlarni aks ettirish uchun makrosyomka bilan tajriba o‘tkazing. Camera Control yordamida kamera sozlamalari yanada oson va qulay bo‘ladi, bu esa professional darajadagi suratlarni tez va oson olish imkonini beradi.
+            Mukammal ovoz
+            Ovoz vizual kontentdan qolishmaydi, shuning uchun qurilma Audio Mix funksiyasi bilan jihozlangan. U ortiqcha fonni olib tashlab, kerakli lahzalarda ovoz yoki urg‘ularni kuchaytirish orqali videoni sozlash imkonini beradi. Makoniy ovoz va sun’iy intellekt har bir rolikni to‘laqonli kinoga aylantiradi.
+            Unumdorlik
+            Kuchli A18Pro protsessori asosiy markazga aylandi. U olti yadroli arxitektura bilan jihozlangan bo‘lib, ikkita yuqori unumli va to‘rtta energiya tejamkor yadrodan iborat, bu esa mukammal quvvat muvozanatini ta’minlaydi. Shuningdek, olti yadroli A18GPU grafik chipi ham mavjud bo‘lib, u vizual samaradorlikni yangi bosqichga ko‘taradi hamda o‘yinlar va videolardan maksimal aniqlik va ravonlik bilan zavqlanish imkonini beradi.
+            Xotira
+            8 GB operativ xotiraga ega bo‘lib, ko‘p vazifalarni tez va ravon bajarishni ta’minlaydi, shuningdek 128 GB ichki xotira turli xil fayllar uchun yetarli joy beradi.
+            Energiya sig‘imi
+            3355 mA⋅soat sig‘imli akkumulyator uzoq vaqt mustaqil ishlash uchun moslashtirilgan. Energiya samaradorligi va tizimning optimallashtirish tufayli qurilma zaryadlanmasdan 27 soatgacha video kontent ko‘rsatish qobiliyatiga ega.',
         ]);
 
         ProductVariant::create([
-            'product_id' => $iphone16->id,
+            'product_id' => $iphone16Pro->id,
             'name' => '8/128 White',
             'sku' => 'APL-IP16-8-128-WHT',
             'price' => 14999000,
-            'stock' => 8,
+            'stock' => 20,
         ]);
 
         ProductVariant::create([
-            'product_id' => $iphone16->id,
+            'product_id' => $iphone16Pro->id,
             'name' => '8/256 Black',
             'sku' => 'APL-IP16-8-256-BLK',
             'price' => 16999000,
-            'stock' => 6,
+            'stock' => 20,
         ]);
 
         ProductImage::create([
-            'product_id' => $iphone16->id,
+            'product_id' => $iphone16Pro->id,
             'image_path' => 'products/iphone-16-main.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
-        $iphone16->attributeValue()->attach([
-            $ram8phone->id,
+        $iphone16Pro->attributeValue()->attach([
+            $ram8->id,
             $storage128->id,
             $colorWhite->id,
         ]);
 
 
-        // Laptop product creating
-        $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
-        $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
-        $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Silver')->first();
-        $hpBrand = Brand::where('slug', 'hp')->first();
+        // iPhone 17 Pro
+        $iphone17Pro = Product::create([
+            'category_id' => $smartphonesCat->id,
+            'brand_id' => $appleBrand->id,
+            'name' => 'Apple iPhone 17 Pro 12/256 GB',
+            'slug' => 'apple-iphone-17-pro-12-256',
+            'price' => 18000000,
+            'description' => ' ',
+        ]);
 
+        ProductVariant::create([
+            'product_id' => $iphone17Pro->id,
+            'name' => '12/256 Deep Blue',
+            'sku' => 'APL-IP17-12-256-DBL',
+            'price' => 18000000,
+            'stock' => 50,
+        ]);
+
+        $iphone17Pro->attributeValue()->attach([
+            $ram12->id,
+            $storage512->id,
+            $colorBlue->id,
+        ]);
+
+
+        // Creating laptop product
         $asus = Product::Create([
             'category_id' => $laptopsCat->id,
             'brand_id' => $asusBrand->id,
