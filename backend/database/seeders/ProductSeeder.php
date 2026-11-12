@@ -58,7 +58,8 @@ class ProductSeeder extends Seeder
         $storage256 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '256')->first();
         $colorBlack = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
         $colorBlue = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Blue')->first();
-        
+        $colorRed = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Red')->first();
+
         // Creating product - Phone
         $redmi = Product::create([
             'category_id' => $smartphonesCat->id,
@@ -250,7 +251,7 @@ class ProductSeeder extends Seeder
 
 
         // Creating laptop product
-        $asus = Product::Create([
+        $asus = Product::create([
             'category_id' => $laptopsCat->id,
             'brand_id' => $asusBrand->id,
             'name' => 'Asus VivoBook 15',
@@ -431,7 +432,7 @@ class ProductSeeder extends Seeder
 
 
         // Sovutgich ARTEL HD 430 RWENE
-        $artelCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '322 L')->first();
+        $artelCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '330 L')->first();
         $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
 
         $artelFridge = Product::create([
@@ -590,7 +591,7 @@ class ProductSeeder extends Seeder
             'product_id' => $lgAC->id,
             'name' => 'Air Conditioner LG B18TS White',
             'sku' => 'LG-AC-B18TS-WT',
-            'price' => 4500000,
+            'price' => 12000000,
             'stock' => 20
         ]);
 
@@ -609,7 +610,7 @@ class ProductSeeder extends Seeder
             'brand_id' => $SamsungBrand->id,
             'name' => 'Samsung AR09TXHQASINUA Konditsioneri',
             'slug' => 'samsung-ar09txhqasinua-konditsioneri',
-            'price' => 3050000,
+            'price' => 3070000,
             'description' => "Samsung AR09TXHQASINUA – 25 kvadrat metrgacha bo'lgan 
                 xonalarda qulay iqlim yaratish uchun ideal echimdir."
         ]);
@@ -724,14 +725,14 @@ class ProductSeeder extends Seeder
 
         // Vacuum Cleaner 
         $SamsungVacuumPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
-        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Dark Blue')->first();
+        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Red')->first();
         
         $SamsungVacuum = Product::create([
             'category_id' => $SmallAppliancesCat->id,
             'brand_id' => $SamsungBrand->id,
             'name' => 'Chang Yutgich Samsung VC20M255BWB/UZ',
             'slug' => 'chang-yutgich-samsung-vc20m255bwb-uz',
-            'price' => 1600000,
+            'price' => 1300000,
             'description' => "Samsung VC20M255BWB/UZ changyutgichi uy, xonadon yoki ofisda samarali 
                 quruq tozalash uchun mo‘ljallangan. 2000 Vt energiya sarfi qurilmaning barqaror ishlashini 
                 ta’minlaydi, 460 Vt so‘rish quvvati esa gilam, pol va boshqa yuzalardagi chang, 
@@ -750,7 +751,8 @@ class ProductSeeder extends Seeder
 
         $SamsungVacuum->attributeValue()->attach([
             $SamsungVacuumPower->id,
-            $samsungColor->id
+            $samsungColor->id,
+            $colorRed->id,
         ]);
 
 

@@ -145,7 +145,7 @@ class AttributeSeeder extends Seeder
             'unit' => null
         ]);
 
-        foreach (['Black', 'White', 'Blue', 'Silver', 'Stainless Steel', 'Purple', 'Dark Blue'] as $value) {
+        foreach (['Black', 'White', 'Blue', 'Silver', 'Stainless Steel', 'Purple', 'Dark Blue', 'Red'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $color->id,
                 'value' => $value
