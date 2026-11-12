@@ -77,20 +77,6 @@ class ProductSeeder extends Seeder
             'stock' => 20,
         ]);
 
-        ProductImage::create([
-            'product_id' => $redmi->id,
-            'image_path' => 'products/redmi-15c-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $redmi->id,
-            'image_path' => 'products/redmi-15c-side.png',
-            'is_primary' => true,
-            'sort_order' => 1,
-        ]);
-
         // 4. Attaching attribute values via pivot
         $redmi->attributeValue()->attach([
             $ram8->id,
@@ -137,13 +123,6 @@ class ProductSeeder extends Seeder
             'stock' => 12,
         ]);
 
-        ProductImage::create([
-            'product_id' => $galaxyA56->id,
-            'image_path' => 'products/samsung-galaxy-a56-5g-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $galaxyA56->attributeValue()->attach([
             $ram8->id,
             $storage256->id,
@@ -188,13 +167,6 @@ class ProductSeeder extends Seeder
             'sku' => 'APL-IP16-8-256-BLK',
             'price' => 16999000,
             'stock' => 20,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $iphone16Pro->id,
-            'image_path' => 'products/iphone-16-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $iphone16Pro->attributeValue()->attach([
@@ -246,12 +218,12 @@ class ProductSeeder extends Seeder
             'stock' => 50,
         ]);
 
-
         $iphone18Pro256->attributeValue()->attach([
             $ram12->id,
             $storage512->id,
             $colorBlack->id,
         ]);
+
 
         $iphone18Pro512 = Product::create([
             'category_id' => $smartphonesCat->id,
@@ -295,18 +267,12 @@ class ProductSeeder extends Seeder
             'stock' => 10,
         ]);
 
-        ProductImage::create([
-            'product_id' => $asus->id,
-            'image_path' => 'products/asus-vivobook-15-main.png',
-            'is_primary' => true,
-            'sort_order' => 0
-        ]);
-
         $asus->attributeValue()->attach([
             $ram16->id,
             $storage512->id,
             $colorSilver->id
         ]);
+
 
         $hpPavilion = Product::create([
             'category_id' => $laptopsCat->id,
@@ -323,13 +289,6 @@ class ProductSeeder extends Seeder
             'sku' => 'HP-PAV15-16-512-SLV',
             'price' => 7499000,
             'stock' => 15,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $hpPavilion->id,
-            'image_path' => 'products/hp-pavilion-15-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $hpPavilion->attributeValue()->attach([
@@ -355,13 +314,6 @@ class ProductSeeder extends Seeder
             'sku' => 'SAM-TV-55-4K-BLK',
             'price' => 5999000,
             'stock' => 18
-        ]);
-
-        ProductImage::create([
-            'product_id' => $samsungTV->id,
-            'image_path' => 'products/samsung-55-tv-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $samsungTV->attributeValue()->attach([
@@ -391,13 +343,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $artelTV->id,
-            'image_path' => 'products/artel-32-tv-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $artelTV->attributeValue()->attach([
             $screen32->id,
             $resFHD->id
@@ -423,13 +368,6 @@ class ProductSeeder extends Seeder
             'sku' => 'LG-TV-65-8K-BLK',
             'price' => 28000000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $lgTV->id,
-            'image_path' => 'products/lg-65-tv-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $lgTV->attributeValue()->attach([
@@ -458,13 +396,6 @@ class ProductSeeder extends Seeder
             'price' => 18500000,
             'stock' => 12
         ]);
-
-        ProductImage::create([
-        'product_id' => $boschFridge->id,
-        'image_path' => 'products/bosch-serie-6-fridge-main.png',
-        'is_primary' => true,
-        'sort_order' => 0,
-        ]);
         
         $boschFridge->attributeValue()->attach([
             $boschCap->id,
@@ -491,13 +422,6 @@ class ProductSeeder extends Seeder
             'sku' => 'SAMSUNG-FRIDGE-322L',
             'price' => 7800000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-        'product_id' => $samsungFridge->id,
-        'image_path' => 'products/samsung-rt32faajbdsa-322l-fridge-main.png',
-        'is_primary' => true,
-        'sort_order' => 0,
         ]);
         
         $samsungFridge->attributeValue()->attach([
@@ -528,13 +452,6 @@ class ProductSeeder extends Seeder
             'price' => 7600000,
             'stock' => 20
         ]);
-
-        ProductImage::create([
-            'product_id' => $artelFridge->id,
-            'image_path' => 'products/artel-hd-430-rwene-fridge-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
         
         $artelFridge->attributeValue()->attach([
             $artelCap->id,
@@ -562,13 +479,6 @@ class ProductSeeder extends Seeder
             'sku' => 'WASHING-MACHINE-LG-F2V3PS6W',
             'price' => 6000000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $lgWashingMachine->id,
-            'image_path' => 'products/lg-f2v3ps6w-washing-machine-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $lgWashingMachine->attributeValue()->attach([
@@ -600,13 +510,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $samsungWashingMachine->id,
-            'image_path' => 'products/samsung-ww70ag4s21veld-washing-machine-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $samsungWashingMachine->attributeValue()->attach([
             $samsungCap->id,
             $samsungColor->id
@@ -634,13 +537,6 @@ class ProductSeeder extends Seeder
             'sku' => 'WASHING-MACHINE-TOSHIBA-TW-BL80A2UZ(WK)',
             'price' => 4500000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $toshibaWashingMachine->id,
-            'image_path' => 'products/toshiba-tw-bl80a2uz(wk)-washing-machine-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $toshibaWashingMachine->attributeValue()->attach([
@@ -698,13 +594,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $lgAC->id,
-            'image_path' => 'products/lg-b18ts-konditsioneri-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $lgAC->attributeValue()->attach([
             $lgAcCap->id,
             $lgColor->id
@@ -731,13 +620,6 @@ class ProductSeeder extends Seeder
             'sku' => 'SMSNG-AC-AR09TXHQASINUA-WT',
             'price' => 3070000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $samsungAC->id,
-            'image_path' => 'products/samsung-ar09txhqasinua-konditsioneri-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $samsungAC->attributeValue()->attach([
@@ -771,13 +653,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $artelAC->id,
-            'image_path' => 'products/artel-12hs-s-sir1w12be-konditsioneri-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $artelAC->attributeValue()->attach([
             $artelAcCap->id,
             $artelColor->id
@@ -807,13 +682,6 @@ class ProductSeeder extends Seeder
             'sku' => 'BRAUN-FI3194-IRON',
             'price' => 700000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $BraunIron->id,
-            'image_path' => 'products/dazmol-braun-fi3194bk-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $BraunIron->attributeValue()->attach([
@@ -848,13 +716,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $PhilipsIron->id,
-            'image_path' => 'products/dazmol-philips-dst8021-30-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $PhilipsIron->attributeValue()->attach([
             $PhilipsIronPower->id,
             $PhilipsColor->id
@@ -887,13 +748,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $SamsungVacuum->id,
-            'image_path' => 'products/chang-yutgich-samsung-vc20m255bwb-uz-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $SamsungVacuum->attributeValue()->attach([
             $SamsungVacuumPower->id,
             $samsungColor->id
@@ -923,13 +777,6 @@ class ProductSeeder extends Seeder
             'sku' => 'LG-VC73189NHTS-VACUUM',
             'price' => 1700000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $LgVacuum->id,
-            'image_path' => 'products/chang-yutgich-lg-vc73189nhts-main.png',
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $LgVacuum->attributeValue()->attach([
@@ -968,13 +815,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $LgMicrowave->id,
-            'image_path' => "products/mikroto'lqinli-pech-lg-ms2042db-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $LgMicrowave->attributeValue()->attach([
             $LgMicrowavePower->id,
             $LgMicrowaveCap->id
@@ -1009,13 +849,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $SamsungMicrowave->id,
-            'image_path' => "products/mikroto'lqinli-pech-lg-ms2042db-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $SamsungMicrowave->attributeValue()->attach([
             $SamsungMicrowavePower->id,
             $SamsungMicrowaveCap->id
@@ -1048,13 +881,6 @@ class ProductSeeder extends Seeder
             'sku' => 'TEFAL-KO693110-KETTLE',
             'price' => 1300000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $TefalKettle->id,
-            'image_path' => "products/elektr-choynak-tefal-ko693110-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $TefalKettle->attributeValue()->attach([
@@ -1093,13 +919,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $BraunKettle->id,
-            'image_path' => "products/elektr-choynak-braun-wk5205bk-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $BraunKettle->attributeValue()->attach([
             $BraunKettlePower->id,
             $BraunKettleCap->id
@@ -1131,13 +950,6 @@ class ProductSeeder extends Seeder
             'stock' => 20
         ]);
 
-        ProductImage::create([
-            'product_id' => $PolarisDryer->id,
-            'image_path' => "products/hair-dryer-polaris-phd-2289ac-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
-        ]);
-
         $PolarisDryer->attributeValue()->attach([
             $PolarisDryerPower->id,
             $PolarisDryerColor->id
@@ -1166,13 +978,6 @@ class ProductSeeder extends Seeder
             'sku' => 'PHILIPS-HPS920-HAIRDRYER',
             'price' => 2000000,
             'stock' => 20
-        ]);
-
-        ProductImage::create([
-            'product_id' => $PhilipsDryer->id,
-            'image_path' => "products/hair-dryer-philips-hps920-00-main.png",
-            'is_primary' => true,
-            'sort_order' => 0,
         ]);
 
         $PhilipsDryer->attributeValue()->attach([
