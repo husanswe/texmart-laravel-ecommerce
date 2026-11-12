@@ -74,6 +74,11 @@ class ProductImageSeeder extends Seeder
             'washing-machine-toshiba-TW-BL80A2UZ(WK)-front.png',
             'washing-machine-toshiba-TW-BL80A2UZ(WK)-side.png',
         ],
+        'kir-yuvish-mashinasi-hisense-wfqp7012evm' => [
+            'hisense-WFQP7012EVM-washing-machine-display.png',
+            'hisense-WFQP7012EVM-washing-machine-front.png',
+            'hisense-WFQP7012EVM-washing-machine-door-open.png',
+        ],
         'lg-b18ts-konditsioneri' => [
             'lg-b18ts-ac-front.png',
             'lg-b18ts-ac-top.png',
