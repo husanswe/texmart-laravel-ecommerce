@@ -606,7 +606,7 @@ class ProductSeeder extends Seeder
         $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
 
         $samsungAC = Product::create([
-            'category_id' => $washingMachineCat->id,
+            'category_id' => $acCat->id,
             'brand_id' => $SamsungBrand->id,
             'name' => 'Samsung AR09TXHQASINUA Konditsioneri',
             'slug' => 'samsung-ar09txhqasinua-konditsioneri',
@@ -634,7 +634,7 @@ class ProductSeeder extends Seeder
         $artelColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
         
         $artelAC = Product::create([
-            'category_id' => $washingMachineCat->id,
+            'category_id' => $acCat->id,
             'brand_id' => $artelBrand->id,
             'name' => 'Artel 12HS S SIR1W12BE Konditsioneri',
             'slug' => 'artel-12hs-s-sir1w12be-konditsioneri',
