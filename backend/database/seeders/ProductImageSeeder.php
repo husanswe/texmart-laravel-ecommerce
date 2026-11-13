@@ -84,8 +84,8 @@ class ProductImageSeeder extends Seeder
             'samsung-fridge-RT32FAJBDSA-322l-door-open.png',
         ],
         'sovutgich-artel-hd-430-rwene' => [
-            'Fridge-ARTEL-HD-430-RWENE-main.png',
             'Fridge-ARTEL-HD-430-RWENE-front.png',
+            'Fridge-ARTEL-HD-430-RWENE-main.png',
             'Fridge-ARTEL-HD-430-RWENE-door-open.png',
         ],
 

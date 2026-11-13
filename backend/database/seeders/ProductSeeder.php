@@ -725,7 +725,6 @@ class ProductSeeder extends Seeder
 
         // Vacuum Cleaner 
         $SamsungVacuumPower = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'power'))->where('value', '2000 W')->first();
-        $samsungColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Red')->first();
         
         $SamsungVacuum = Product::create([
             'category_id' => $SmallAppliancesCat->id,
@@ -751,7 +750,6 @@ class ProductSeeder extends Seeder
 
         $SamsungVacuum->attributeValue()->attach([
             $SamsungVacuumPower->id,
-            $samsungColor->id,
             $colorRed->id,
         ]);
 
