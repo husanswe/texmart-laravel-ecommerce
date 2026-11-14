@@ -67,7 +67,16 @@ class ProductSeeder extends Seeder
             'name' => 'Xiaomi Redmi 15C',
             'slug' => 'xiaomi-redmi-15c',
             'price' => 2399000,
-            'description' => 'Xiaomi Redmi 15C - arzon narxdagi smartfon.'
+            'description' => "Xiaomi Redmi 15C (8/256 GB) — Xiaomi HyperOS 2 (Android 15 asosida) operatsion tizimida ishlovchi, 
+                zamonaviy va yuqori avtonomlikka ega smartfon. Qurilma 120 Hz yangilanish tezligi, 810 nit yorqinlik va Wet Touch Technology 2.0 
+                texnologiyasiga ega keng 6.9 dyuymli HD+ (1600 × 720) IPS LCD ekran bilan jihozlangan.
+                Unumdorlik uchun 8 yadroli MediaTek Helio G81-Ultra protsessori va Mali-G52 MC2 grafik tezlatkichi javob beradi. 
+                8 GB LPDDR4X tezkor xotira (virtual xotira hisobiga 16 GB gacha kengaytirish mumkin) hamda 256 GB ichki xotira 
+                (microSD orqali 1 TB gacha kengaytiriladi) tizim va ilovalarning tezkor ishlashini ta'minlaydi. 50 MP asosiy kamera va 
+                8 MP old kamera Full HD (1080p@30fps) sifatida video yozib olish imkonini beradi.
+                Smartfon 33 Vt tezkor quvvatlash va 10 Vt teskari quvvatlash (reverse charging) funksiyalarini qo'llab-quvvatlovchi 
+                6000 mA/s sig'imli katta akkumulyatorga ega. Korpus IP64 standarti bo'yicha chang va suv sachrashidan himoyalangan bo'lib, 
+                yon tarafdagi barmoq izi skaneri, NFC, Bluetooth 5.4, 3.5 mm audio raz'em hamda Dual SIM uyasi bilan to'ldirilgan.",
         ]);
 
         ProductVariant::create([
@@ -184,7 +193,18 @@ class ProductSeeder extends Seeder
             'name' => 'Apple iPhone 17 Pro 12/256 GB',
             'slug' => 'apple-iphone-17-pro-12-256gb',
             'price' => 18000000,
-            'description' => ' ',
+            'description' => 'iPhone 17 Pro - yangi texnologiyalar avlodiga qadam
+                Apple o‘zining yetakchiligini iPhone 17 Pro - nafis dizayn, yuqori unumdorlik va aqlli yechimlar uyg‘unligini taqdim etish orqali tasdiqlamoqda. Alyuminiy va toblangan shishadan tayyorlangan mustahkam korpus nafaqat ishonchlilikni, balki premium ko‘rinishni ham ta’minlaydi. 206 gramm og‘irlik qurilmani kundalik foydalanish uchun yengil va qulay qiladi, yangi iOS 26 esa moslashtirish va ekotizimga integratsiya qilishning qo‘shimcha imkoniyatlarini ochadi. Bunday smartfon ham ish, ham ijod uchun ajoyib tanlov bo‘lib, maqomi va amaliyligini saqlab qoladi.
+                Super Retina XDR ekrani - tasvir sehri
+                Yangi 6,3 dyuymli panel o‘zining to‘yinganligi va batafsilligi bilan hayratda qoldiradi. 2622x1206 piksellar o‘lchami 460 PPI zichligida eng kichik tafsilotlarni ham ko‘rish imkonini beradi va 120 Gs yangilanish chastotasi animatsiyani iloji boricha ravon ko‘rsatadi. Tomonlar nisbati 19.5:9 filmlar va o‘yinlarni tomosha qilishda kinematografik effekt yaratadi. Bundan tashqari, sirtni tirnalish va tushishdan himoya qiluvchi Ceramic Shield 2 ishlatiladi. Yorug‘likni avtomatik sozlash har qanday yorug‘lik sharoitida tasvirning tabiiyligini saqlab qoladi.
+                A19 Pro protsessor quvvati
+                Qurilma 3 nm texnologik jarayonda yaratilgan eng yangi A19 chipi asosida ishlaydi. Yuqori energiya samaradorligi va olti yadroli arxitektura foydalanuvchining har qanday harakatiga darhol javob berishni osonlashtiradi. 12 GB tezkor xotira tufayli ko‘p resurs talab qiladigan ilovalar bilan ishlash va bir vaqtning o‘zida bir nechta jarayonlarni muammosiz bajarish mumkin. Ichki 256 GB xotira filmlar, musiqa va o‘yinlar to‘plami uchun yetarli. Xotira kartasi uchun slot mavjud emas, bu iCloud bulutli xizmati bilan integratsiya va ma’lumotlar xavfsizligiga urg‘u beradi.
+                Avtonomlik va tezkor quvvatlash
+                4252 mA/soat sig‘imli batareya kun davomida ishonchli ishlashni kafolatlaydi. Smartfon hatto intensiv ishlatilganda ham barqaror avtonomlik ko‘rsatkichlarini namoyish etadi. Tezlashtirilgan quvvatlashni qo‘llab-quvvatlash energiya zaxirasini minimal vaqt ichida to‘ldirish imkonini beradi, bu ayniqsa yo‘lda yoki ishbilarmonlik uchrashuvlari paytida juda muhimdir. USB Type-C ulagichi ulanish jarayonini universal va ko‘plab aksessuarlar bilan moslashtiradi. Shu tufayli gadjet har qanday ssenariyda - ishdan sayohatgacha dolzarb bo‘lib qoladi.
+                Kommunikatsiya va multimedia
+                Gadjet zamonaviy aloqa standartlarini qo‘llab-quvvatlaydi: LTE va 5G barqaror ulanish va yuqori ma’lumot uzatish tezligini ta’minlaydi. Simsiz ulanish uchun yangi avlod Wi-Fi va Bluetooth 6.0 mavjud. NFCga kirish xavfsiz to‘lovlarni amalga oshirish imkonini beradi va USB Type-C ulagichining mavjudligi simli quloqchinlar yoki tashqi xotiralardan foydalanish imkonini beradi. Bunday kombinatsiya modelni ko‘ngilochar, ishbilarmonlik qo‘ng‘iroqlari va onlayn muloqot uchun universal qiladi.
+                Himoya va ishonchlilik
+                IP68 ning suv va changdan himoyalanganlik darajasi qurilmaning turli sharoitlarda saqlanishiga yordam beradi. Gadjet funksiyalar ishlashiga zarar yetkazmagan holda namlik va chang bilan aloqaga bardosh beradi. Apple muhandislari kompaniya egasi har qanday sharoitda o‘zini ishonchli his qilishi uchun har bir detalni puxta o‘ylab chiqishgan. 17 Pro shunchaki vosita emas, balki dizayn, unumdorlik va qulaylikni yagona yechimda mujassamlashtirgan ishonchli hamrohga aylanmoqda.',
         ]);
 
         ProductVariant::create([
@@ -208,7 +228,16 @@ class ProductSeeder extends Seeder
             'name' => 'Apple iPhone 18 Pro 12/256 GB',
             'slug' => 'apple-iphone-18-pro-12-256gb',
             'price' => 19000000,
-            'description' => ' ',
+            'description' => 'Diqqatni tortadigan displey
+                Apple iPhone 18 Pro 6,3 dyuymli Super Retina XDR ekrani bilan jihozlangan bölib, uning ölçami 2622x1206 va ziçligi 460 PPI. Har bir detal aniq körinadi, ranglar esa jonli va tabiiy tarzda beriladi. 120 Gs yangilaniş çastotasi tasmalarni aylantiriş, ilovalararo ötiş va öyin sahnalarini hayratlanarli darajada ravon qiladi. Ceramic Shield 2 şişasi yuzani tirnaliş va tasodifiy zarbalardan işonçli himoya qiladi, şuning uçun smartfon özining asl körinişini uzoqroq vaqt saqlaydi.
+                Yangi avlod protsessori
+                Qurilmaning yuragi 2 nanometrli texnologik jarayon asosida yaratilgan A20 Pro çipidir. Oltita yadro oğir öyinlarni, video montajni va bir vaqtning özida köplab dasturlarni keçikişlarsiz va qizib ketmasdan boşqaradi. 12 GB operativ xotira vazifalar örtasida tezkor almaşişni ta’minlaydi, 256 GB xotira esa minglab rasmlar, videolar, musiqa va sevimli ilovalarni öz içiga oladi. IOS 27 operatsion tizimi buni tezkor, puxta öylangan va xavfsiz muhit bilan töldiradi.
+                Yorqin kadrlar uçun kameralar
+                Har bir moduli 48 MP aniqlik darajasiga ega bölgan uçta asosiy kamera keng kölamli manzaralar, portretlar va detallarni yuqori aniqlik bilan yirik planda suratga oliş imkonini beradi. Suratlar hatto past yoruğlikda ham aniq çiqadi, video esa professional darajada körinadi. 18 megapikselli old kamera ajoyib selfilarni yaratadi va qarindoşlar, döstlar, hamkasblar bilan video qönğiroqlar paytida sifatli tasvirni ta’minlaydi.
+                Avtonomlik va tez quvvatlaş
+                4056 mA·soat siğimli akkumulyator kun davomida işonçli işlaşni ta’minlaydi: yozişmalar, navigatsiya, suratlar, strimlar. Quvvat tugagaç, USB Type-C ulagiçi orqali tezkor quvvatlaş funksiyasi qisqa vaqt içida quvvatni qaytaradi. Xuddi şu port quloqçinlar, taşqi xotira qurilmalari va boşqa periferiyalar uçun mos keladi, şuning uçun ortiqça ötkazgiçlar endi kerak bölmaydi.
+                Aloqa, himoya va zamonaviy dizayn
+                5G, LTE, Wi-Fi va Bluetooth 6.0 qöllab-quvvatlaşi barqaror aloqa va tezkor ma’lumot uzatişni ta’minlaydi. NFC moduli kontaktsiz tölovga yöl oçadi, eSIM esa tariflarni, şu jumladan jismoniy nano-SIM bilan işlaşni moslaşuvçan boşqariş imkonini beradi. Alyuminiy va qora rangli şişadan yasalgan korpusning oğirligi 211 gramm bölib, u jiddiy va olijanob körinişga ega, IP68 himoya darajasi esa smartfonni kundalik hayotda suv va çangdan himoya qiladi.',
         ]);
 
         ProductVariant::create([
@@ -232,7 +261,11 @@ class ProductSeeder extends Seeder
             'name' => 'Apple iPhone 18 Pro 12/512 GB',
             'slug' => 'apple-iphone-18-pro-12-512gb',
             'price' => 25000000,
-            'description' => ' ',
+            'description' => 'Dizayn va ishonchlilik. Apple iPhone 18 Pro 12/512GB Black — nafis tashqi ko‘rinish, zamonaviy texnologiyalar va keng funksional imkoniyatlarni o‘zida mujassamlashtirgan premium smartfon. To‘yingan qora rang modelga salobat bag‘ishlab, brendga xos ixcham bezaklarning jozibadorligini ta’kidlaydi. Alyuminiy qismlar hamda shisha yuzalarning uyg‘unligi mustahkam tuzilmani shakllantirib, kundalik foydalanishda yoqimli taktil hissiyotlarni ta’minlaydi. Klassik shakl muvozanatli o‘lchamlari bilan ajralib turadi, shu sababli suhbatlashish, internet sahifalarini ko‘rish yoki videomateriallarni tomosha qilish paytida qurilma kaftda qulay joylashadi. 211 gramm og‘irlik konstruksiyaning puxtaligini aks ettirib, ishlatish davomida komfortni saqlaydi. IP68 himoya standarti belgilangan sinov sharoitlarida ichki komponentlarni chang va suv kirishidan muhofaza qilishni nazarda tutadi. Bunday ijro uzoq xizmat qiladigan mobil texnikani afzal ko‘ruvchi faol insonlar uchun muhim ustunlik hisoblanadi.
+                Displey va vizual taassurotlar. Zamonaviy 6,3 dyuymli Super Retina XDR ekrani yorqin rang uzatish, ajoyib kontrast va grafik kontentni batafsil aks ettirish imkonini beradi. 2622×1206 pikselli aniqlik tasvirdagi eng kichik elementlarni ham farqlashga yordam beradi, 460 PPI ko‘rsatkichi esa namoyish etilayotgan ma’lumotlarning nihoyatda tiniq bo‘lishiga xizmat qiladi. 19,5:9 formatidagi panel kitob o‘qish, filmlar tomosha qilish, suratlarni tahrirlash hamda veb-resurslardan foydalanish uchun qulay sharoit yaratadi. 120 Gts yangilanish chastotasi interfeys bo‘ylab harakatlanishni ravonlashtirib, animatsiyalarga tabiiylik, dinamik o‘yin sahnalariga esa qo‘shimcha ta’sirchanlik bag‘ishlaydi. Maxsus Ceramic Shield 2 qoplamasi old yuzaning odatiy ishlatish jarayonida yuzaga keladigan mexanik shikastlanishlarga chidamliligini oshiradi. Ushbu xususiyatlar majmuasi ko‘ngilochar mashg‘ulotlar, ijodkorlik va kasbiy faoliyat uchun mukammal vizual muhitni shakllantiradi.
+                Kamera va suratga olish imkoniyatlari. Takomillashtirilgan fotografiya majmuasi har biri 48 MP aniqlikka ega uchta asosiy kameradan tashkil topgan bo‘lib, sifatli vizual materiallar yaratish uchun keng imkoniyatlar ochadi. Yuqori darajadagi detallash teksturalarning nozik jihatlarini, ifodali rang o‘tishlarini va atrofdagi obyektlarning mayda xususiyatlarini aniq yetkazishga yordam beradi. Ko‘p modulli konfiguratsiya portret kompozitsiyalari, tabiat manzaralari, shahar me’morchiligi hamda unutilmas voqealarni tasvirga olish kabi turli fotografik vaziyatlarga moslashtirilgan. Zamonaviy kadrlarni qayta ishlash texnologiyalari ranglarning to‘g‘ri aks etishiga va fotosuratlarning tabiiy ko‘rinishini saqlashga ko‘maklashadi. 18 MP old kamera jozibali selfilar, masofaviy muloqot, onlayn uchrashuvlar va raqamli platformalar uchun videomateriallar tayyorlashga mos keladi. Ijodiy funksiyalarning xilma-xilligi mazkur telefonni sayohatchilar, blogerlar hamda mobil fotografiya ixlosmandlari uchun jozibador vositaga aylantiradi.
+                Unumdorlik va ma’lumotlarni saqlash. Hisoblash jarayonlari uchun ilg‘or 2 nanometrli texnologik jarayon asosida ishlab chiqarilgan olti yadroli A20 Pro protsessori javob beradi. Yuqori samaradorlikka ega platforma murakkab operatsiyalarni tezkor bajarish, tizim resurslarini oqilona boshqarish va energiya sarfini optimallashtirishga mo‘ljallangan. 12 GB tezkor xotira bir vaqtning o‘zida bir nechta vazifani bajarish, dasturlar o‘rtasida tez almashish hamda talabchan ilovalarning barqaror ishlashini ta’minlaydi. 512 GB ichki xotira keng fotoarxivlar, videoroliklar to‘plamlari, hujjatlar, musiqiy kutubxonalar va zamonaviy o‘yinlarni joylashtirish imkonini beradi. Konstruksiyada qo‘shimcha microSD karta uyasi mavjud emas. iOS 27 operatsion tizimi tushunarli navigatsiya, moslashuvchan sozlamalar, foydali raqamli vositalar va Apple ekotizimidagi mos mahsulotlar bilan uyg‘un ishlash imkoniyatlarini taklif etadi. Bunday apparat konfiguratsiyasi intensiv foydalanishda yuqori tezlik, amaliylik va barqarorlikni qadrlaydigan insonlarga mos keladi.
+                Avtonom ishlash, aloqa va qo‘shimcha funksiyalar. Quvvat manbai sifatida 4056 mA·soat sig‘imli litiy-ion akkumulyator xizmat qilib, mobil qurilmaning asosiy komponentlarini energiya bilan ta’minlaydi. Hisoblash jarayonlarining oqilona tashkil etilishi mavjud zaryaddan tejamkor foydalanishga yordam beradi. Tezkor quvvatlash funksiyasi batareya zaxirasini qisqa muddatda tiklashga ko‘maklashib, elektr manbaiga ulanish davomiyligini kamaytiradi. Universal USB Type-C porti mos simli aksessuarlar, audioqurilmalar va zaryadlash kabellarini ulash uchun ishlatiladi. 5G va LTE standartlari zamonaviy uyali tarmoqlarga bog‘lanish, axborot almashish, striming kontentini tomosha qilish hamda internet xizmatlaridan foydalanish imkoniyatini yaratadi. Bluetooth 6.0 texnologiyasi garnituralar, akustik tizimlar va boshqa elektron jihozlar bilan simsiz bog‘lanishni ta’minlaydi. Wi-Fi tarmoqqa ulanish imkoniyatlarini kengaytiradi, NFC esa mos kontaktsiz xizmatlardan foydalanishga mo‘ljallangan. nano-SIM va eSIM qo‘llab-quvvatlanishi mobil operatorlarga ulanishning qo‘shimcha variantlarini taqdim etadi. Qora rangdagi Apple iPhone 18 Pro xizmat safarlari, kundalik yumushlar, sayohatlar va ijodiy loyihalarda munosib hamroh bo‘ladi.',
         ]);
 
         ProductVariant::create([
@@ -257,7 +290,20 @@ class ProductSeeder extends Seeder
             'name' => 'Asus VivoBook 15',
             'slug' => 'asus-vivobook-15',
             'price' => 8999000,
-            'description' => 'Asus VivoBook 15 - zamonaviy noutbuk.'
+            'description' => "Asus VivoBook 15 ASUS Vivobook 15 - bu barcha turdagi vazifalar va o'yin-kulgilar uchun mos keladigan eng yangi gadjet. 
+                Unda chastotasi 1,3 dan 4,4 gigagertsgacha bo'lgan Intel Core i5-1235U chipi va Intel Iris Xe grafik kartasi mavjud bo'lib, 
+                u ko'p vazifali rejimda ham haddan tashqari quvvat va tezkor ishlashni ta'minlaydi.
+                1920x1080 o‘lchamli 15,6 dyuymli diagonali displey va IPS matritsasi keng ko‘rish 
+                burchaklariga ega yorqin va aniq tasvirni taqdim etadi, bu esa qulay ishlash imkonini 
+                beradi. Ekranni yangilash tezligi 60 Gts ni tashkil qiladi, bu video va o'yinlarning 
+                muammosiz ijro etilishini ta'minlaydi.
+                M.2 NVMe PCIe 3.0 SSD-da 8 Gb tezkor xotira va 512 Gb ROM bilan ushbu qurilma barcha 
+                fayllar va ilovalaringiz uchun juda ko'p saqlash joyini ta'minlaydi. Dinamiklarning 
+                mavjudligi yuqori sifatli ovozdan bahramand bo'lish imkonini beradi va 720p HD veb-kamera 
+                ushbu qurilmani videokonferentsiya va onlayn muloqot uchun ideal qiladi.
+                Wi-Fi5 va Bluetooth 5.1-ni qo'llab-quvvatlash tezkor va uzluksiz internetni taqdim etadi. 
+                42 Vt akkumulyator sig‘imi uzoq vaqt davomida qayta zaryadlanmasdan ishlash imkonini beradi, 
+                zaryadlovchi esa paketga kiritilgan bo‘lib, qulaylik va harakatchanlik beradi."
         ]);
 
         ProductVariant::Create([
@@ -281,7 +327,14 @@ class ProductSeeder extends Seeder
             'name' => 'HP Pavilion 15',
             'slug' => 'hp-pavilion-15',
             'price' => 7499000,
-            'description' => 'HP Pavilion 15 — ishbilarmon va talabalar uchun ideal noutbuk.',
+            'description' => 'Pavilion HP 15 noutbugi yuqori mahsuldorligi va ixchamligi bilan farq 
+                qiladi, bu harakatlanishning to’liq erkinligini saqlagan holda, yanada samarali ishlash imkonini beradi.
+                Bir qadam oldinda bo’lish imkonini beruvchi mahsuldorlik. Premium sinf AMD protsessori tufayli 
+                har qanday vazifalarni bajarishga yordam beruvchi noutbuk.
+                DDR4 xotira — bu TX (OZU) ning kelajagi. U yuqori mahsuldorligi, ishonchliligi va 
+                ishlash tezligi bilan farq qiladi.
+                Ingichka hoshiyalari tufayli ko’rish sohasining kattalashtirilishi ekranda ko’proq 
+                ma’lumot aks ettirish imkonini beradi.',
         ]);
 
         ProductVariant::create([
@@ -303,18 +356,28 @@ class ProductSeeder extends Seeder
         $samsungTV = Product::create([
             'category_id' => $tvsCat->id,
             'brand_id' => $SamsungBrand->id,
-            'name' => "Samsung 55 4K",
-            'slug' => 'samsung-55-4k',
-            'price' => 5999000,
-            'description' => 'Samsung 55 dyumli 4K Ultra HD Smart televizor.' 
+            'name' => "Samsung S95H 4K 55 dyum",
+            'slug' => 'samsung-s95h-4k-55',
+            'price' => 20000000,
+            'description' => "Samsung S95H 55 dyuymli 4K televizori — o'ta yupqa Infinity One dizayniga ega, zamonaviy QD-OLED panelli flagman model. 
+                3840 × 2160 (4K Ultra HD) o'lchamli ekran UL Solutions tomonidan tasdiqlangan Glare Free mat qoplamasi va VDE sertifikatiga ega 
+                'Real Black' chuqur qora rang texnologiyasi bilan jihozlangan bo'lib, yorug' xonalarda ham shu'lasiz va tiniq tasvirni ta'minlaydi.
+                Tasvirni qayta ishlash uchun NQ4 AI Gen3 sun'iy intellekt protsessori javob beradi — u 4K AI Upscaling Pro, Auto HDR 
+                Remastering Pro, Real Depth Enhancer hamda Vision AI Companion funksiyalarini qo'llab-quvvatlaydi. OLED HDR Pro texnologiyasi 
+                HDR10, HDR10+ va HLG formatlari bilan birgalikda yuqori yorqinlik va boy kontrastni taqdim etadi. Geymerlar uchun 165 Hz 
+                yangilanish tezligi (Motion Xcelerator 165Hz), 4 ta HDMI 2.1 porti, AMD FreeSync Premium Pro va NVIDIA G-SYNC texnologiyalari ko'zda tutilgan.
+                Ovoz tizimi 70 Vt quvvatga ega 4.2.2 kanalli dinamiklardan iborat bo'lib, Dolby Atmos, Object Tracking Sound+ (OTS+), 
+                AI Sound Pro va Q-Symphony texnologiyalari orqali hajmli va tiniq audioni yaratadi. Televizor Tizen OS operatsion tizimida ishlaydi, 
+                minglab san'at asarlarini namoyish etuvchi Art Mode / Art Store rejimiga ega va quyosh nuridan quvvatlanuvchi 
+                SolarCell Remote pulti bilan birga keladi" 
         ]);
 
         ProductVariant::create([
             'product_id' => $samsungTV->id,
-            'name' => '55" Black',
-            'sku' => 'SAM-TV-55-4K-BLK',
-            'price' => 5999000,
-            'stock' => 18
+            'name' => '55 inch Black',
+            'sku' => 'SAM-TV-S95H-4K-55-BLK',
+            'price' => 20000000,
+            'stock' => 50
         ]);
 
         $samsungTV->attributeValue()->attach([
@@ -330,17 +393,37 @@ class ProductSeeder extends Seeder
         $artelTV = Product::create([
             'category_id' => $tvsCat->id,
             'brand_id' => $artelBrand->id,
-            'name' => 'Artel 32 Full HD',
-            'slug' => 'artel-32-full-hd',
-            'price' => 1550000,
-            'description' => 'Hamyonbop sifatli SMART televizor'
+            'name' => 'Artel UA43H3502 Smart Televizori',
+            'slug' => 'artel-ua43h6502-smart-tv',
+            'price' => 3850000,
+            'description' => "Televizor Artel UA43H3502 Smart — funksional imkoniyatlar, zamonaviy dizayn va 
+                yuqori tasvir sifati bilan ajralib turadigan ko‘p qirrali multimedia qurilmasidir. Model 43 
+                dyuymli (109 sm) UHD 4K displey (3840×2160 piksel) bilan jihozlangan bo‘lib, u aniq va batafsil 
+                tasvirni ta’minlaydi. IPS matritsa tufayli ranglar tabiiy ko‘rinadi va har qanday burchakda 
+                yorqinlik yo‘qolmaydi. 60 Gts yangilanish tezligi tasvirlarni silliq va yoqimli qiladi. 16:9 
+                formatdagi ekran filmlar va videolarni tomosha qilish uchun qulay, shovqinni kamaytirish 
+                texnologiyasi esa tasvirni yanada tiniqlashtiradi.
+                Qurilma Android platformasi asosida ishlaydi, bu esa uni to‘liq funksiyali ko‘ngilochar markazga 
+                aylantiradi. YouTube, Netflix, Megogo kabi mashhur servislar va boshqa ilovalardan foydalanish mumkin. 
+                Smart TV funksiyasi orqali tashqi qurilmalarsiz to‘g‘ridan-to‘g‘ri kontentni ishga tushirish imkoniyati 
+                mavjud. Qurilma kengaytirilgan interfeyslar bilan ta’minlangan: 2 ta HDMI port (2.0 versiya), 2 ta USB 2.0, 
+                LAN (RJ-45) kirish va 3.5 mm naushnik uchun chiqish. Bularning barchasi televizorni har tomonlama qulay qiladi.
+                Modelda analog (PAL/SECAM) va raqamli televideniya (DVB-T/T2, DVB-C, DVB-S/S2) standartlarini 
+                qo‘llab-quvvatlaydigan ichki tyunerlar mavjud. Qurilma H.264, MPEG4, MP3 formatlarini va USB orqali 
+                fayllarni ijro etishni qo‘llab-quvvatlaydi. Bu esa kino, musiqalar yoki rasmlarni fleshka yoki tashqi 
+                diskdan to‘g‘ridan-to‘g‘ri tomosha qilish imkonini beradi. Bu xususiyat oflayn kontentni yoqtiradigan 
+                foydalanuvchilar uchun juda foydalidir. 2×10 Vt quvvatga ega ovoz tizimi Dolby Digital texnologiyasi 
+                orqali boy va tiniq tovushni ta’minlaydi. Qurilmani stol ustiga qo‘yish yoki devorga VESA kronshteyni 
+                yordamida osib o‘rnatish mumkin. Televizor O‘zbekistonda ishlab chiqarilgan, bu esa texnologik imkoniyatlar, 
+                ishonchlilik va maqbul narxning muvozanatini kafolatlaydi. Artel UA43H3502 Smart — oilaviy foydalanish uchun 
+                qulay, tasvir sifati yuqori va zamonaviy funksiyalarga ega televizor izlayotganlar uchun ideal tanlovdir."
         ]);
 
         ProductVariant::create([
             'product_id' => $artelTV->id,
-            'name' => '32" Black',
-            'sku' => 'ARTL-TV-32-FHD-BLK',
-            'price' => 1550000,
+            'name' => '32 inch Black',
+            'sku' => 'ART-UA43H3502',
+            'price' => 3850000,
             'stock' => 20
         ]);
 
@@ -357,16 +440,26 @@ class ProductSeeder extends Seeder
         $lgTV = Product::create([
             'category_id' => $tvsCat->id,
             'brand_id' => $LgBrand->id,
-            'name' => 'LG TV 65 8K',
-            'slug' => 'lg-tv-65-8k',
+            'name' => 'LG NANO96 65 dyumli 8K Televizor',
+            'slug' => 'lg-tv-nano96-65-inch-8k',
             'price' => 28000000,
-            'description' => '8K LG SMART TV'
+            'description' => "LG NANO96 65 dyuymli 8K NanoCell televizori — o'ta yuqori 7680 × 4320 (8K Ultra HD) 
+                o'lchamli IPS matritsa va to'liq matritsali yoritish (Full Array Dimming) tizimiga ega zamonaviy model. 
+                Nano Color texnologiyasi hamda 10 bitli rang palitrasi milliardlab tabiiy va tiniq ranglarni aks ettiradi.
+                Tasvirni qayta ishlash uchun 4-avlod α9 8K intellektual protsessori javob beradi — u AI 8K Upscaling, 
+                AI Picture Pro 8K, Ultra Luminance Pro hamda Cinema HDR (Dolby Vision IQ, HDR10 Pro, HLG) texnologiyalarini 
+                qo'llab-quvvatlaydi. FILMMAKER™ rejimi filmlarni rejissyor o'ylagan asl ko'rinishda tomosha qilish imkonini 
+                beradi, o'yinlar uchun esa ALLM va HGiG rejimlari ko'zda tutilgan.
+                40 Vt quvvatga ega 2.2 kanalli audio tizim (ikkita 10 Vt sabvufer bilan) Dolby Atmos®, AI Sound Pro, 
+                Ultra Surround va Clear Voice Pro texnologiyalari orqali chuqur va hajmli ovozni ta'minlaydi. Televizor 
+                webOS 6.0 Smart TV platformasida ishlaydi, LG ThinQ AI, Apple AirPlay 2 va Apple HomeKit tizimlarini 
+                qo'llab-quvvatlaydi hamda qulay Magic Remote pulti bilan jihozlangan."
         ]);
 
         ProductVariant::create([
             'product_id' => $lgTV->id,
-            'name' => '65" Black',
-            'sku' => 'LG-TV-65-8K-BLK',
+            'name' => '65 inch Black',
+            'sku' => 'LG-TV-NANO96-65-8K-BLK',
             'price' => 28000000,
             'stock' => 20
         ]);
@@ -378,7 +471,7 @@ class ProductSeeder extends Seeder
 
 
         //  FRIDGES.Bosch Fridge
-        $boschCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '505 L')->first();
+        $boschCap = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'capacity'))->where('value', '574 L')->first();
         $boschColor = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Stainless Steel')->first();
         
         $boschFridge = Product::create([
@@ -387,13 +480,25 @@ class ProductSeeder extends Seeder
             'name' => 'Bosch Serie 6 French Door Fridge',
             'slug' => 'bosch-serie-6-french-door-fridge',
             'price' => 18500000,
-            'description' => 'Bosch Serie 6 NoFrost French Door Refrigerator with VitaFresh Pro'
+            'description' => "Bosch Serie 6 KFD96APEA – French Door uslubidagi, to‘rt eshikli, 
+                katta hajmli sovutgich. Umumiy hajmi 574 litr: sovutish kamerasi 375 litr, muzlatgich 
+                kamerasi 199 litr. Katta oilalar va ko‘p mahsulot saqlaydiganlar uchun ideal tanlov.\n\nNoFrost 
+                texnologiyasi tufayli sovutgichni hech qachon qo‘lda eritish kerak bo‘lmaydi: kamerada 
+                muz qatlami hosil bo‘lmaydi. VitaFresh XXL tortmalari 0°C ga yaqin haroratda go‘sht, 
+                baliq, meva va sabzavotlarni uzoq vaqt yangi va vitaminlarga boy holda saqlaydi.\n\nZanglamas 
+                po‘latdan yasalgan eshiklar barmoq izi qolmaydigan qoplamaga ega, shuning uchun 
+                sovutgich doim toza va zamonaviy ko‘rinadi. Eshik ochiq qolsa yoki harorat ko‘tarilsa, 
+                qurilma ovozli va yorug‘lik signali beradi.\n\nTexnik xususiyatlari:\n• Umumiy hajm: 
+                574 L\n• Sovutish kamerasi: 375 L\n• Muzlatgich kamerasi: 199 L\n• Muzlatish quvvati: 
+                sutkasiga 16 kg gacha\n• Muzlatgich tortmalari: 6 ta shaffof tortma\n• Shovqin darajasi: 
+                39 dB\n• Energiya samaradorligi sinfi: E\n• O‘lchamlari (B×E×Ch): 1830 × 905 × 731 mm\n• 
+                Og‘irligi: 138 kg\n• Rangi: zanglamas po‘lat."
         ]);
 
         ProductVariant::create([
             'product_id' => $boschFridge->id,
             'name' => '505L Stainless Steel',
-            'sku' => 'BOSCH-FRIDGE-505L-SS',
+            'sku' => 'BOSCH-FRIDGE-574L-SS',
             'price' => 18500000,
             'stock' => 12
         ]);
@@ -414,7 +519,16 @@ class ProductSeeder extends Seeder
             'name' => 'Samsung RT32FAJBDSA 322L Sovutgichi',
             'slug' => 'samsung-rt32fajbdsa-322l-sovutgichi',
             'price' => 7800000,
-            'description' => 'Yuqori muzlatish kamerasiga ega xushbichim model'
+            'description' => "Samsung RT32FAJBDSA – yuqori muzlatgichli, kumush rangli ikki kamerali 
+                sovutgich. Umumiy foydali hajmi 322 litr: sovutish kamerasi 250 litr, muzlatgich kamerasi 
+                72 litr. Kichik va o‘rta oilalar uchun qulay tanlov.\n\nQurilmada Samsung Digital Inverter 
+                kompressori o‘rnatilgan: u ishlash rejimini yuklamaga qarab moslashtiradi, shu sababli kam 
+                elektr energiyasi sarflaydi, jim ishlaydi va uzoq xizmat qiladi. Kompressorga 10 yillik 
+                kafolat beriladi.\n\nMoistFresh zonasi meva va sabzavotlar uchun maqbul namlikni saqlaydi, 
+                shuning uchun mahsulotlar uzoq vaqt yangiligicha qoladi.\n\nTexnik xususiyatlari:\n• 
+                Foydali hajm: 322 L (umumiy hajm 333 L)\n• Sovutish kamerasi: 250 L\n• Muzlatgich kamerasi: 
+                72 L\n• O‘lchamlari (E×B×Ch): 600 × 1710 × 719 mm\n• Og‘irligi: 58 kg\n• Kompressor: 
+                Digital Inverter\n• Rangi: kumush."
         ]);
 
         ProductVariant::create([
@@ -556,7 +670,14 @@ class ProductSeeder extends Seeder
             'name' => 'Kir yuvish mashinasi Hisense WFQP7012EVM',
             'slug' => 'kir-yuvish-mashinasi-hisense-wfqp7012evm',
             'price' => 4950000,
-            'description' => ' ',
+            'description' => 'Sig‘im va rejimlar
+                Hisense WFQP7012EVM kundalik kiyimlar, choyshablar va uy tekstilini muntazam parvarish qilish uchun mos keladi. 7 kg gacha yuklama bir siklda yetarlicha ko‘p buyumni yuvish imkonini beradi, bu bir necha kishilik oila uchun qulay. Old tomonda joylashgan lyuk barabanga odatiy tarzda kirishni ta’minlaydi, o‘rtacha suv sarfi esa 43 litrni tashkil etadi. Foydalanuvchi ixtiyorida 15 ta dastur mavjud bo‘lib, ular orasida patli buyumlar uchun alohida rejim ham bor. Yuvish samaradorligi A sinfiga mos keladi. Quritish funksiyasi mavjud emas, shu sababli jarayon tugagach kiyimlarni tabiiy usulda yoki alohida quritgich yordamida quritish kerak bo‘ladi.
+                Motor va siqish
+                Model Inverter PowerDrive invertor dvigateli bilan jihozlangan bo‘lib, mexanizmning silliq ishlashi va barabanning barqaror aylanishini ta’minlaydi. Siqish tezligi 1200 ayl/min gacha yetadi, bu matodagi namlikning katta qismini olib tashlashga yordam beradi. Ushbu bosqich samaradorligi B sinfiga kiradi. Maksimal shovqin darajasi 74 dB deb ko‘rsatilgan, shu sababli o‘rnatish joyini oldindan to‘g‘ri tanlash maqsadga muvofiq. Elektron boshqaruv paneli kerakli ssenariyni tez tanlash va parametrlarni murakkab sozlamalarsiz belgilash imkonini beradi.
+                Tejamkorlik va himoya
+                Energiya iste’moli A sinfiga mos bo‘lib, Hisense WFQP7012EVM’ni tez-tez foydalanish uchun amaliy variantga aylantiradi. Suv sizib chiqishidan himoya tizimi ta’minot bilan bog‘liq noxush holatlar xavfini kamaytiradi, bolalardan bloklash funksiyasi esa ish jarayonida sozlamalarning tasodifan o‘zgarishini oldini oladi. Ishga tushirilgandan keyin qo‘shimcha kiyim solish imkoniyati mavjud emas, shu sababli barcha buyumlarni oldindan joylashtirish tavsiya etiladi. Plastik bak namlikka chidamli va konstruksiyaning umumiy vaznini kamaytirishga yordam beradi.
+                O‘lcham va tashqi ko‘rinish
+                Korpus universal oq rangda ishlangan bo‘lib, vannaxona, oshxona yoki alohida kir yuvish hududi interyeriga oson mos tushadi. O‘lchamlari 59,5 × 84,5 × 45 sm, shu bois texnika nisbatan ixcham chuqurlikka ega va joy cheklangan xonalarga ham mos kelishi mumkin. Vazni 59 kg, bu to‘g‘ri o‘rnatilgandan so‘ng barqaror turishga yordam beradi. 7 kg yuklama, 15 ta rejim, 1200 ayl/min, invertor motor va himoya funksiyalari uyg‘unligi ushbu kir yuvish mashinasini kundalik parvarish uchun qulay yechimga aylantiradi.',
         ]);
 
         ProductVariant::create([
