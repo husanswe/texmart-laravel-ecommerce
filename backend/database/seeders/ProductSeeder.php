@@ -733,7 +733,21 @@ class ProductSeeder extends Seeder
             'slug' => 'samsung-ar09txhqasinua-konditsioneri',
             'price' => 3070000,
             'description' => "Samsung AR09TXHQASINUA – 25 kvadrat metrgacha bo'lgan 
-                xonalarda qulay iqlim yaratish uchun ideal echimdir."
+                xonalarda qulay iqlim yaratish uchun ideal yechimdir. Ishonchlilik va yuqori ishlashning 
+                kombinatsiyasi ushbu split tizimni har qanday interyerning ajralmas qismiga aylantiradi. 
+                O'zining lakonik dizayni bilan u har qanday xona uslubiga osongina mos keladi.
+                Ushbu konditsioner 9000BTU gacha sovutish quvvatiga ega, bu esa havoni tez va samarali 
+                sovutish imkonini beradi, shu bilan birga qulay yashash sharoitlarini yaratadi. 
+                Shamollatish va isitish rejimlarida ishlash qobiliyati uni yil davomida universal yechimga 
+                aylantiradi. Havo oqimining yo'nalishi nafaqat yuqoriga/pastga, balki chapga/o'ngga ham 
+                harakatlana oladigan, xona bo'ylab havoning bir xil taqsimlanishini ta'minlaydigan 
+                harakatlanuvchi jalyuzlar yordamida boshqariladi.
+                O'rnatilgan o'z-o'zini diagnostika tizimi nosozliklarni tezda aniqlash va bartaraf etish 
+                imkonini beradi, bu esa qurilmaning uzluksiz ishlashini ta'minlaydi. Avtomatik qayta ishga 
+                tushirish xususiyati split tizimga elektr ta'minoti vaqtincha o'chirilgandan so'ng oldingi 
+                sozlamalarni tiklash imkonini beradi, bu esa foydalanish qulayligini ta'minlaydi. 
+                Jim ishlash va uzoq xizmat muddati samarali va tejamkor ishlaydigan inverter dvigatelidan 
+                foydalanish orqali ta'minlanadi."
         ]);
 
         ProductVariant::create([
