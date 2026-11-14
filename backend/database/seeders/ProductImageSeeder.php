@@ -48,7 +48,6 @@ class ProductImageSeeder extends Seeder
         // LAPTOPS
         'asus-vivobook-15' => [
             'Asus-VivoBook-15-front.png',
-            'Asus-VivoBook-15-side.png',
             'Asus-VivoBook-15-back.png',
             'Asus-VivoBook-15-back-side.png',
             'Asus-VivoBook-15-top.png',
@@ -59,16 +58,16 @@ class ProductImageSeeder extends Seeder
         ],
 
         // TVs
-        'samsung-55-4k' => [
+        'samsung-s95h-4k-55' => [
             'samsung-tv-55-class-oled-s95h-4k-main.png',
             'samsung-tv-55-class-oled-s95h-4k-front.png',
             'samsung-tv-55-class-oled-s95h-4k-side.png',
         ],
-        'artel-32-full-hd' => [
+        'artel-ua43h6502-smart-tv' => [
             'Artel-A32KH5000-TV-front.png',
             'Artel-A32KH5000-TV-side.png',
         ],
-        'lg-tv-65-8k' => [
+        'lg-tv-nano96-65-inch-8k' => [
             'lg-tv-65-8k-front.png',
             'lg-tv-65-8k-back.png',
             'lg-tv-65-8k-side.png',
