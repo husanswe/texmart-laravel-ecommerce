@@ -11,7 +11,7 @@ export interface Category {
   slug: string
   name: string
   parentId: number | null
-  /** Lucide icon name, resolved by CategoryIcon.vue. */
+  /** Icon name as the API sends it (e.g. `washing-machine`), resolved to a Tabler icon by CategoryIcon.vue. */
   icon: string
   products_count?: number
   children?: Category[]
