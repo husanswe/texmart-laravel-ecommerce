@@ -104,3 +104,55 @@ export interface ProductQuery {
   page?: number
   perPage?: number
 }
+
+/* ── Cart & orders — shapes as the Laravel API returns them ─────────────── */
+
+/** One line of GET /cart, already joined to its variant, product and image. */
+export interface CartItem {
+  id: number
+  quantity: number
+  variant_id: number
+  product_id: number
+  name: string
+  variant_name: string | null
+  sku: string
+  slug: string
+  price: Money
+  line_total: Money
+  stock: number
+  image: string | null
+}
+
+export interface CartSummary {
+  items: CartItem[]
+  total: Money
+  cart_token: string | null
+}
+
+export type OrderStatus = 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'
+
+export interface OrderItem {
+  id: number
+  order_id: number
+  product_variant_id: number | null
+  product_name: string
+  sku: string
+  /** Price copied at purchase time — unaffected by later price changes. */
+  price_at_purchase: Money
+  quantity: number
+}
+
+export interface Order {
+  id: number
+  user_id: number | null
+  order_number: string
+  total_amount: Money
+  status: OrderStatus
+  payment_status: string
+  shipping_address: string
+  phone: string
+  created_at: string
+  updated_at: string
+  /** Present on GET /orders/{id}; Laravel serialises the relation in snake_case. */
+  order_items?: OrderItem[]
+}
