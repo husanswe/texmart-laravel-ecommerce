@@ -26,7 +26,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'GB'
         ]);
 
-        foreach (['4', '6', '8', '12', '16'] as $value) {
+        foreach (['4', '6', '8', '12', '16', '32'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $ram->id,
                 'value' => $value
@@ -43,7 +43,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'GB'
         ]);
 
-        foreach (['64', '128', '256', '512'] as $value) {
+        foreach (['64', '128', '256', '512', '1024', '2048'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $storage->id,
                 'value' => $value

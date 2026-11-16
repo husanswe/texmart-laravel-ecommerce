@@ -17,15 +17,25 @@ class ProductSeeder extends Seeder
         $smartphonesCat = Category::where('slug', 'smartfonlar')->first();
         $xiaomiBrand = Brand::where('slug', 'xiaomi')->first();
         $laptopsCat = Category::where('slug', 'noutbuklar')->first();
+        $macbookCat = Category::where('slug', 'noutbuklar')->first();
         $asusBrand = Brand::where('slug', 'asus')->first();
         $SamsungBrand = Brand::where('slug', 'samsung')->first();
 
         $appleBrand = Brand::where('slug', 'apple')->first();
         $ram8 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '8')->first();
         $ram12 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '12')->first();
+        $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
+        $ram24 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '24')->first();
+        $ram32 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '32')->first();
+        
         $storage128 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '128')->first();
+        $storage256 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '256')->first();
+        $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
+        $storage1024 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '1024')->first();
+        $hpBrand = Brand::where('slug', 'hp')->first();
         $colorWhite = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'White')->first();
         
+
         $tvsCat = Category::where('slug', 'televizorlar')->first();
         $artelBrand = Brand::where('slug', 'artel')->first();
         $LgBrand = Brand::where('slug', 'lg')->first();
@@ -47,14 +57,10 @@ class ProductSeeder extends Seeder
         $screen55 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'screen-size'))->where('value', '55')->first();
         $res4k = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'resolution'))->where('value', '4K')->first();
 
-        $ram16 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'ram'))->where('value', '16')->first();
-        $storage512 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '512')->first();
         $colorSilver = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Silver')->first();
-        $hpBrand = Brand::where('slug', 'hp')->first();
 
 
         // Fetching attribute values i'll attach
-        $storage256 = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'storage'))->where('value', '256')->first();
         $colorBlack = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Black')->first();
         $colorBlue = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Blue')->first();
         $colorRed = AttributeValue::whereHas('attribute', fn($q) => $q->where('slug', 'color'))->where('value', 'Red')->first();
@@ -350,6 +356,86 @@ class ProductSeeder extends Seeder
             $colorSilver->id,
         ]);
 
+
+        $macbookPro14M4 = Product::create([
+            'category_id' => $macbookCat->id,
+            'brand_id' => $appleBrand->id,
+            'name' => 'Apple Macbook Pro 14 M4 16/512 GB',
+            'slug' => 'apple-macbook-pro-14-m4-16-512-gb',
+            'price' => 25000000,
+            'description' => "Apple MacBook Pro 14 (M4, 32/512 GB) – professional ish, dasturlash, 
+                dizayn va video montaj uchun yaratilgan kuchli noutbuk. Apple M4 chipi 10 yadroli 
+                protsessor (4 ta unumdor va 6 ta tejamkor yadro), apparat darajasida ray tracing 
+                qo‘llab-quvvatlaydigan 10 yadroli grafik protsessor va 16 yadroli Neural Engine bilan 
+                jihozlangan.\n\ 16 GB LPDDR5X birlashtirilgan xotira (120 GB/s o‘tkazuvchanlik) bir 
+                vaqtning o‘zida ko‘plab og‘ir dasturlar bilan ishlash imkonini beradi, 512 GB SSD 
+                esa tizim va fayllarni tez yuklaydi. Faol sovutish tizimi (ventilyator) tufayli 
+                noutbuk uzoq vaqt yuqori yuklamada ham maksimal unumdorlikni saqlab qoladi.\n\n14,2 
+                dyuymli Liquid Retina XDR mini-LED displey 3024 × 1964 ruxsat, 120 Gts ProMotion 
+                yangilanish tezligi, 1000 nitgacha SDR va 1600 nitgacha HDR yorqinlikka ega. 2 tagacha 
+                tashqi monitorni (6K, 60 Gts gacha) ulash mumkin.\n\n12 MP Center Stage kamerasi 
+                Desk View rejimini qo‘llab-quvvatlaydi, studiya sifatidagi 3 ta mikrofon va Spatial 
+                Audio texnologiyali 6 dinamikli tizim video qo‘ng‘iroqlar va kontent tomosha qilish 
+                uchun a’lo darajadagi ovozni ta’minlaydi.\n\nTexnik xususiyatlari:\n• Chip: Apple M4 
+                (10 yadroli CPU, 10 yadroli GPU)\n• Operativ xotira: 32 GB\n• Doimiy xotira: 512 GB SSD\n• 
+                Displey: 14,2\", 3024 × 1964, 120 Gts, mini-LED\n• Portlar: 3 × Thunderbolt 4 (USB-C), HDMI 2.1, 
+                SDXC karta uyasi, 3,5 mm audio, MagSafe 3\n• Simsiz aloqa: Wi-Fi 6E, Bluetooth 5.3\n• Batareya: 
+                72,4 Vt·soat, 24 soatgacha video tomosha qilish\n• Zaryadlovchi: 70 Vt USB-C adapter\n• 
+                O‘lchamlari: 1,55 × 31,26 × 22,12 sm\n• Og‘irligi: 1,55 kg\n• Rangi: Space Black.",
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $macbookPro14M4->id,
+            'name' => '16/512 Black',
+            'sku' => 'APL-MBP14-M4-16-512-BLK',
+            'price' => 25000000,
+            'stock' => 20,
+        ]);
+
+        $macbookPro14M4->attributeValue()->attach([
+            $ram16->id,
+            $storage512->id,
+            $colorBlack->id,
+        ]);
+
+
+        $macbookPro14M5 = Product::create([
+            'category_id' => $macbookCat->id,
+            'brand_id' => $appleBrand->id,
+            'name' => 'Apple Macbook Pro 14 M5 24/1024 GB',
+            'slug' => 'apple-macbook-pro-14-m5-24-1024-gb',
+            'price' => 32000000,
+            'description' => "Apple MacBook Pro 14 (M5, 24/1024 GB) – yangi avlod Apple M5 chipi 
+                asosidagi professional noutbuk. 10 yadroli protsessor (4 ta super yadro va 6 ta 
+                tejamkor yadro) hamda har bir yadrosida Neural Accelerator o‘rnatilgan 10 yadroli 
+                grafik protsessor sun’iy intellekt vazifalari, dasturlash, dizayn va video montajda 
+                yuqori tezlikni ta’minlaydi.\n\n32 GB birlashtirilgan xotira ko‘plab og‘ir dasturlarni 
+                bir vaqtda muammosiz ishlatish imkonini beradi, 1 TB SSD esa loyihalar, videolar va 
+                fayllar uchun katta hajmdagi tezkor xotirani taqdim etadi.\n\n14,2 dyuymli Liquid 
+                Retina XDR displey 1600 nitgacha cho‘qqi va 1000 nitgacha barqaror yorqinlik hamda 
+                1 000 000:1 kontrastga ega. ProMotion texnologiyasi 120 Gts gacha silliq tasvirni 
+                ta’minlaydi. 2 tagacha tashqi monitorni ulash mumkin.\n\nBatareya 24 soatgacha ishlaydi, 
+                noutbuk esa quvvat manbaiga ulangan yoki ulanmaganidan qat’i nazar bir xil unumdorlikni 
+                saqlaydi.\n\nTexnik xususiyatlari:\n• Chip: Apple M5 (10 yadroli CPU, 10 yadroli GPU)\n• 
+                Operativ xotira: 32 GB\n• Doimiy xotira: 1 TB SSD\n• Displey: 14,2\" Liquid Retina XDR, 
+                120 Gts\n• Portlar: 3 × Thunderbolt 4, HDMI, SDXC karta uyasi, 3,5 mm audio, MagSafe 3\n• 
+                Batareya: 24 soatgacha\n• O‘lchamlari: 1,55 × 31,26 × 22,12 sm\n• Og‘irligi: 1,55 kg\n• 
+                Rangi: Silver.",
+        ]);
+
+        ProductVariant::create([
+            'product_id' => $macbookPro14M5->id,
+            'name' => '24/1024 Black',
+            'sku' => 'APL-MBP14-M5-24-1024-BLK',
+            'price' => 32000000,
+            'stock' => 20,
+        ]);
+
+        $macbookPro14M5->attributeValue()->attach([
+            $ram24->id,
+            $storage1024->id,
+            $colorSilver->id,
+        ]);
 
         // TVs. SAMSUNG TV
         $samsungTV = Product::create([
