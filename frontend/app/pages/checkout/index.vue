@@ -199,9 +199,22 @@ async function placeOrder() {
         <h2 class="mb-4 text-h3-m md:text-h3">Buyurtmangiz</h2>
 
         <ul class="divide-y divide-line">
-          <li v-for="item in items" :key="item.id" class="flex gap-3 py-3">
-            <div class="grid size-14 shrink-0 place-items-center overflow-hidden rounded-md bg-canvas">
-              <img v-if="item.image" :src="item.image" :alt="item.name" class="size-full object-contain" />
+          <li v-for="item in items" :key="item.id" class="flex items-center gap-3 py-3">
+            <!-- Thumbnail. The width/height attributes cap the image at 56px even
+                 if a utility class fails to apply; a grid here would let its
+                 auto track grow to the image's natural size (1000px). -->
+            <div
+              class="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-md bg-canvas"
+            >
+              <img
+                v-if="item.image"
+                :src="item.image"
+                :alt="item.name"
+                width="56"
+                height="56"
+                loading="lazy"
+                class="max-h-full max-w-full object-contain"
+              />
             </div>
             <div class="min-w-0 flex-1">
               <p class="truncate text-small font-medium text-ink-900">
