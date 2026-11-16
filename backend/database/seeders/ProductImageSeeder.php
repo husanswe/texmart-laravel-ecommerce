@@ -44,7 +44,7 @@ class ProductImageSeeder extends Seeder
             'iphone-18-pro-front.png',
             'iphone-18-pro-back-and-side.png',
         ],
-
+        
         // LAPTOPS
         'asus-vivobook-15' => [
             'Asus-VivoBook-15-front.png',
@@ -55,6 +55,18 @@ class ProductImageSeeder extends Seeder
         'hp-pavilion-15' => [
             'hp-pavilion-15-laptop-front.png',
             'hp-pavilion-15-back.png',
+        ],
+        'macbook-pro-14-m4-16-512_gb' => [
+            'macbook_pro_14_m4_16_512_gb_black_main.png',
+            'macbook_pro_14_m4_16_512_gb_black_closed.png',
+            'macbook_pro_14_m4_16_512_gb_black_top.png',
+            'macbook_pro_14_m4_16_512_gb_black_sides.png',
+        ],
+        'macbook-pro-14-m5-24-1024_gb' => [
+            'macbook-pro-14-m5-24-1024_gb_silver_main.png',
+            'macbook-pro-14-m5-24-1024_gb_silver_closed.png',
+            'macbook-pro-14-m5-24-1024_gb_silver_top.png',
+            'macbook-pro-14-m5-24-1024_gb_silver_side.png',
         ],
 
         // TVs
