@@ -361,7 +361,7 @@ class ProductSeeder extends Seeder
             'category_id' => $macbookCat->id,
             'brand_id' => $appleBrand->id,
             'name' => 'Apple Macbook Pro 14 M4 16/512 GB',
-            'slug' => 'apple-macbook-pro-14-m4-16-512-gb',
+            'slug' => 'macbook-pro-14-m4-16-512-gb',
             'price' => 25000000,
             'description' => "Apple MacBook Pro 14 (M4, 32/512 GB) – professional ish, dasturlash, 
                 dizayn va video montaj uchun yaratilgan kuchli noutbuk. Apple M4 chipi 10 yadroli 
@@ -403,7 +403,7 @@ class ProductSeeder extends Seeder
             'category_id' => $macbookCat->id,
             'brand_id' => $appleBrand->id,
             'name' => 'Apple Macbook Pro 14 M5 24/1024 GB',
-            'slug' => 'apple-macbook-pro-14-m5-24-1024-gb',
+            'slug' => 'macbook-pro-14-m5-24-1024-gb',
             'price' => 32000000,
             'description' => "Apple MacBook Pro 14 (M5, 24/1024 GB) – yangi avlod Apple M5 chipi 
                 asosidagi professional noutbuk. 10 yadroli protsessor (4 ta super yadro va 6 ta 

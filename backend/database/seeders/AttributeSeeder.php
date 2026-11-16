@@ -26,7 +26,7 @@ class AttributeSeeder extends Seeder
             'unit' => 'GB'
         ]);
 
-        foreach (['4', '6', '8', '12', '16', '32'] as $value) {
+        foreach (['4', '6', '8', '12', '16', '24', '32'] as $value) {
             AttributeValue::create([
                 'attribute_id' => $ram->id,
                 'value' => $value
