@@ -6,6 +6,8 @@ test('example', function () {
     $response->assertStatus(200);
 });
 
-test('description', function () {
-    
+test('ping returns pong', function () {
+    $response = $this->getJson('/api/v1/ping');
+
+    $response->assertStatus(200);
 });
