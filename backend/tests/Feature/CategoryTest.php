@@ -31,3 +31,9 @@ it('includes the children', function () {
     $response->assertOk();
     $response->assertJsonCount(2, 'data.children');
 });
+
+it('returns 404 for an unknown slug', function () {
+    $response = $this->getJson('/api/v1/categories/rolex-watch');
+
+    $response->assertNotFound();
+});
