@@ -21,3 +21,13 @@ it('returns a category by slug', function() {
     $response->assertOk();
     $response->assertJsonPath('data.slug', 'smartfonlar');
 });
+
+it('includes the children', function () {
+    $parent = Category::factory()->create(['slug' => 'smartfonlar']);
+    Category::factory()->count(2)->create(['parent_id' => $parent->id]);
+
+    $response = $this->getJson('/api/v1/categories/{$parent->slug}');
+
+    $response->assertOk();
+    $response->assertJsonCOunt(2, 'data.children');
+});
