@@ -28,7 +28,7 @@ import {
   IconShirt,
   IconSnowflake,
   IconToolsKitchen,
-  IconToolsKitchen2,
+  IconIroningSteam,
   IconVacuumCleaner,
   IconWashMachine,
   IconWind,
@@ -59,11 +59,12 @@ const ICONS: Record<string, Component> = {
   airconditioner: IconAirConditioning,
   // "Uy uchun kichik texnika" (small home appliances) arrives from the API as
   // the key `home`. A house glyph says nothing about the products, so it gets
-  // the kitchen-tools mark; the more descriptive keys resolve the same way in
+  // a steam iron, a typical small appliance (Tabler has no kettle icon); the
+  // more descriptive keys resolve the same way in
   // case the seeder is ever renamed.
-  home: IconToolsKitchen2,
-  kitchen: IconToolsKitchen2,
-  smallappliances: IconToolsKitchen2,
+  home: IconIroningSteam,
+  kitchen: IconIroningSteam,
+  smallappliances: IconIroningSteam,
 
   // Sub-categories and fixture names
   phone: IconPhone,
