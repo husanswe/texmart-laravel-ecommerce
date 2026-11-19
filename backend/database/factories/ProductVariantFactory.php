@@ -19,8 +19,10 @@ class ProductVariantFactory extends Factory
         ];
     }
 
-    public function outOfStock()
+    public function outOfStock(): static
     {
-        
+        return $this->state(fn (array $attributes) => [
+            'stock' => 0,
+        ]);
     }
 }
