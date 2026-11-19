@@ -13,9 +13,14 @@ class ProductVariantFactory extends Factory
         return [
             'product_id' => Product::factory(),
             'name' => fake()->word(),
-            'price' => fake()->randomFloat(100000, 100000000),
+            'price' => fake()->randomFloat(nbMaxDecimals: 2, min: 100000, max: 100000000),
             'sku' => strtoupper(fake()->unique()->bothify('???-#####')),
-            'stock' => fake()->numberBetween(0, 100)
+            'stock' => fake()->numberBetween(1, 100)
         ];
+    }
+
+    public function outOfStock()
+    {
+        
     }
 }
