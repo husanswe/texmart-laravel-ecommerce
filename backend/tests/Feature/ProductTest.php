@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 
+
 it('returns paginated products with meta and links', function () {
     Product::factory()->count(25)->create();
 

@@ -2,6 +2,7 @@
 
 use App\Models\Brand;
 
+
 it('returns all brands', function () {
     Brand::factory()->count(3)->create();
 
