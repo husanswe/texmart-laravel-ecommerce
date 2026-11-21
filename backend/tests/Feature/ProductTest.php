@@ -71,12 +71,17 @@ it('shows that category filter includes subcategories', function () {
         ->assertJsonMissing(['name' => 'Samsung TV']);
 });
 
-it('shows 2 brands with products', function () {
+it('filters product by brand', function () {
     $apple = Brand::factory()->create(['id' => 'apple']);
     $samsung = Brand::factory()->create(['id' => 'samsung']);
 
     Product::factory()->count(2)->create(['brand_id' => $apple->id]);
-    Product::factory()->create(['brand_id' => $samsung->id]);
+    Product::factory()->create(['brand_id' => $samsung->id, 'name' => 'Samsung Galaxy']);
 
-    
+    $response = $this->getJson("/api/v1/products?brand[]={$apple->id}");
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(2, 'data')
+        ->assertJsonMissing(['name' => 'Samsung Galaxy']);
 });
