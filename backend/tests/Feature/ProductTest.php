@@ -72,8 +72,8 @@ it('shows that category filter includes subcategories', function () {
 });
 
 it('filters product by brand', function () {
-    $apple = Brand::factory()->create(['id' => 'apple']);
-    $samsung = Brand::factory()->create(['id' => 'samsung']);
+    $apple = Brand::factory()->create(['name' => 'apple']);
+    $samsung = Brand::factory()->create(['name' => 'samsung']);
 
     Product::factory()->count(2)->create(['brand_id' => $apple->id]);
     Product::factory()->create(['brand_id' => $samsung->id, 'name' => 'Samsung Galaxy']);
