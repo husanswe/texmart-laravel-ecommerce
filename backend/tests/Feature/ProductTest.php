@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 
 
 it('returns paginated products with meta and links', function () {
@@ -42,7 +43,6 @@ it('returns paginated products with meta and links', function () {
         ]);
 });
 
-
 it('returns the remaining products on page 2', function () {
     Product::factory()->count(25)->create();
 
@@ -53,7 +53,6 @@ it('returns the remaining products on page 2', function () {
         ->assertJsonCount(5, 'data')
         ->assertJsonPath('meta.current_page', 2);
 });
-
 
 it('shows that category filter includes subcategories', function () {
     $parentCategory = Category::factory()->create(['slug' => 'smartfonlar']);
@@ -70,4 +69,14 @@ it('shows that category filter includes subcategories', function () {
         ->assertOk()
         ->assertJsonCount(2, 'data')
         ->assertJsonMissing(['name' => 'Samsung TV']);
+});
+
+it('shows 2 brands with products', function () {
+    $apple = Brand::factory()->create(['id' => 'apple']);
+    $samsung = Brand::factory()->create(['id' => 'samsung']);
+
+    Product::factory()->count(2)->create(['brand_id' => $apple->id]);
+    Product::factory()->create(['brand_id' => $samsung->id]);
+
+    
 });
