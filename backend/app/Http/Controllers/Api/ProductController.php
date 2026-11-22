@@ -120,7 +120,7 @@ class ProductController extends Controller
             'brand',
             'category', 
             'productImage', 
-            'ProductVariant', 
+            'productVariant', 
             'attributeValue.attribute'
         ])
             ->whereIn('id', $validated['ids'])
