@@ -21,8 +21,9 @@ it('sorts brands by name', function () {
 
     $response = $this->getJson('/api/v1/brands');
 
-    $response->assertOk();
-    $response->assertJsonPath('0.name', 'Apple');
-    $response->assertJsonPath('1.name', 'Samsung');
-    $response->assertJsonPath('2.name', 'Xiaomi');
+    $response
+        ->assertOk()
+        ->assertJsonPath('0.name', 'Apple')
+        ->assertJsonPath('1.name', 'Samsung')
+        ->assertJsonPath('2.name', 'Xiaomi');
 });

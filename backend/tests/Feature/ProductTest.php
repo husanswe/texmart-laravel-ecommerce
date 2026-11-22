@@ -121,3 +121,35 @@ it('filters products by stock', function () {
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.name', 'Available');
 });
+
+it('sorts products by price ascending', function () {
+    Product::factory()->count(3)->sequence(
+        ['price' => 5000000, 'name' => 'Middle'],
+        ['price' => 9000000, 'name' => 'Expensive'],
+        ['price' => 1000000, 'name' => 'Cheap'],
+    )->create();
+
+    $response = $this->getJson('/api/v1/products?sort=price_asc');
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('data.0.name', 'Cheap')
+        ->assertJsonPath('data.1.name', 'Middle')
+        ->assertJsonPath('data.2.name', 'Expensive');
+});
+
+it('sorts products by price descending', function () {
+    Product::factory()->count(3)->sequence(
+        ['price' => 5000000, 'name' => 'Middle'],
+        ['price' => 1000000, 'name' => 'Cheap'],
+        ['price' => 9000000, 'name' => 'Expensive'],
+    )->create();
+
+    $response = $this->getJson('/api/v1/products?sort=price_desc');
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('data.0.name', 'Expensive')
+        ->assertJsonPath('data.1.name', 'Middle')
+        ->assertJsonPath('data.2.name', 'Cheap');
+});
