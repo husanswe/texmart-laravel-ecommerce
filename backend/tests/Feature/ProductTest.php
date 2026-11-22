@@ -3,6 +3,7 @@
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\ProductVariant;
 
 
 it('returns paginated products with meta and links', function () {
@@ -99,4 +100,24 @@ it('filters products by price', function () {
         ->assertOk()
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.name', 'Middle');
+});
+
+it('filters products by stock', function () {
+    $availableProduct = Product::factory()->create([
+        'name' => 'Sold Out',
+    ]);
+
+    $soldOutProduct = Product::factory()->create([
+        'name' => 'Available',
+    ]);
+
+    ProductVariant::factory()->create(['product_id' => $availableProduct->id, 'stock' => 100]);
+    ProductVariant::factory()->outOfStock()->create(['product_id' => $soldOutProduct->id]);
+
+    $response = $this->getJson('/api/v1/products?in_stock=1');
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.name', 'Available');
 });
