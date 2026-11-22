@@ -191,3 +191,24 @@ it('compares 2 or more products that added to comparing list', function() {
         ->assertJsonCount(2, 'data')
         ->assertJsonCount(1, 'data.0.productVariant');
 });
+
+
+it('rejects compare with only one id', function() {
+    $product = Product::factory()->create();
+
+    $response = $this->getJson("/api/v1/products/compare?ids[]={$product->id}");
+
+    $response
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('ids');
+});
+
+it("rejects a product ID that doesn't exist", function() {
+    $product = Product::factory()->create();
+
+    $response = $this->getJson("/api/v1/products/compare?ids[]={$product->id}&ids[]=999");
+
+    $response
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('ids.1');
+});
