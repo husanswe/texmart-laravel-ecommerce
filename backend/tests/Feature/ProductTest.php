@@ -85,3 +85,18 @@ it('filters product by brand', function () {
         ->assertJsonCount(2, 'data')
         ->assertJsonMissing(['name' => 'Samsung Galaxy']);
 });
+
+it('filters products by price', function () {
+    Product::factory()->count(3)->sequence(
+        ['price' => 1000000, 'name' => 'Cheap'],
+        ['price' => 5000000, 'name' => 'Middle'],
+        ['price' => 9000000, 'name' => 'Expensive'],
+    )->create();
+
+    $response = $this->getJson('/api/v1/products?min_price=2000000&max_price=8000000');
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.name', 'Middle');
+});
