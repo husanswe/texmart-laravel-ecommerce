@@ -6,7 +6,7 @@ use App\Models\Brand;
 use App\Models\ProductVariant;
 
 
-it('returns paginated products with meta and links', function () {
+it('returns paginated products with meta and links', function() {
     Product::factory()->count(25)->create();
 
     $response = $this->getJson('/api/v1/products');
@@ -44,7 +44,7 @@ it('returns paginated products with meta and links', function () {
         ]);
 });
 
-it('returns the remaining products on page 2', function () {
+it('returns the remaining products on page 2', function() {
     Product::factory()->count(25)->create();
 
     $response = $this->getJson('/api/v1/products?page=2');
@@ -55,7 +55,8 @@ it('returns the remaining products on page 2', function () {
         ->assertJsonPath('meta.current_page', 2);
 });
 
-it('shows that category filter includes subcategories', function () {
+
+it('shows that category filter includes subcategories', function() {
     $parentCategory = Category::factory()->create(['slug' => 'smartfonlar']);
     $childCategory = Category::factory()->create(['parent_id' => $parentCategory->id]);
     $tvCategory = Category::factory()->create(['slug' => 'televizorlar']);
@@ -72,7 +73,8 @@ it('shows that category filter includes subcategories', function () {
         ->assertJsonMissing(['name' => 'Samsung TV']);
 });
 
-it('filters product by brand', function () {
+
+it('filters product by brand', function() {
     $apple = Brand::factory()->create(['name' => 'apple']);
     $samsung = Brand::factory()->create(['name' => 'samsung']);
 
@@ -87,7 +89,8 @@ it('filters product by brand', function () {
         ->assertJsonMissing(['name' => 'Samsung Galaxy']);
 });
 
-it('filters products by price', function () {
+
+it('filters products by price', function() {
     Product::factory()->count(3)->sequence(
         ['price' => 1000000, 'name' => 'Cheap'],
         ['price' => 5000000, 'name' => 'Middle'],
@@ -102,7 +105,8 @@ it('filters products by price', function () {
         ->assertJsonPath('data.0.name', 'Middle');
 });
 
-it('filters products by stock', function () {
+
+it('filters products by stock', function() {
     $availableProduct = Product::factory()->create([
         'name' => 'Available',
     ]);
@@ -122,7 +126,8 @@ it('filters products by stock', function () {
         ->assertJsonPath('data.0.name', 'Available');
 });
 
-it('sorts products by price ascending', function () {
+
+it('sorts products by price ascending', function() {
     Product::factory()->count(3)->sequence(
         ['price' => 5000000, 'name' => 'Middle'],
         ['price' => 9000000, 'name' => 'Expensive'],
@@ -138,7 +143,7 @@ it('sorts products by price ascending', function () {
         ->assertJsonPath('data.2.name', 'Expensive');
 });
 
-it('sorts products by price descending', function () {
+it('sorts products by price descending', function() {
     Product::factory()->count(3)->sequence(
         ['price' => 5000000, 'name' => 'Middle'],
         ['price' => 1000000, 'name' => 'Cheap'],
@@ -152,4 +157,21 @@ it('sorts products by price descending', function () {
         ->assertJsonPath('data.0.name', 'Expensive')
         ->assertJsonPath('data.1.name', 'Middle')
         ->assertJsonPath('data.2.name', 'Cheap');
+});
+
+
+it('returns a product by slug', function() {
+    Product::factory()->create(['slug' => 'iphone-18-pro-max']);
+
+    $response = $this->getJson('/api/v1/products/iphone-18-pro-max');
+
+    $response   
+        ->assertOk()
+        ->assertJsonPath('data.slug', 'iphone-18-pro-max');
+});
+
+it('returns 404 for an unknown product slug', function() {
+    $response = $this->getJson('/api/v1/products/apple-watch');
+
+    $response->assertNotFound();
 });

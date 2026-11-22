@@ -3,7 +3,7 @@
 use App\Models\Category;
 
 
-it('lists only parent categories', function () {
+it('lists only parent categories', function() {
     $parent = Category::factory()->count(2)->create();
     Category::factory()->create(['parent_id' => $parent->first()->id]);
 
@@ -22,7 +22,7 @@ it('returns a category by slug', function() {
     $response->assertJsonPath('data.slug', 'smartfonlar');
 });
 
-it('includes the children', function () {
+it('includes the children', function() {
     $parent = Category::factory()->create(['slug' => 'smartfonlar']);
     Category::factory()->count(2)->create(['parent_id' => $parent->id]);
 
@@ -32,7 +32,7 @@ it('includes the children', function () {
     $response->assertJsonCount(2, 'data.children');
 });
 
-it('returns 404 for an unknown slug', function () {
+it('returns 404 for an unknown slug', function() {
     $response = $this->getJson('/api/v1/categories/something-that-doesnt-exist');
 
     $response->assertNotFound();
