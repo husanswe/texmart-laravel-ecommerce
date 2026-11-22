@@ -104,14 +104,14 @@ it('filters products by price', function () {
 
 it('filters products by stock', function () {
     $availableProduct = Product::factory()->create([
-        'name' => 'Sold Out',
-    ]);
-
-    $soldOutProduct = Product::factory()->create([
         'name' => 'Available',
     ]);
 
-    ProductVariant::factory()->create(['product_id' => $availableProduct->id, 'stock' => 100]);
+    $soldOutProduct = Product::factory()->create([
+        'name' => 'Sold Out',
+    ]);
+
+    ProductVariant::factory()->create(['product_id' => $availableProduct->id]);
     ProductVariant::factory()->outOfStock()->create(['product_id' => $soldOutProduct->id]);
 
     $response = $this->getJson('/api/v1/products?in_stock=1');
