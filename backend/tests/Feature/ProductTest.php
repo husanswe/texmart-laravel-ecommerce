@@ -175,3 +175,19 @@ it('returns 404 for an unknown product slug', function() {
 
     $response->assertNotFound();
 });
+
+
+it('compares 2 or more products that added to comparing list', function() {
+    $first = Product::factory()->create();
+    $second = Product::factory()->create();
+    Product::factory()->create();
+    
+    ProductVariant::factory()->create(['product_id' => $first->id]);
+
+    $response = $this->getJson("/api/v1/products/compare?ids[]={$first->id}&ids[]={$second->id}");
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(2, 'data')
+        ->assertJsonCount(1, 'data.0.productVariant');
+});
