@@ -46,8 +46,7 @@ it('returns a token when user logs in with correct password', function() {
         'password' => 'SECRET789',
     ]);
 
-    $response = $this->postJson('/api/v1/login', 
-        [
+    $response = $this->postJson('/api/v1/login', [
             'phone' => $phone, 
             'password' => 'SECRET789'
         ]);
@@ -55,4 +54,23 @@ it('returns a token when user logs in with correct password', function() {
     $response
         ->assertOk()
         ->assertJsonStructure(['token']);
+});
+
+
+it("rejects login with a wrong password", function() {
+    $phone = '998998856458';
+    
+    User::factory()->create([
+        'phone' => $phone,
+        'password' => '321loremipsum',
+    ]);
+
+    $response = $this->postJson('/api/v1/login', [
+        'phone' => $phone,
+        'password' => 'SECRET789',
+    ]);
+
+    $response
+        ->assertUnauthorized()
+        ->assertJsonMissingPath('token');
 });
