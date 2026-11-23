@@ -74,3 +74,10 @@ it("rejects login with a wrong password", function() {
         ->assertUnauthorized()
         ->assertJsonMissingPath('token');
 });
+
+
+it('returns 401 for /me without a token', function() {
+    $response = $this->getJson('/api/v1/me');
+
+    $response->assertUnauthorized();
+});
