@@ -21,3 +21,26 @@ it('lets a guest add an item to the cart', function () {
             'quantity' => 2,
         ]);
 });
+
+
+it('shows the guest cart for the same token', function() {
+    $variant = ProductVariant::factory()->create([
+        'price' => 1000000,
+        'stock' => 5
+    ]);
+    $token = 'test-token-123';
+
+    $this->withHeader('X-Cart-Token', $token)->postJson('/api/v1/cart/items', [
+        'product_variant_id' => $variant->id,
+        'quantity' => 2,
+    ]);
+
+    $response = $this->withHeader('X-Cart-Token', $token)->getJson('/api/v1/cart');
+    
+    $response
+        ->assertOk()
+        ->assertJsonCount(1, 'items')
+        ->assertJsonPath('cart_token', $token);
+
+    expect($response->json('total'))->toEqual(2000000);
+});
