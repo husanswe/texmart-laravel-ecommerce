@@ -81,3 +81,15 @@ it('returns 401 for /me without a token', function() {
 
     $response->assertUnauthorized();
 });
+
+
+it('deletes the tokens on logout', function() {
+    $user = User::factory()->create();
+    $token = $user->createToken('test')->plainTextToken;
+
+    $response = $this->withToken($token)->postJson('/api/v1/logout');
+
+    $response->assertOk();
+        
+    $this->assertDatabaseCount('personal_access_tokens', 0);
+});
