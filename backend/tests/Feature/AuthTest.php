@@ -36,3 +36,23 @@ it('rejects registration with a duplicate phone', function() {
         ->assertUnprocessable()
         ->assertJsonValidationErrors('phone');
 });
+
+
+it('returns a token when user logs in with correct password', function() {
+    $phone = '+998901237654';
+
+    User::factory()->create([
+        'phone' => $phone,
+        'password' => 'SECRET789',
+    ]);
+
+    $response = $this->postJson('/api/v1/login', 
+        [
+            'phone' => $phone, 
+            'password' => 'SECRET789'
+        ]);
+
+    $response
+        ->assertOk()
+        ->assertJsonStructure(['token']);
+});
