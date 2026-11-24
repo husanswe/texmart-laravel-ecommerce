@@ -2,6 +2,8 @@
 
 use App\Models\ProductVariant;
 use App\Models\User;
+use App\Models\Cart;
+use App\Models\CartItem;
 use Laravel\Sanctum\Sanctum;
 
 
@@ -103,5 +105,27 @@ it('allows adding exactly the available stock', function() {
     $this->assertDatabaseHas('cart_items', [
         'product_variant_id' => $variant->id,
         'quantity' => 5,
+    ]);
+});
+
+
+it('allows decreasing quantity even above stock', function() {
+    $variant = ProductVariant::factory()->create(['stock' => 5]);
+    $token = 'test-token-456';
+
+    $cart = Cart::factory()->create(['user_id' => null, 'session_id' => $token]);
+    $item = CartItem::factory()->create([
+        'cart_id' => $cart->id,
+        'product_variant_id' => $variant->id,
+        'quantity' => 8,
+    ]);
+
+    $response = $this->withHeader('X-Cart-Token', $token)
+        ->putJson("/api/v1/cart/items/{$item->id}", ['quantity' => 6]);
+
+    $response->assertOk();
+    $this->assertDatabaseHas('cart_items', [
+        'id' => $item->id,
+        'quantity' => 6,
     ]);
 });
