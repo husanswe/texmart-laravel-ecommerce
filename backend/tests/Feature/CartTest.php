@@ -70,3 +70,38 @@ it('adds an item to the logged-in user cart', function() {
             'quantity' => 2
         ]);
 });
+
+
+it('rejects adding more than the stock', function() {
+    $variant = ProductVariant::factory()->create(['stock' => 5]);
+    $token = 'test-token-007';
+
+    $response = $this->withHeader('X-Cart-Token', $token)
+        ->postJson('/api/v1/cart/items', [
+            'product_variant_id' => $variant->id,
+            'quantity' => 6,
+        ]);
+
+    $response
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('quantity');
+
+    $this->assertDatabaseCount('cart_items', 0);
+});
+
+it('allows adding exactly the available stock', function() {
+    $variant = ProductVariant::factory()->create(['stock' => 5]);
+    $token = 'test-token-007';
+
+    $response = $this->withHeader('X-Cart-Token', $token)
+        ->postJson('/api/v1/cart/items', [
+            'product_variant_id' => $variant->id,
+            'quantity' => 5,
+        ]);
+
+    $response->assertOk();
+    $this->assertDatabaseHas('cart_items', [
+        'product_variant_id' => $variant->id,
+        'quantity' => 5,
+    ]);
+});
