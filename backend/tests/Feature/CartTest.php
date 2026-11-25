@@ -163,3 +163,24 @@ it('cannot delete an item from another cart', function() {
 
     $this->assertDatabaseHas('cart_items', ['id' => $item->id]);
 });
+
+
+it('merges the guest cart into the user on register', function() {
+    $phone = '+998909876543';
+    $token = 'second-test-token';
+    $guestCart = Cart::factory()->create(['user_id' => null, 'session_id' => $token]);
+    $item = CartItem::factory()->create([
+        'cart_id' => $guestCart->id,
+        'quantity' => 2,
+    ]);
+
+    $response = $this->withHeader('X-Cart-Token', $token)
+        ->postJson('/api/v1/register', [
+            'name' => 'John Doe',
+            'phone' => $phone,
+            'password' => 'secret123',
+            'password_confirmation' => 'secret123',
+        ]);
+
+    $this->assertDatabaseMissing('carts', ['session_id' => $token]);
+});
