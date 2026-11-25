@@ -145,3 +145,21 @@ it('removes an item from the cart', function() {
     $response->assertOk();
     $this->assertDatabaseMissing('cart_items', ['id' => $item->id]);
 });
+
+
+it('cannot delete an item from another cart', function() {
+    $token1 = 'test-token-xxx';
+    $token2 = 'second-test-token';
+    $cart = Cart::factory()->create(['user_id' => null, 'session_id' => $token1]);
+    $item = CartItem::factory()->create([
+        'cart_id' => $cart->id,
+        'quantity' => 2,
+    ]);
+
+    $response = $this->withHeader('X-Cart-Token', $token2)
+        ->deleteJson("/api/v1/cart/items/{$item->id}");
+    
+    $response->assertNotFound();
+
+    $this->assertDatabaseHas('cart_items', ['id' => $item->id]);
+});
