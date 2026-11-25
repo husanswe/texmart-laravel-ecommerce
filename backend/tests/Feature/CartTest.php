@@ -129,3 +129,19 @@ it('allows decreasing quantity even above stock', function() {
         'quantity' => 6,
     ]);
 });
+
+
+it('removes an item from the cart', function() {
+    $token = 'test-token-loremipsum';
+    $cart = Cart::factory()->create(['user_id' => null, 'session_id' => $token]);
+    $item = CartItem::factory()->create([
+        'cart_id' => $cart->id,
+        'quantity' => 5,
+    ]);
+
+    $response = $this->withHeader('X-Cart-Token', $token)
+        ->deleteJson("/api/v1/cart/items/{$item->id}");
+
+    $response->assertOk();
+    $this->assertDatabaseMissing('cart_items', ['id' => $item->id]);
+});
