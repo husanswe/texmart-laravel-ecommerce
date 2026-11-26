@@ -70,5 +70,24 @@ it('rejects checkout with an empty cart', function() {
 
 
 it("lists only user's orders", function() {
-    
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    $otherUser = User::factory()->create();
+
+    Order::factory()->count(2)->create([
+        'user_id' => $user->id,
+    ]);
+
+    Order::factory()->create([
+        'user_id' => $otherUser->id,
+        'order_number' => "ORD-OTHER-123",
+    ]); 
+
+    $response = $this->getJson('/api/v1/orders');
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(2, 'data.data')
+        ->assertJsonMissing(['order_number' => "ORD-OTHER-123"]); 
 });
