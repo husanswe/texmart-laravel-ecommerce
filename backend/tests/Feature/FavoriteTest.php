@@ -24,3 +24,17 @@ it('adds a product to favorites without duplicates', function() {
 
     $this->assertDatabaseCount('favorites', 1);
 });
+
+
+it('removes a product from favorites', function() {
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+    $product = Product::factory()->create();
+
+    $user->favoriteProducts()->attach($product->id);
+
+    $response = $this->deleteJson("/api/v1/favorites/{$product->id}");
+
+    $response ->assertOk();
+    $this->assertDatabaseCount('favorites', 0);
+});
