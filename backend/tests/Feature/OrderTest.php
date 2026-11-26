@@ -67,3 +67,8 @@ it('rejects checkout with an empty cart', function() {
         
     $this->assertDatabaseCount('orders', 0);
 });
+
+
+it("lists only user's orders", function() {
+    
+});
