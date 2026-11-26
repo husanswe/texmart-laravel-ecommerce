@@ -48,6 +48,7 @@ it('places an order, reduces stock and empties the cart', function () {
             'stock' => 8,
     ]);
 
+    Queue::assertPushed(SendOrderConfirmationEmail::class);
 });
 
 
