@@ -167,10 +167,13 @@ it('cannot delete an item from another cart', function() {
 
 it('merges the guest cart into the user on register', function() {
     $phone = '+998909876543';
-    $token = 'second-test-token';
+    $token = 'guest-token-merge';
+
+    $variant = ProductVariant::factory()->create(['stock' => 5]);
     $guestCart = Cart::factory()->create(['user_id' => null, 'session_id' => $token]);
     $item = CartItem::factory()->create([
         'cart_id' => $guestCart->id,
+        'product_variant_id' => $variant->id,
         'quantity' => 2,
     ]);
 
@@ -182,5 +185,16 @@ it('merges the guest cart into the user on register', function() {
             'password_confirmation' => 'secret123',
         ]);
 
+    $response->assertCreated();
+
+    $user = User::where('phone', $phone)->first();
+    $userCart = Cart::where('user_id', $user->id)->first();
+
+    $this->assertDatabaseHas('cart_items', [
+        'id' => $item->id,
+        'cart_id' => $userCart->id,
+        'quantity' => 2,
+    ]);
+    
     $this->assertDatabaseMissing('carts', ['session_id' => $token]);
 });
