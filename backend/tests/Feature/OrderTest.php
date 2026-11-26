@@ -34,14 +34,35 @@ it('places an order, reduces stock and empties the cart', function () {
     ]);
 
     $response->assertCreated();
-    $this->assertDatabaseHas('orders', [
-        'user_id' => $user->id,
-        'total_amount' => 5000000,
-    ]);
-    $this->assertDatabaseCount('cart_items', 0);
+    
+    $this
+        ->assertDatabaseHas('orders', [
+            'user_id' => $user->id,
+            'total_amount' => 5000000,
+        ])
 
-    $this->assertDatabaseHas('product_variants', [
-        'id' => $variant->id,
-        'stock' => 8,
+        ->assertDatabaseCount('cart_items', 0)
+
+         ->assertDatabaseHas('product_variants', [
+            'id' => $variant->id,
+            'stock' => 8,
     ]);
+
+});
+
+
+it('rejects checkout with an empty cart', function() {
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    $response = $this->postJson('/api/v1/orders', [
+        'shipping_address' => "ABC Street 123, Tashkent City",
+        'phone' => "+998998856458",
+    ]);
+
+    $response 
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('cart');
+        
+    $this->assertDatabaseCount('orders', 0);
 });
