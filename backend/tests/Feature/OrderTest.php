@@ -91,3 +91,18 @@ it("lists only user's orders", function() {
         ->assertJsonCount(2, 'data.data')
         ->assertJsonMissing(['order_number' => "ORD-OTHER-123"]); 
 });
+
+
+it("cannot view another user's order", function() {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    $order = Order::factory()->create([
+        'user_id' => $otherUser->id
+    ]);
+
+    $response = $this->getJson("/api/v1/orders/{$order->id}");
+
+    $response->assertNotFound();
+});
