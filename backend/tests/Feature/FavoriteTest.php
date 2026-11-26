@@ -38,3 +38,19 @@ it('removes a product from favorites', function() {
     $response ->assertOk();
     $this->assertDatabaseCount('favorites', 0);
 });
+
+
+it('syncs favorites and skips deleted products', function() {
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+    $product = Product::factory()->create();
+
+    $response = $this->postJson('/api/v1/favorites/sync', ['ids' => [$product->id, 99999]]);
+
+    $response
+        ->assertOk()
+        ->assertJsonCount(1, 'ids')
+        ->assertJsonPath('ids.0', $product->id);
+
+    $this->assertDatabaseCount('favorites', 1);
+});
