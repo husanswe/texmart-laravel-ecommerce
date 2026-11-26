@@ -10,7 +10,7 @@ Portfolio project. Not affiliated with any real shop.
 | Layer | Technology |
 |---|---|
 | Frontend | Nuxt 4 (Vue 3, SSR), TypeScript, Tailwind CSS v4, Pinia |
-| Backend | Laravel 13, PHP 8.3+, Sanctum token auth |
+| Backend | Laravel 13, PHP 8.5, Sanctum token auth |
 | Database | MySQL |
 | Admin | Filament 5, at `/admin` |
 | Queue | Laravel queues (database driver), used for order confirmation email |
