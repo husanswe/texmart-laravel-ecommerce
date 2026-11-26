@@ -19,3 +19,17 @@ it('forbids normal users from the admin dashboard', function() {
 
     $response->assertForbidden();
 });
+
+
+it('allows admins to enter admin dashboard', function() {
+    $user = User::factory()->create([
+        'is_admin' => true,
+    ]);
+    Sanctum::actingAs($user);
+
+    $response = $this->getJson('/api/v1/admin/dashboard');
+
+    $response
+        ->assertOk()
+        ->assertJson(['message' => 'Admin access granted']);
+});
